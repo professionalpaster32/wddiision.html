@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en" data-theme="halloween">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <title>Devision</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root{--radius:22px;--fg:#e7e7ea;--fg-dim:#b5b5c0;--bg:#0b0b0f;--bg-2:#101017;--card:#0d0d12;--line:#22222a;--brand:#ff6a00;--brand-2:#ff9a3d;--glow:rgba(255,106,0,.45);--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444}
+      [data-theme="blue"]{--bg:#06080c;--bg-2:#0a1018;--card:#0a0f15;--line:#1a2230;--brand:#2aa0ff;--brand-2:#69c1ff;--glow:rgba(42,160,255,.42)}
+      [data-theme="purple"]{--bg:#08070d;--bg-2:#0d0a17;--card:#100d1f;--line:#231a36;--brand:#9b5cff;--brand-2:#c2a6ff;--glow:rgba(155,92,255,.45)}
+      [data-theme="gray"]{--bg:#0a0b0c;--bg-2:#101213;--card:#121416;--line:#23272a;--brand:#9aa0a6;--brand-2:#c9cdd2;--glow:rgba(154,160,166,.35)}
+      [data-theme="red"]{--bg:#0a0606;--bg-2:#140a0a;--card:#160b0b;--line:#2a1717;--brand:#ff3b3b;--brand-2:#ff7a7a;--glow:rgba(255,59,59,.42)}
+      [data-theme="phrog"]{--bg:#04100a;--bg-2:#07170f;--card:#081a12;--line:#113123;--brand:#27c779;--brand-2:#7be3b5;--glow:rgba(39,199,121,.42)}
+      [data-theme="pink"]{--bg:#0b0710;--bg-2:#120a19;--card:#140c1f;--line:#23152f;--brand:#ff79c6;--brand-2:#ffb3e6;--glow:rgba(255,121,198,.44)}
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{margin:0;background:radial-gradient(1200px 600px at 50% -20%,rgba(255,255,255,.04),transparent),linear-gradient(180deg,var(--bg),var(--bg-2));color:var(--fg);font-family:Inter,system-ui,-apple-system,Arial,sans-serif}
+      .grid-bg::before{content:"";position:fixed;inset:0;background:
+        radial-gradient(180px 180px at 20% 30%,rgba(255,255,255,.05),transparent 60%),
+        radial-gradient(240px 240px at 70% 70%,rgba(255,255,255,.04),transparent 60%),
+        linear-gradient(transparent 31px,var(--line) 32px),linear-gradient(90deg,transparent 31px,var(--line) 32px);
+        background-size: 100% 100%,100% 100%,32px 32px,32px 32px;mask-image:linear-gradient(#000,transparent);
+        pointer-events:none;z-index:0;opacity:.45}
+      .wrap{max-width:1100px;margin:0 auto;padding:24px 16px;position:relative;z-index:2}
+      .nav{position:sticky;top:0;z-index:50;padding:12px 0;backdrop-filter:saturate(1.4) blur(10px)}
+      .nav-inner{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.06);border-radius:28px;padding:10px 12px;box-shadow:0 0 0 1px rgba(255,255,255,.02),0 10px 40px var(--glow)}
+      .logo-row{display:flex;align-items:center;gap:12px}
+      .logo{width:112px;height:40px;border-radius:14px;overflow:hidden;position:relative;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),0 0 24px var(--glow)}
+      .logo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:14px}
+      .logo::after{content:"";position:absolute;inset:-1px;border-radius:16px;box-shadow:0 0 0 2px rgba(255,255,255,.05),0 0 28px var(--glow);pointer-events:none}
+      .nav-actions{display:flex;align-items:center;gap:8px}
+      .icon-btn{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08);color:var(--fg);transition:.2s transform,.2s box-shadow}
+      .icon-btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px var(--glow)}
+      .hamburger{display:none}
+      .nav-tabs{display:flex;gap:10px;flex-wrap:wrap}
+      .tab{padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:var(--fg);text-decoration:none;font-weight:600;letter-spacing:.2px}
+      .tab:hover{box-shadow:0 8px 24px var(--glow)}
+      @media(max-width:860px){.hamburger{display:block}.nav-tabs{display:none}}
+      .sticky-buy{position:fixed;top:0;left:0;right:0;transform:translateY(-120%);transition:.35s transform;z-index:60;display:flex;justify-content:center}
+      .sticky-buy-inner{margin:8px auto;display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:8px 12px;box-shadow:0 12px 32px var(--glow)}
+      .buy-btn{background:var(--brand);color:#060606;border:none;border-radius:14px;padding:10px 14px;font-weight:800;letter-spacing:.3px}
+      .ghost-btn{background:transparent;border:1px solid rgba(255,255,255,.12);color:var(--fg);border-radius:14px;padding:10px 14px}
+      .hero{padding:64px 0 36px;display:grid;gap:18px;place-items:center;text-align:center}
+      .brand-title{font-family:Audiowide,system-ui;letter-spacing:.8px;font-weight:700;font-size:48px;text-transform:uppercase;text-shadow:0 0 50px var(--glow)}
+      .cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+      .cta{padding:14px 18px;border-radius:16px;border:1px solid rgba(255,255,255,.1);font-weight:800;letter-spacing:.25px}
+      .cta.primary{background:var(--brand);color:#090909}
+      .cta.secondary{background:rgba(255,255,255,.04);color:var(--fg)}
+      .discord-btn{position:relative}
+      .discord-btn::after{content:"";position:absolute;top:0;right:0;width:34%;height:60%;background:
+        repeating-linear-gradient(135deg,rgba(255,255,255,.28) 0 2px,transparent 2px 6px),
+        linear-gradient(135deg,rgba(255,255,255,.2),transparent 60%);
+        border-top-right-radius:16px;border-bottom-left-radius:14px;clip-path:polygon(0 0,100% 0,100% 100%,50% 60%);mix-blend-mode:screen;pointer-events:none}
+      .section{padding:40px 0}
+      .section h2{font-family:Audiowide,system-ui;letter-spacing:.5px;margin:0 0 16px}
+      .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+      .card{grid-column:span 12;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:18px;box-shadow:0 0 0 1px rgba(255,255,255,.03),0 18px 50px var(--glow)}
+      @media(min-width:720px){.span-4{grid-column:span 4}.span-6{grid-column:span 6}.span-8{grid-column:span 8}.span-3{grid-column:span 3}}
+      .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:999px}
+      .icon{width:18px;height:18px;display:inline-block}
+      .muted{color:var(--fg-dim)}
+      .media-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+      .media-grid img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.08);box-shadow:0 8px 24px var(--glow)}
+      .price-cards{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+      .price{grid-column:span 12;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:18px}
+      @media(min-width:720px){.price{grid-column:span 4}}
+      .pay-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+      .pay{height:22px;display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+      details{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:12px 14px}
+      summary{cursor:pointer;font-weight:700;letter-spacing:.2px}
+      .list{display:grid;gap:8px;margin:10px 0}
+      .small{font-size:12px}
+      .contributors{display:grid;gap:16px}
+      .slide{display:none}
+      .slide.active{display:block}
+      .avatar{width:96px;height:96px;border-radius:999px;overflow:hidden;box-shadow:0 0 0 2px rgba(255,255,255,.1),0 0 48px var(--glow);margin:0 auto}
+      .role{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font-weight:700}
+      .slider-nav{display:flex;justify-content:center;gap:10px}
+      .dot{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,.2)}
+      .dot.active{background:var(--brand)}
+      .arrows{display:flex;gap:12px;justify-content:center}
+      .arrow{width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04)}
+      .stats{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+      .stat{grid-column:span 12;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:18px;text-align:center}
+      @media(min-width:720px){.stat{grid-column:span 4}}
+      .mono{font-family:Audiowide,system-ui}
+      .footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.06);color:var(--fg-dim)}
+      .mobile-menu{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);display:none;z-index:70}
+      .mobile-sheet{position:absolute;right:10px;left:10px;top:12px;border-radius:24px;background:var(--card);border:1px solid rgba(255,255,255,.08);padding:16px;box-shadow:0 30px 60px var(--glow)}
+      .chips{display:flex;gap:10px;flex-wrap:wrap}
+      .chip{border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:8px 12px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.03)}
+      .hide{display:none}
+      .canvas-wrap{position:fixed;inset:0;z-index:1;pointer-events:none}
+      canvas{width:100%;height:100%}
+      .divider{height:1px;background:rgba(255,255,255,.08);margin:10px 0}
+      .exec-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+      .exec{grid-column:span 12;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:14px;display:flex;align-items:center;gap:12px}
+      .exec img{width:36px;height:36px;border-radius:10px;object-fit:cover}
+      @media(min-width:720px){.exec{grid-column:span 6}}
+      @media(min-width:980px){.exec{grid-column:span 4}}
+      .sr{position:absolute;left:-9999px}
+    </style>
+  </head>
+  <body>
+    <div class="grid-bg"></div>
+    <div class="canvas-wrap"><canvas id="fx"></canvas></div>
+
+    <div class="sticky-buy" id="stickyBuy">
+      <div class="sticky-buy-inner">
+        <button class="buy-btn" onclick="go('#pricing')">Buy Now</button>
+        <button class="ghost-btn" onclick="go('#support')">Support</button>
+      </div>
+    </div>
+
+    <header class="nav">
+      <div class="wrap">
+        <div class="nav-inner">
+          <div class="logo-row">
+            <a class="logo" href="#home"><img id="brandLogo" alt="Devision"></a>
+            <span class="pill"><svg class="icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.6"/><path d="M12 2a10 10 0 0 1 8.66 15.5" stroke="currentColor" stroke-width="1.6"/></svg><span class="small">Current: <b id="themeName">Halloween</b></span></span>
+          </div>
+          <nav class="nav-tabs" aria-label="Primary">
+            <a class="tab" href="#home">Home</a>
+            <a class="tab" href="#features">Features</a>
+            <a class="tab" href="#media">Media</a>
+            <a class="tab" href="#executors">Supported Executors</a>
+            <a class="tab" href="#pricing">Pricing</a>
+            <a class="tab" href="#faq">FAQ</a>
+            <a class="tab" href="#devlogs">Dev-Logs</a>
+            <a class="tab" href="#changelog">Changelog</a>
+            <a class="tab" href="#contributors">Contributors</a>
+            <a class="tab" href="#support">Support</a>
+          </nav>
+          <div class="nav-actions">
+            <button class="icon-btn" title="Themes" onclick="openThemes()">
+              <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="1.8"/><circle cx="7.5" cy="10.5" r="1.5" fill="currentColor"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="16.5" cy="12" r="1.2" fill="currentColor"/></svg>
+            </button>
+            <a class="icon-btn" href="https://discord.com/invite/dev" target="_blank" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4a18.2 18.2 0 0 0-4.5-1.4l-.2.4a13 13 0 0 1 3.9 1.2 14.8 14.8 0 0 0-5.3-1 16.5 16.5 0 0 0-5.4 1 13.1 13.1 0 0 1 3.9-1.2l-.2-.4A18.2 18.2 0 0 0 4 4C2.4 7 2 9.9 2 12.8c0 0 2.2 3.2 8 3.4l-1.1-1.7 2.1.6.1.1.1-.1 2.1-.6L14 16.2c5.8-.2 8-3.4 8-3.4 0-2.9-.4-5.7-2-8zM9.5 12.9c-.7 0-1.3-.7-1.3-1.5s.6-1.5 1.3-1.5 1.3.7 1.3 1.5-.6 1.5-1.3 1.5zm5 0c-.7 0-1.3-.7-1.3-1.5s.6-1.5 1.3-1.5 1.3.7 1.3 1.5-.6 1.5-1.3 1.5z"/></svg>
+            </a>
+            <button class="icon-btn hamburger" onclick="openMenu()">
+              <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="home" class="wrap">
+      <section class="hero">
+        <h1 class="brand-title">Devision</h1>
+        <p class="muted">Undetected, stable and fast automation. One click to get started.</p>
+        <div class="cta-row">
+          <a class="cta primary discord-btn" href="https://discord.com/invite/dev" target="_blank" rel="noopener">Join Discord</a>
+          <a class="cta secondary" href="#pricing">View Pricing</a>
+        </div>
+      </section>
+
+      <section id="stats" class="section">
+        <h2>Stats</h2>
+        <div class="stats">
+          <div class="stat"><div class="mono" style="font-size:40px" id="days">0</div><div class="muted">Days Til Release</div></div>
+          <div class="stat"><div class="mono" style="font-size:40px">24/7</div><div class="muted">Online Support</div></div>
+          <div class="stat"><div class="mono" style="font-size:40px">100+</div><div class="muted">Daily Events</div></div>
+        </div>
+      </section>
+
+      <section id="features" class="section">
+        <h2>Features</h2>
+        <div class="cards">
+          <div class="card span-4"><div class="pill"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M6 12l3 3 9-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><b>Undetected & Stable</b></div><p class="muted">Hardened runtime with smart evasion.</p></div>
+          <div class="card span-4"><div class="pill"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 0 16 0" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg><b>Silent Aim</b></div><p class="muted">Precise targeting. FOV UI, gradients soon.</p></div>
+          <div class="card span-4"><div class="pill"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="2"/></svg><b>Modes</b></div><p class="muted">Mouse, remote, namecall, raycast.</p></div>
+
+          <div class="card span-6"><div class="pill"><svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="3" stroke="currentColor" stroke-width="2"/></svg><b>UI & Customization</b></div><p class="muted">ScreenGui FOV, highlight target, material changer, avatar changer.</p></div>
+          <div class="card span-6"><div class="pill"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="2"/></svg><b>No Malware</b></div><p class="muted">No keyloggers, no malware. SHA256 on releases.</p></div>
+
+          <div class="card span-12">
+            <div class="media-grid">
+              <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425194294440103977/5759377C-E9B5-4176-B9E2-F57E24EEB585.png?ex=68e8049e&is=68e6b31e&hm=6488bce6b089f4c1821ce5408ea1a076df3ff0df9e039c4b9ac0502fb0fcdae3&" alt="Feature image 1" onerror="this.style.display='none'">
+              <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425207401329594458/FBF3FC2F-7801-47C2-9EAB-C5F8193732BA.png?ex=68e6bf53&is=68e56dd3&hm=74a0e942b6c9333d97c18becd514d891b84b9b83f9050f81aa80ac0f51bc4589&" alt="Feature image 2">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="media" class="section">
+        <h2>Media</h2>
+        <div class="media-grid">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_2025-10-08-07-23-54-15_40deb401b9ffe8e1df2f1cc5ba480b12-KJ2dHWVYRhhqevlLKvG3E4DXs5bk99.jpg" alt="Hero inspiration">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_2025-10-07-23-52-42-60_40deb401b9ffe8e1df2f1cc5ba480b12-tPdG2PNz3J6rdZmJS7ivqhDQmc5H0F.jpg" alt="Nav inspiration">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_2025-10-07-23-52-31-74_40deb401b9ffe8e1df2f1cc5ba480b12-PgRX71CwTW9bPsnhHR3WxpD6C2iYMF.jpg" alt="Drawer inspiration">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_2025-10-08-03-29-52-13_40deb401b9ffe8e1df2f1cc5ba480b12-k9RGtOQTOmDpnBhEyPkuQroF8bBKbE.jpg" alt="Contributors inspiration">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_2025-10-07-23-52-20-25_40deb401b9ffe8e1df2f1cc5ba480b12-1FNqN836kzZKkKHenA3hUILymYKfKm.jpg" alt="Download layout">
+        </div>
+      </section>
+
+      <section id="executors" class="section">
+        <h2>Supported Executors</h2>
+        <div class="exec-grid">
+          <div class="exec"><img src="https://cdn.discordapp.com/icons/613425648685547541/a_1.png" alt=""><div><b>Fluxus</b><div class="small muted">Stable</div></div></div>
+          <div class="exec"><img src="https://cdn.discordapp.com/icons/613425648685547541/a_2.png" alt=""><div><b>KRNL</b><div class="small muted">Supported</div></div></div>
+          <div class="exec"><img src="https://cdn.discordapp.com/icons/613425648685547541/a_3.png" alt=""><div><b>Synapse</b><div class="small muted">Supported</div></div></div>
+          <div class="exec"><img src="https://cdn.discordapp.com/icons/613425648685547541/a_4.png" alt=""><div><b>Script-Ware</b><div class="small muted">Beta</div></div></div>
+          <div class="exec"><img src="https://cdn.discordapp.com/icons/613425648685547541/a_5.png" alt=""><div><b>Arceus X</b><div class="small muted">Android</div></div></div>
+          <div class="exec"><img src="https://cdn.discordapp.com/icons/613425648685547541/a_6.png" alt=""><div><b>Codex</b><div class="small muted">Experimental</div></div></div>
+        </div>
+      </section>
+
+      <section id="pricing" class="section">
+        <h2>Pricing</h2>
+        <div class="price-cards">
+          <div class="price"><h3>Free</h3><p class="muted">Core features with key</p><button class="buy-btn" onclick="go('#support')">Get Key</button><div class="pay-row"><span class="pay">Email</span></div></div>
+          <div class="price"><h3>Premium</h3><p class="muted">Full access</p><button class="buy-btn" onclick="go('#support')">Buy</button><div class="pay-row"><span class="pay">PayPal</span><span class="pay">Crypto</span><span class="pay">Card</span></div></div>
+          <div class="price"><h3>Lifetime</h3><p class="muted">All future updates</p><button class="buy-btn" onclick="go('#support')">Buy</button><div class="pay-row"><span class="pay">PayPal</span><span class="pay">Crypto</span></div></div>
+        </div>
+      </section>
+
+      <section id="faq" class="section">
+        <h2>Devision FAQ</h2>
+        <div class="cards">
+          <details class="card span-6"><summary>Will I get banned?</summary><div class="divider"></div><p class="muted">No. Use at your own risk. We design for safety and stability.</p></details>
+          <details class="card span-6"><summary>Is this a logger?</summary><div class="divider"></div><p class="muted">No keyloggers. No malware in releases.</p></details>
+          <details class="card span-6"><summary>Is this refundable?</summary><div class="divider"></div><p class="muted">Refund policy and Terms apply.</p></details>
+          <details class="card span-6"><summary>Install guide</summary><div class="divider"></div><div class="list"><div>Disable AV false positives by whitelisting.</div><div>Follow key flow in Support.</div></div></details>
+          <details class="card span-12"><summary>Troubleshooting</summary><div class="divider"></div><div class="list"><div>If UI doesn’t load, relaunch executor and try again.</div><div>On Android, ensure overlay permissions.</div><div>Whitelist folders to avoid quarantines.</div></div></details>
+        </div>
+      </section>
+
+      <section id="devlogs" class="section">
+        <h2>Dev-Logs</h2>
+        <div class="cards">
+          <div class="card span-12">
+            <h3>Update Log #1</h3>
+            <div class="list">
+              <div>Added 3 modes to redirection: mouse, remote, namecall, raycast [with wallbang for 0 delay games]</div>
+              <div>Added silent aim [soon FOV with gradients]</div>
+              <div>Changed FOV to ScreenGui</div>
+              <div>Glow preview:</div>
+              <img src="https://cdn.discordapp.com/attachments/1422290432070516786/1423689567101521930/image.png?ex=68e67fbb&is=68e52e3b&hm=755f0fc868cf50077ba0ad1ba3e46befc4428c4316e70f10eb521539377d095c&" alt="Glow preview" style="max-width:100%;border-radius:14px;margin:8px 0;border:1px solid rgba(255,255,255,.08)">
+              <div>Added 3 positions to FOV (mouse, center, barrel) and Lerp option</div>
+              <div>Added highlight target/client, material changer, avatar changer (by user id)</div>
+              <div>GUI preview:</div>
+              <img src="https://cdn.discordapp.com/attachments/1422290432070516786/1424827171255488512/C48DF7BA-05E4-4603-A436-D8E9E29B06C7.png?ex=68e6aeb5&is=68e55d35&hm=4bd2f28f0ddba772831e60462f7f455f0f32b832c0aacf41a9b7f6803f918f17&" alt="GUI preview" style="max-width:100%;border-radius:14px;margin:8px 0;border:1px solid rgba(255,255,255,.08)">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="changelog" class="section">
+        <h2>Changelog</h2>
+        <div class="card">Stability improvements, UI polish, performance tuning for particles across themes.</div>
+      </section>
+
+      <section id="contributors" class="section">
+        <h2>Contributors</h2>
+        <div class="contributors card">
+          <div class="slide active" data-ix="0">
+            <div class="avatar"><img src="https://cdn.discordapp.com/avatars/797901826258370581/a.png" alt="hxcker" style="width:100%;height:100%;object-fit:cover"></div>
+            <h3 style="text-align:center">hxcker</h3>
+            <div style="text-align:center;margin:6px 0"><span class="role"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.7 5.5L21 9l-4.5 4.2L17.5 21 12 18l-5.5 3 1-7.8L3 9l6.3-.5L12 3z" stroke="currentColor"/></svg>Web Developer / Coder / Bot Dev</span></div>
+            <div style="text-align:center;margin-top:8px"><a class="buy-btn" href="https://discord.com/users/797901826258370581" target="_blank" rel="noopener">Discord</a></div>
+          </div>
+          <div class="slide" data-ix="1">
+            <div class="avatar"><img src="https://cdn.discordapp.com/avatars/1230212757916487681/a.png" alt="craxes" style="width:100%;height:100%;object-fit:cover"></div>
+            <h3 style="text-align:center">craxes</h3>
+            <div style="text-align:center;margin:6px 0"><span class="role"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6 6 .9-4.5 4.3 1.1 6.6L12 17.5 6.4 19.8l1.1-6.6L3 8.9 9 8l3-6z" stroke="currentColor"/></svg>Skidder / Paster / Nonchalant</span></div>
+            <div style="text-align:center;margin-top:8px"><a class="buy-btn" href="https://discord.com/users/1230212757916487681" target="_blank" rel="noopener">Discord</a></div>
+          </div>
+          <div class="slide" data-ix="2">
+            <div class="avatar"><img src="https://cdn.discordapp.com/avatars/1251496733460926493/a.png" alt="od" style="width:100%;height:100%;object-fit:cover"></div>
+            <h3 style="text-align:center">od</h3>
+            <div style="text-align:center;margin:6px 0"><span class="role"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v6c0 5-8 8-8 8s-8-3-8-8V7l8-4z" stroke="currentColor"/></svg>Goated Person</span></div>
+            <div style="text-align:center;margin-top:8px"><a class="buy-btn" href="https://discord.com/users/1251496733460926493" target="_blank" rel="noopener">Discord</a></div>
+          </div>
+          <div class="arrows"><button class="arrow" onclick="prevSlide()">&larr;</button><button class="arrow" onclick="nextSlide()">&rarr;</button></div>
+          <div class="slider-nav"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+      </section>
+
+      <section id="support" class="section">
+        <h2>Support</h2>
+        <div class="card">
+          <p>Join the Discord for tickets, key help, and updates.</p>
+          <a class="buy-btn discord-btn" href="https://discord.com/invite/dev" target="_blank" rel="noopener">Join Discord</a>
+        </div>
+      </section>
+
+      <section id="terms" class="section">
+        <h2>Terms / Refunds / DMCA</h2>
+        <div class="card">
+          <div class="list">
+            <div>No keyloggers or malware in releases. Hashes available.</div>
+            <div>Refund policy and TOS apply.</div>
+            <div>Using scripts may violate Roblox TOS; use at your own risk.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap muted">© <span id="year"></span> Devision</div>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <div class="mobile-sheet">
+        <div class="chips" style="justify-content:space-between;align-items:center">
+          <span class="mono" style="font-weight:800">Navigation</span>
+          <button class="icon-btn" onclick="closeMenu()"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        </div>
+        <div class="divider"></div>
+        <div class="cards">
+          <a class="card" href="#home" onclick="closeMenu()">Home</a>
+          <a class="card" href="#features" onclick="closeMenu()">Features</a>
+          <a class="card" href="#media" onclick="closeMenu()">Media</a>
+          <a class="card" href="#executors" onclick="closeMenu()">Supported Executors</a>
+          <a class="card" href="#pricing" onclick="closeMenu()">Pricing</a>
+          <a class="card" href="#faq" onclick="closeMenu()">FAQ</a>
+          <a class="card" href="#devlogs" onclick="closeMenu()">Dev-Logs</a>
+          <a class="card" href="#contributors" onclick="closeMenu()">Contributors</a>
+          <a class="card" href="#support" onclick="closeMenu()">Support</a>
+        </div>
+        <div class="divider"></div>
+        <div class="chips">
+          <span class="mono">Choose Theme</span>
+        </div>
+        <div class="chips" style="margin-top:8px">
+          <button class="chip" onclick="setTheme('halloween')"><span style="width:10px;height:10px;border-radius:999px;background:#ff6a00;display:inline-block"></span>Orange</button>
+          <button class="chip" onclick="setTheme('blue')"><span style="width:10px;height:10px;border-radius:999px;background:#2aa0ff;display:inline-block"></span>Blue</button>
+          <button class="chip" onclick="setTheme('purple')"><span style="width:10px;height:10px;border-radius:999px;background:#9b5cff;display:inline-block"></span>Purple</button>
+          <button class="chip" onclick="setTheme('gray')"><span style="width:10px;height:10px;border-radius:999px;background:#9aa0a6;display:inline-block"></span>Gray</button>
+          <button class="chip" onclick="setTheme('phrog')"><span style="width:10px;height:10px;border-radius:999px;background:#27c779;display:inline-block"></span>Phrog</button>
+          <button class="chip" onclick="setTheme('red')"><span style="width:10px;height:10px;border-radius:999px;background:#ff3b3b;display:inline-block"></span>Red</button>
+          <button class="chip" onclick="setTheme('pink')"><span style="width:10px;height:10px;border-radius:999px;background:#ff79c6;display:inline-block"></span>Pink</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="themePanel" class="mobile-menu" aria-hidden="true">
+      <div class="mobile-sheet">
+        <div class="chips" style="justify-content:space-between;align-items:center">
+          <span class="mono" style="font-weight:800">Choose Theme</span>
+          <button class="icon-btn" onclick="closeThemes()"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        </div>
+        <div class="divider"></div>
+        <div class="chips">
+          <button class="chip" onclick="setTheme('halloween')"><span style="width:10px;height:10px;border-radius:999px;background:#ff6a00;display:inline-block"></span>Orange</button>
+          <button class="chip" onclick="setTheme('purple')"><span style="width:10px;height:10px;border-radius:999px;background:#9b5cff;display:inline-block"></span>Purple</button>
+          <button class="chip" onclick="setTheme('gray')"><span style="width:10px;height:10px;border-radius:999px;background:#9aa0a6;display:inline-block"></span>Gray</button>
+          <button class="chip" onclick="setTheme('phrog')"><span style="width:10px;height:10px;border-radius:999px;background:#27c779;display:inline-block"></span>Phrog</button>
+          <button class="chip" onclick="setTheme('red')"><span style="width:10px;height:10px;border-radius:999px;background:#ff3b3b;display:inline-block"></span>Red</button>
+          <button class="chip" onclick="setTheme('blue')"><span style="width:10px;height:10px;border-radius:999px;background:#2aa0ff;display:inline-block"></span>Blue</button>
+          <button class="chip" onclick="setTheme('pink')"><span style="width:10px;height:10px;border-radius:999px;background:#ff79c6;display:inline-block"></span>Pink</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const logos={purple:"https://cdn.discordapp.com/attachments/1263186729096184001/1425245508238053426/1759875266885.jpg?ex=68e6e2d0&is=68e59150&hm=61fa7026f5699b710535dfc6326c508bc9c4e75b736d76bec34b41ce58925efa&",phrog:"https://cdn.discordapp.com/attachments/1263186729096184001/1425245514965979257/1759875245188.jpg?ex=68e6e2d2&is=68e59152&hm=5f88d8f6cc8bce383762a2876530393cdfca272a5675c772173707a17a797247&",halloween:"https://cdn.discordapp.com/attachments/1263186729096184001/1425245632456818729/IMG_20251008_001222.png?ex=68e6e2ee&is=68e5916e&hm=02ed9f42ee05477593ae387ecfda278dbaf7c1eb75deff47bd7e8dc6a8af9bf1&",blue:"https://cdn.discordapp.com/attachments/1263186729096184001/1425245642770354317/devision.png?ex=68e6e2f1&is=68e59171&hm=7eed9fd08a79c1b0cc6d5091172a8a235d688c156b52feda65c46f4163400e5a&",red:"https://cdn.discordapp.com/attachments/1263186729096184001/1425245527410348203/1759875028364.jpg?ex=68e6e2d5&is=68e59155&hm=1e135296f17e55a9b5a06b05bb4fbef9f275f37f9bd978af6a932b9e9fd3ab49&",gray:"https://cdn.discordapp.com/attachments/1263186729096184001/1425245520728686663/1759875193966.jpg?ex=68e6e2d3&is=68e59153&hm=def434fff801cfd9f9eb31ecd59e1cbd846940b8db9ff7048dc4a248657135f5&",pink:"https://cdn.discordapp.com/attachments/1263186729096184001/1425245642770354317/devision.png?ex=68e6e2f1&is=68e59171&hm=7eed9fd08a79c1b0cc6d5091172a8a235d688c156b52feda65c46f4163400e5a&"}
+      const fx=document.getElementById("fx");const c=fx.getContext("2d");let W=0,H=0,px=1,theme="halloween",parts=[],extra=[],cap=8,rafId
+      function size(){px=window.devicePixelRatio||1;W=fx.clientWidth*px;H=fx.clientHeight*px;fx.width=W;fx.height=H}
+      function rand(a,b){return Math.random()*(b-a)+a}
+      function go(id){location.hash=id}
+      function openMenu(){document.getElementById("mobileMenu").style.display="block"}
+      function closeMenu(){document.getElementById("mobileMenu").style.display="none"}
+      function openThemes(){document.getElementById("themePanel").style.display="block"}
+      function closeThemes(){document.getElementById("themePanel").style.display="none"}
+      function setTheme(t){theme=t;document.documentElement.setAttribute("data-theme",t);document.getElementById("themeName").textContent=t.charAt(0).toUpperCase()+t.slice(1);document.getElementById("brandLogo").src=logos[t]||logos.halloween;resetFX();closeThemes()}
+      function daysTill(){const target=new Date(new Date().getFullYear(),10,1);const now=new Date();let d=Math.ceil((target-now)/86400000);if(d<0)d=0;document.getElementById("days").textContent=d}
+      function sticky(){const y=window.scrollY;document.getElementById("stickyBuy").style.transform=y>220?"translateY(0)":"translateY(-120%)"}
+      function prevSlide(){slideTo(cur-1)}function nextSlide(){slideTo(cur+1)}
+      let cur=0;function slideTo(i){const slides=[...document.querySelectorAll(".slide")];const dots=[...document.querySelectorAll(".dot")];if(i<0)i=slides.length-1;if(i>=slides.length)i=0;slides.forEach(s=>s.classList.remove("active"));dots.forEach(d=>d.classList.remove("active"));slides[i].classList.add("active");dots[i].classList.add("active");cur=i}
+      function resetFX(){parts.length=0;extra.length=0;cancelAnimationFrame(rafId);setupFX();loop()}
+      function setupFX(){size();const prefers=window.matchMedia("(prefers-reduced-motion: reduce)").matches;if(prefers)return;let n=8;if(theme==="halloween"){n=5;for(let i=0;i<n;i++){parts.push({t:["bat","spider"][i%2],x:rand(0,W),y:rand(0,H),vx:rand(-.2,.2),vy:rand(.05,.2),s:rand(18,28)})}extra=[{t:"pumpkin",x:30*px,y:H-60*px,vx:.2,vy:-.1,s:34*px},{t:"ghost",x:30*px,y:30*px,vx:.15,vy:.1,s:30*px}]}else if(theme==="blue"){n=rand(5,8)|0;for(let i=0;i<n;i++){parts.push({t:"spark",x:rand(0,W),y:rand(0,H),vx:.15,vy:.25,ax:-.02,ay:.01,s:rand(1.5*px,3.2*px)})}}else if(theme==="purple"){n=7;for(let i=0;i<n;i++){parts.push({t:"node",x:rand(0,W),y:rand(0,H),r:rand(35*px,75*px),a:rand(0,Math.PI*2),av:rand(.002,.006),s:rand(2*px,3.5*px)})}}else if(theme==="gray"){n=rand(5,7)|0;for(let i=0;i<n;i++){parts.push({t:"line",x:rand(0,W),y:rand(-H,0),vy:rand(.8,1.6),len:rand(60*px,120*px)})}}else if(theme==="pink"){n=rand(4,6)|0;for(let i=0;i<n;i++){parts.push({t:"wish",x:rand(0,W),y:rand(-H,0),vy:rand(1,2.2),len:rand(40*px,80*px)})}}else if(theme==="phrog"){n=6;for(let i=0;i<n;i++){parts.push({t:"drop",x:rand(0,W),y:rand(0,H),vy:rand(.5,1.2),r:rand(2*px,3*px)})}}else if(theme==="red"){n=7;for(let i=0;i<n;i++){parts.push({t:"flare",x:rand(0,W),y:rand(0,H),vx:rand(-.4,.4),vy:rand(-.2,.6),life:rand(60,160),s:rand(2*px,3.5*px)})}}}
+      function loop(){c.clearRect(0,0,W,H);const color=getComputedStyle(document.documentElement).getPropertyValue("--brand").trim();if(theme==="halloween"){c.globalAlpha=.8;parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.y>H+30)p.y=-20;if(p.x< -30)p.x=W+30;if(p.x>W+30)p.x=-30;drawEmoji(p)});extra.forEach(e=>{e.x+=e.vx;e.y+=e.vy;if(e.t==="pumpkin"){if(e.y< H-80*px||e.y>H-40*px)e.vy*=-1}if(e.t==="ghost"){if(e.y< 20*px||e.y>80*px)e.vy*=-1}drawEmoji(e)});c.globalAlpha=1}else if(theme==="blue"){parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vx+=p.ax*0.02;if(p.x>W+10)p.x=-10;if(p.y>H+10){p.y=-10;p.x=rand(0,W)};c.fillStyle=color;c.shadowColor=color;c.shadowBlur=18;c.beginPath();c.arc(p.x,p.y,p.s,0,6.28);c.fill();c.shadowBlur=0})}else if(theme==="purple"){c.strokeStyle=color;c.lineWidth=1.2;for(let i=0;i<parts.length;i++){const p=parts[i];p.a+=p.av;const x=p.x+Math.cos(p.a)*p.r;const y=p.y+Math.sin(p.a)*p.r;c.fillStyle=color;c.shadowColor=color;c.shadowBlur=16;c.beginPath();c.arc(x,y,p.s,0,6.28);c.fill();for(let j=i+1;j<parts.length;j++){const q=parts[j];const x2=q.x+Math.cos(q.a)*q.r;const y2=q.y+Math.sin(q.a)*q.r;const d=(x-x2)*(x-x2)+(y-y2)*(y-y2);if(d<(140*px)*(140*px)){c.globalAlpha=.2;c.beginPath();c.moveTo(x,y);c.lineTo(x2,y2);c.stroke();c.globalAlpha=1}}c.shadowBlur=0}}else if(theme==="gray"){c.strokeStyle=color;c.lineWidth=2;parts.forEach(p=>{p.y+=p.vy;if(p.y-p.len>H){p.y=rand(-H,0);p.x=rand(0,W)};const g=c.createLinearGradient(p.x,p.y-p.len,p.x,p.y);g.addColorStop(0,"transparent");g.addColorStop(1,color);c.strokeStyle=g;c.beginPath();c.moveTo(p.x,p.y-p.len);c.lineTo(p.x,p.y);c.stroke()})}else if(theme==="pink"){parts.forEach(p=>{p.y+=p.vy;if(p.y-p.len>H){p.y=rand(-H,0);p.x=rand(0,W)};const g=c.createLinearGradient(p.x,p.y-p.len,p.x,p.y);g.addColorStop(0,"rgba(255,255,255,.0)");g.addColorStop(1,color);c.strokeStyle=g;c.lineWidth=1.6;c.beginPath();c.moveTo(p.x,p.y-p.len);c.lineTo(p.x,p.y);c.stroke();c.fillStyle="rgba(255,255,255,.6)";c.beginPath();c.arc(p.x,p.y,2*px,0,6.28);c.fill()})}else if(theme==="phrog"){c.fillStyle="rgba(255,255,255,.05)";parts.forEach(p=>{p.y+=p.vy;if(p.y>H){p.y=-10;p.x=rand(0,W)};c.beginPath();c.arc(p.x,p.y,p.r,0,6.28);c.fill();c.strokeStyle="rgba(255,255,255,.08)";c.lineWidth=1;c.beginPath();c.arc(p.x,p.y,p.r*3,0,6.28);c.stroke()})}else if(theme==="red"){parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.life--;if(p.life<0){p.x=rand(0,W);p.y=rand(0,H);p.life=rand(60,160)};c.strokeStyle=color;c.globalAlpha=.5;c.lineWidth=2;c.beginPath();c.moveTo(p.x,p.y);c.lineTo(p.x-p.vx*20,p.y-p.vy*20);c.stroke();c.globalAlpha=1;c.fillStyle=color;c.beginPath();c.arc(p.x,p.y,p.s,0,6.28);c.fill()})}
+        rafId=requestAnimationFrame(loop)}
+      function drawEmoji(p){c.font=p.s+"px system-ui,Apple Color Emoji,Segoe UI Emoji";c.fillStyle="rgba(255,255,255,.8)";let ch="";if(p.t==="bat")ch="🦇";else if(p.t==="spider")ch="🕷️";else if(p.t==="pumpkin")ch="🎃";else if(p.t==="ghost")ch="👻";c.save();c.globalAlpha=.55;c.fillText(ch,p.x,p.y);c.restore()}
+      function init(){document.getElementById("brandLogo").src=logos.halloween;setTheme("halloween");daysTill();document.getElementById("year").textContent=new Date().getFullYear();window.addEventListener("resize",size,{passive:true});window.addEventListener("scroll",sticky,{passive:true});size();setupFX();loop()}
+      init()
+    </script>
+  </body>
+</html>
