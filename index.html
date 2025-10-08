@@ -188,16 +188,21 @@
         }
         
         .nav-button.menu-toggle-btn {
-            display: none;
+            display: flex;
         }
-
+        
         .nav-button:hover {
             background: var(--primary-color);
             color: var(--bg-color);
             box-shadow: 0 0 15px var(--glow-color);
             transform: scale(1.1);
         }
-
+        
+        .nav-button svg {
+            width: 24px;
+            height: 24px;
+        }
+        
         #nav-modal {
             position: fixed;
             top: 0;
@@ -390,6 +395,8 @@
             font-size: 1rem;
             text-transform: uppercase;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
         }
         
         .btn-primary {
@@ -422,6 +429,7 @@
             color: white;
             border: none;
             box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
+            gap: 0.5rem;
         }
         
         .btn-discord::before {
@@ -434,6 +442,12 @@
             background-color: white;
             border-radius: 50%;
             animation: discord-pulse 2s infinite;
+        }
+        
+        @keyframes discord-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
         }
 
         .section-title {
@@ -649,7 +663,7 @@
             padding: 2.5rem;
             border: 1px solid var(--primary-color);
             box-shadow: 0 0 20px var(--glow-color);
-            display: none; /* Initially hidden */
+            display: none;
         }
         
         #payment-section.visible {
@@ -733,6 +747,248 @@
             to { transform: rotate(360deg); }
         }
 
+        .contributors-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .contributor-card {
+            position: relative;
+            background: var(--bg-light-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            width: 250px;
+            overflow: hidden;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .contributor-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent, 
+                var(--glow-color), 
+                transparent 30%, 
+                var(--primary-color) 50%, 
+                transparent 70%, 
+                var(--glow-color)
+            );
+            z-index: 0;
+            animation: border-spin 4s linear infinite;
+        }
+        
+        .contributor-card::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: var(--bg-light-color);
+            border-radius: calc(var(--border-radius) - 2px);
+            z-index: 1;
+        }
+
+        .contributor-card > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes border-spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .contributor-card .pfp {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+
+        .pfp-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .pfp-king-icon {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 40px;
+            height: 40px;
+            fill: var(--primary-color);
+            filter: drop-shadow(0 0 10px var(--glow-color));
+            transform: rotate(15deg);
+            z-index: 3;
+        }
+
+        .contributor-card .name {
+            font-size: 1.8rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contributor-crown-icon {
+            width: 24px;
+            height: 24px;
+            fill: #ff1f1f;
+            filter: drop-shadow(0 0 8px rgba(255, 31, 31, 0.9));
+            animation: crown-sparkle 1.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes crown-sparkle {
+            0% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.8; transform: scale(1); }
+        }
+
+        .contributor-card .tag {
+            display: block;
+            color: var(--text-muted-color);
+            font-family: 'Teko', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contributor-card .discord-btn {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        .dev-log-card {
+            background: var(--bg-light-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 10px var(--glow-color);
+        }
+        
+        .dev-log-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .dev-log-card ul {
+            list-style: none;
+        }
+        
+        .dev-log-card li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .dev-log-card li::before {
+            content: '»';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .dev-log-image-preview {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border: 1px solid var(--primary-color);
+            display: block;
+        }
+        
+        .faq-item {
+            background: var(--bg-light-color);
+            margin-bottom: 1rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--bg-light-color);
+            overflow: hidden;
+            transition: border-color var(--transition-speed) ease;
+        }
+        
+        .faq-item.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px var(--glow-color);
+        }
+
+        .faq-question {
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+            color: var(--primary-color);
+        }
+        
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            transition: transform var(--transition-speed) ease;
+        }
+        
+        .faq-item.active .faq-question::after {
+            content: '−';
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            padding: 0 1.5rem;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+        }
+        
+        .faq-answer p {
+            border-top: 1px solid var(--bg-color);
+            padding-top: 1rem;
+            color: var(--text-muted-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--bg-light-color);
+            color: var(--text-muted-color);
+            font-size: 0.9rem;
+        }
+        
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        
+        footer a:hover {
+            color: var(--glow-color);
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
@@ -744,13 +1000,13 @@
             <img src="https://cdn.discordapp.com/attachments/1263186729096184001/1425245632456818729/IMG_20251008_001222.png?ex=68e6e2ee&is=68e5916e&hm=02ed9f42ee05477593ae387ecfda278dbaf7c1eb75deff47bd7e8dc6a8af9bf1&" alt="Devision Logo" class="logo" id="logo-img">
         </a>
         <div class="main-nav-buttons">
-             <a href="https://discord.gg" target="_blank" class="nav-button" aria-label="Discord">
+             <a href="https://discord.gg/uCspBMst3t" target="_blank" class="nav-button" aria-label="Discord">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.54 0c1.356 0 2.46 1.104 2.46 2.472v19.056c0 1.368-1.104 2.472-2.46 2.472h-15.08c-1.356 0-2.46-1.104-2.46-2.472v-19.056c0-1.368 1.104-2.472 2.46-2.472h15.08zm-2.883 17.51c-1.074.582-2.223.966-3.465 1.146a.2.2 0 0 1-.219-.204c-.1-1.428-.486-2.64-1.02-3.726a21.402 21.402 0 0 1-4.995 3.726.2.2 0 0 1-.267-.186c-.363-1.638-.918-4.32-1.2-5.916a.2.2 0 0 1 .057-.204c1.98-1.74 3.6-3.12 4.659-4.116a.2.2 0 0 1 .28-.012c1.43.918 2.949 2.016 4.38 3.252a.2.2 0 0 1 .045.3c-.561 1.32-1.146 2.76-1.575 3.96a15.772 15.772 0 0 1 3.276-2.196.2.2 0 0 1 .246.168c.24 1.368.12 3.324-.312 5.04zm-6.105-6.516c-.72 0-1.308.582-1.308 1.308 0 .72.588 1.308 1.308 1.308s1.308-.588 1.308-1.308c0-.726-.588-1.308-1.308-1.308zm4.02-1.308c-.72 0-1.308.588-1.308 1.308s.588 1.308 1.308 1.308c.726 0 1.308-.588 1.308-1.308s-.582-1.308-1.308-1.308z"/></svg>
             </a>
             <button class="nav-button menu-toggle-btn" id="nav-toggle" aria-label="Open Navigation">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
-        </div>
+            </div>
     </header>
 
     <div id="nav-modal">
@@ -806,8 +1062,11 @@
             <p>The ultimate advantage. Redefining the limits with unparalleled features, performance, and security. Dominate your game like never before.</p>
             <div class="cta-buttons">
                 <a href="#pricing" class="btn btn-primary">Get Access</a>
-                <a href="https://discord.gg" target="_blank" class="btn btn-discord">Join The Discord</a>
-            </div>
+                <a href="https://discord.gg/uCspBMst3t" target="_blank" class="btn btn-discord">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.54 0c1.356 0 2.46 1.104 2.46 2.472v19.056c0 1.368-1.104 2.472-2.46 2.472h-15.08c-1.356 0-2.46-1.104-2.46-2.472v-19.056c0-1.368 1.104-2.472 2.46-2.472h15.08zm-2.883 17.51c-1.074.582-2.223.966-3.465 1.146a.2.2 0 0 1-.219-.204c-.1-1.428-.486-2.64-1.02-3.726a21.402 21.402 0 0 1-4.995 3.726.2.2 0 0 1-.267-.186c-.363-1.638-.918-4.32-1.2-5.916a.2.2 0 0 1 .057-.204c1.98-1.74 3.6-3.12 4.659-4.116a.2.2 0 0 1 .28-.012c1.43.918 2.949 2.016 4.38 3.252a.2.2 0 0 1 .045.3c-.561 1.32-1.146 2.76-1.575 3.96a15.772 15.772 0 0 1 3.276-2.196.2.2 0 0 1 .246.168c.24 1.368.12 3.324-.312 5.04zm-6.105-6.516c-.72 0-1.308.582-1.308 1.308 0 .72.588 1.308 1.308 1.308s1.308-.588 1.308-1.308c0-.726-.588-1.308-1.308-1.308zm4.02-1.308c-.72 0-1.308.588-1.308 1.308s.588 1.308 1.308 1.308c.726 0 1.308-.588 1.308-1.308s-.582-1.308-1.308-1.308z"/></svg>
+                    <span>Join The Discord</span>
+                </a>
+                </div>
              <div class="stats-grid">
                 <div class="stat-card">
                     <div class="value" id="countdown-days">--</div>
@@ -823,13 +1082,12 @@
                 </div>
             </div>
         </section>
-
         <section id="features" class="container">
             <h2 class="section-title fade-in">Features</h2>
             <div class="features-grid">
                 <div class="feature-card fade-in" style="transition-delay: 0.1s;">
-                    <h3>Precision Aimbot</h3>
-                    <p>Advanced prediction and customizable smoothing for flawless accuracy. Supports silent aim, multiple targeting modes, and FOV visualization.</p>
+                    <h3>Targetlock</h3>
+                    <p>new generation prediction system and customizable for flawless accuracy. Supports silent aim, multiple targeting modes, and FOV visualization.</p>
                 </div>
                 <div class="feature-card fade-in" style="transition-delay: 0.2s;">
                     <h3>Visual Enhancements</h3>
@@ -837,7 +1095,7 @@
                 </div>
                 <div class="feature-card fade-in" style="transition-delay: 0.3s;">
                     <h3>Dynamic Theming</h3>
-                    <p>Personalize your entire experience. Choose from multiple futuristic themes that alter colors, effects, and even background particles.</p>
+                    <p>Personalize your entire experience. Choose from multiple futuristic themes that alter colors.</p>
                 </div>
                 <div class="feature-card fade-in" style="transition-delay: 0.4s;">
                     <h3>Avatar Customization</h3>
@@ -868,7 +1126,7 @@
                         <li>Full Feature Access</li>
                         <li>7-Day Key Duration</li>
                         <li>Standard Support</li>
-                        <li>Regular Updates</li>
+                        <li>All Future Updates</li>
                     </ul>
                     <button class="btn btn-secondary btn-purchase">Purchase</button>
                 </div>
@@ -881,7 +1139,7 @@
                          <ul>
                             <li>Full Feature Access</li>
                             <li>Permanent Key</li>
-                            <li>VIP Discord Role</li>
+                            <li>Buyer Role</li>
                             <li>All Future Updates</li>
                         </ul>
                         <button class="btn btn-primary btn-purchase">Purchase</button>
@@ -892,33 +1150,33 @@
         <section id="payment-section" class="container">
             <div class="payment-header">
                 <h3>Payment Methods</h3>
-                <p>Early Discount: 25% off before Devision 1.0.0 release!</p>
+                <p>Early Discount: 25% off before Latest Devision 1.0.0 release!</p>
             </div>
             <div class="payment-grid">
                 <div class="payment-method">
                     <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1424849322180083712/1716_PAYPAL.png?ex=68e814d6&is=68e6c356&hm=d430c1b9ee5908f46b503469847b5170781f291f684da6e403fce931030d4742&" alt="PayPal">
                     <div class="name">PayPal</div>
-                    <div class="price">$6</div>
+                    <div class="price">$6/week or 11$ one-time</div>
                 </div>
                  <div class="payment-method">
                     <img src="https://cdn.worldvectorlogo.com/logos/bitcoin.svg" alt="Bitcoin">
                     <div class="name">Bitcoin</div>
-                    <div class="price">$5</div>
+                    <div class="price">$5/week or $10 one-time</div>
                 </div>
                  <div class="payment-method">
                     <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1424849728054493234/250px-Ethereum-icon-purple.png?ex=68e81537&is=68e6c3b7&hm=7979ce7b464edb35d3e931e3640d1839a107331dc08337c5b086e071fc8655e8&" alt="Ethereum">
                     <div class="name">Ethereum</div>
-                    <div class="price">$5</div>
+                    <div class="price">$5/week or $10/one-time</div>
                 </div>
                  <div class="payment-method">
                     <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1424849684396245052/Litecoin-ltc.png?ex=68e8152d&is=68e6c3ad&hm=c4971234366e179f65ff0fcd47e806557dc4b07c40d26b0da5e48e30b0674342&" alt="Litecoin">
                     <div class="name">Litecoin</div>
-                    <div class="price">$5</div>
+                    <div class="price">$5/week or $10/one-time</div>
                 </div>
                  <div class="payment-method">
-                    <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1424852226085490831/image0.png?ex=68e5748b&is=68e4230b&hm=220b177a96dfe6bc6e6a2deedc17a6f3ff8014d3d0514868cd5ece8b819be50b&" alt="Robux">
+                    <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1424849619321618473/512px-Robux_2019_Logo_gold.png?ex=68e8151d&is=68e6c39d&hm=9f3089be465bf3f359c023e5fcc4812a1d748c4b229f02aa40edf9b46fd74e32&" alt="Robux">
                     <div class="name">Robux</div>
-                    <div class="price">1K</div>
+                    <div class="price">1K/week or 2k/one-time</div>
                 </div>
             </div>
             <div class="payment-footer">
@@ -934,11 +1192,11 @@
                     <li>Added 3 modes to redirection: mouse, remote, namecall, raycast [with wallbang for 0 delay games]</li>
                     <li>Added silent aim [soon fov with gradients]</li>
                     <li>Changed fov to screengui + glow
-                        <img class="dev-log-image-preview" src="https://cdn.discordapp.com/attachments/1422290432070516786/1423689567101521930/image.png?ex=68e67fbb&is=68e52e3b&hm=755f0fc868cf50077ba0ad1ba3e46befc4428c4316e70f10eb521539377d095c&" alt="Glow Preview">
+                        <img class="dev-log-image-preview" src="https://cdn.discordapp.com/attachments/1422290432070516786/1423689567101521930/image.png?ex=68e7d13b&is=68e67fbb&hm=a9253c6b2ee77b745d2ce32a0de3cdb586a66aaa9ac9caad2b25908da9b77f56&" alt="Glow Preview">
                     </li>
                     <li>Added 3 positions to fov (mouse, center, barrel (gun)) and added lerp option</li>
                     <li>Added highlight target/client, material changer to client, and avatar changer with user id and added gui
-                         <img class="dev-log-image-preview" src="https://cdn.discordapp.com/attachments/1422290432070516786/1424827171255488512/C48DF7BA-05E4-4603-A436-D8E9E29B06C7.png?ex=68e6aeb5&is=68e55d35&hm=4bd2f28f0ddba772831e60462f7f455f0f32b832c0aacf41a9b7f6803f918f17&" alt="GUI Preview">
+                         <img class="dev-log-image-preview" src="https://cdn.discordapp.com/attachments/1422290432070516786/1424827171255488512/C48DF7BA-05E4-4603-A436-D8E9E29B06C7.png?ex=68e80035&is=68e6aeb5&hm=9ed80b6e448f8b8863aa99cd565257734ec72a2c2876dda757f7ec6bf5965605&" alt="GUI Preview">
                     </li>
                 </ul>
             </div>
@@ -950,13 +1208,13 @@
                 <div class="faq-item">
                     <div class="faq-question">Will I get banned?</div>
                     <div class="faq-answer">
-                        <p>The Answer is No. While no script is ever 100% undetectable, we employ advanced security measures and frequent updates to minimize risk, making bans highly unlikely when used correctly.</p>
+                        <p>The Answer is No. It is 100% undetectable, we bypasses the anti-cheats security measures and frequent updates to minimize risk, making bans highly unlikely when used correctly.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">Is This a Logger?</div>
                     <div class="faq-answer">
-                        <p>Absolutely not. We guarantee our software is free from keyloggers, malware, or any malicious code. Your security and privacy are our priorities.</p>
+                        <p>Absolutely not. We guarantee our script is free from any loggers, malware, or any malicious code. Your security and privacy are our priorities.</p>
                     </div>
                 </div>
                  <div class="faq-item">
@@ -968,38 +1226,48 @@
                  <div class="faq-item">
                     <div class="faq-question">What platforms are supported?</div>
                     <div class="faq-answer">
-                        <p>Our script is designed for the PC version of Roblox. We support a wide range of popular script executors. Please check our Discord for a complete, up-to-date list of supported executors.</p>
+                        <p>Our script is designed for the PC version of Roblox and Mobile. We support a wide range of popular script executors. Please check our Discord for a complete, up-to-date list of supported executors.</p>
                     </div>
                 </div>
             </div>
         </section>
-        
         <section id="contributors" class="container">
             <h2 class="section-title fade-in">Contributors</h2>
             <div class="contributors-grid">
                 <div class="contributor-card fade-in" style="transition-delay: 0.1s;">
-                    <img src="https://cdn.discordapp.com/avatars/797901826258370581/dd0def53b23aa0bfc5e28f3b8890c6c7.png?size=512" alt="hxcker pfp" class="pfp">
+                    <div class="pfp-wrapper">
+                        <img src="https://cdn.discordapp.com/avatars/797901826258370581/dd0def53b23aa0bfc5e28f3b8890c6c7.png?size=512" alt="hxcker pfp" class="pfp">
+                        <svg class="pfp-king-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
+                    </div>
                     <h3 class="name">
                         hxcker
-                        <svg class="contributor-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
+                        <svg class="contributor-crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
                     </h3>
                     <span class="tag">Web Developer / Coder</span>
                     <a href="https://discord.com/users/797901826258370581" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
-                 <div class="contributor-card fade-in" style="transition-delay: 0.2s;">
-                    <img src="https://cdn.discordapp.com/avatars/1230212757916487681/ad0df60f045f3fe6e71cf578759c1ea4.png?size=512" alt="craxes pfp" class="pfp">
+                 
+                <div class="contributor-card fade-in" style="transition-delay: 0.2s;">
+                    <div class="pfp-wrapper">
+                        <img src="https://cdn.discordapp.com/avatars/1230212757916487681/ad0df60f045f3fe6e71cf578759c1ea4.png?size=512" alt="craxes pfp" class="pfp">
+                        <svg class="pfp-king-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
+                    </div>
                     <h3 class="name">
                         craxes
-                        <svg class="contributor-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"/></svg>
+                        <svg class="contributor-crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
                     </h3>
                     <span class="tag">Skidder / Paster</span>
                     <a href="https://discord.com/users/1230212757916487681" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
-                 <div class="contributor-card fade-in" style="transition-delay: 0.3s;">
-                    <img src="https://cdn.discordapp.com/avatars/1251496733460926493/2ffac6d3c2074362ba8cc35939323e73.png?size=512" alt="od pfp" class="pfp">
+                 
+                <div class="contributor-card fade-in" style="transition-delay: 0.3s;">
+                    <div class="pfp-wrapper">
+                        <img src="https://cdn.discordapp.com/avatars/1251496733460926493/2ffac6d3c2074362ba8cc35939323e73.png?size=512" alt="od pfp" class="pfp">
+                        <svg class="pfp-king-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
+                    </div>
                     <h3 class="name">
                         od
-                        <svg class="contributor-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1Z"/></svg>
+                        <svg class="contributor-crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
                     </h3>
                     <span class="tag">Goated Person</span>
                     <a href="https://discord.com/users/1251496733460926493" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
@@ -1223,12 +1491,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentThemeName = document.getElementById('current-theme-name');
     
     const logos = {
-        orange: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425245632456818729/IMG_20251008_001222.png?ex=68e6e2ee&is=68e5916e&hm=02ed9f42ee05477593ae387ecfda278dbaf7c1eb75deff47bd7e8dc6a8af9bf1&',
-        purple: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425245508238053426/1759875266885.jpg?ex=68e6e2d0&is=68e59150&hm=61fa7026f5699b71035dfc6326c508bc9c4e75b736d76becd521539ce8925efa&',
-        gray: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425245520728686663/1759875193966.jpg?ex=68e6e2d3&is=68e59153&hm=def434fff801cfd9f9eb31ecd59e1cbd846940b8db9ff7048dc4a248657135f5&',
-        phrog: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425245514965979257/1759875245188.jpg?ex=68e6e2d2&is=68e59152&hm=5f88d8f6cc8bce383762a2876530393cdfca272a5675c772173707a17a797247&',
-        red: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425245527410348203/1759875028364.jpg?ex=68e6e2d5&is=68e59155&hm=1e135296f17e55a9b5a06b05bb4fbef9f275f37f9bd978af6a932b9e9fd3ab49&',
-        blue: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425245642770354317/devision.png?ex=68e6e2f1&is=68e59171&hm=7eed9fd08a79c1b0cc6d5091172a8a235d688c156b52feda65c46f4163400e5a&'
+        orange: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294410257662023/1759886602502.jpg?ex=68e7105c&is=68e5bedc&hm=fd09ac09632150ae8790fb67a84393434303882b023b5d22161f3dc73c069b63&',
+        purple: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294403614015488/1759886767430.jpg?ex=68e7105a&is=68e5beda&hm=e87c0592b37dd8a29649c8e8ac0c10d809152867ff3c1447e71755a4de2f05ff&',
+        gray: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294390074802236/1759886697194.jpg?ex=68e71057&is=68e5bed7&hm=e6fd12cb99940e0485fe27ea29befb1b3386d754a6579f4b3d6d75f3804b815f&',
+        phrog: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294397020307537/1759886812357.jpg?ex=68e71058&is=68e5bed8&hm=f4413957546ed3fce6960ee96def7060f495fce7a8e8aed492d4aab0537d9df2&',
+        red: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294424526553188/1759886421750.jpg?ex=68e7105f&is=68e5bedf&hm=b943056487c93f7727b3858626657e60834c72775e5f3db5e72ebf7fb3f619ab&',
+        blue: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294371284058225/1759886389877.jpg?ex=68e71052&is=68e5bed2&hm=7aafe0332215d7e8c4cffc01174ff2db10b360f235950a91325e08f549042bd7&'
     };
 
     function applyTheme(theme) {
