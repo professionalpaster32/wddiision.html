@@ -140,20 +140,29 @@
             backdrop-filter: blur(10px);
         }
         
-        .logo-container {
+        .logo-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 0 15px var(--glow-color), inset 0 0 10px var(--glow-color);
             display: flex;
+            justify-content: center;
             align-items: center;
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .logo-wrapper:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 0 25px var(--glow-color), inset 0 0 15px var(--glow-color);
         }
 
         .logo {
-            width: 150px;
-            height: auto;
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
             transition: filter var(--transition-speed) ease;
-            filter: drop-shadow(0 0 15px var(--glow-color));
-        }
-        
-        .logo:hover {
-             filter: drop-shadow(0 0 25px var(--glow-color));
+            filter: drop-shadow(0 0 8px var(--glow-color));
         }
 
         .main-nav-buttons {
@@ -179,7 +188,7 @@
         }
         
         .nav-button.menu-toggle-btn {
-            display: none; /* Hidden on desktop */
+            display: none;
         }
 
         .nav-button:hover {
@@ -380,6 +389,7 @@
             overflow: hidden;
             font-size: 1rem;
             text-transform: uppercase;
+            cursor: pointer;
         }
         
         .btn-primary {
@@ -503,61 +513,24 @@
             align-items: center;
             gap: 2rem;
             margin-top: 4rem;
+            flex-wrap: wrap;
         }
         
         .extra-images img {
             max-width: 45%;
+            min-width: 280px;
             height: auto;
             border-radius: var(--border-radius);
             border: 2px solid var(--primary-color);
             box-shadow: 0 0 15px var(--glow-color);
         }
 
-        .dev-log-card {
-            background: var(--bg-light-color);
-            padding: 2.5rem;
-            border-left: 4px solid var(--primary-color);
-            border-radius: var(--border-radius);
-            margin-bottom: 3rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .dev-log-card h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .dev-log-card ul {
-            list-style: none;
-        }
-        
-        .dev-log-card li {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-        
-        .dev-log-card li::before {
-            content: '+';
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-        
-        .dev-log-image-preview {
-            max-width: 100%;
-            border-radius: 8px;
-            margin-top: 1rem;
-            border: 1px solid var(--text-muted-color);
-        }
-
         .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
             gap: 2rem;
-            align-items: center;
+            flex-wrap: wrap;
         }
         
         .pricing-card {
@@ -567,11 +540,14 @@
             border-radius: var(--border-radius);
             text-align: center;
             transition: all var(--transition-speed) ease;
+            width: 320px;
+            display: flex;
+            flex-direction: column;
         }
         
-        .pricing-card.featured {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px var(--glow-color);
+        .pricing-card:not(.lifetime-special):hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px var(--glow-color);
         }
         
         .pricing-card h3 {
@@ -593,6 +569,7 @@
             list-style: none;
             margin: 2rem 0;
             text-align: left;
+            flex-grow: 1;
         }
         
         .pricing-card li {
@@ -608,214 +585,152 @@
             left: 0;
         }
         
-        .payment-methods {
-            margin-top: 2rem;
-        }
-
-        .payment-methods p {
-            margin-bottom: 1rem;
-            color: var(--text-muted-color);
-        }
-        
-        .payment-logos {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            filter: grayscale(1) brightness(1.5);
-        }
-        
-        .payment-logos img {
-            height: 25px;
-            width: auto;
-        }
-
-        .faq-item {
-            background: var(--bg-light-color);
-            border-radius: var(--border-radius);
-            margin-bottom: 1rem;
-            border: 1px solid transparent;
-            transition: border-color var(--transition-speed) ease;
-        }
-
-        .faq-item.active {
-            border-color: var(--primary-color);
-        }
-        
-        .faq-question {
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.2rem;
-            font-weight: 700;
-            font-family: 'Teko', sans-serif;
-            text-transform: uppercase;
-        }
-
-        .faq-question::after {
-            content: '+';
-            font-size: 2rem;
-            color: var(--primary-color);
-            transition: transform var(--transition-speed) ease;
-        }
-
-        .faq-item.active .faq-question::after {
-            transform: rotate(45deg);
-        }
-        
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 1.5rem;
-            transition: max-height 0.4s ease, padding 0.4s ease;
-        }
-        
-        .faq-answer p {
-            padding-bottom: 1.5rem;
-            line-height: 1.6;
-            color: var(--text-muted-color);
-        }
-
-        .contributors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .contributor-card {
-            background: linear-gradient(145deg, var(--bg-light-color), var(--bg-color));
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            text-align: center;
-            border: 1px solid var(--primary-color);
-            box-shadow: inset 0 0 10px var(--glow-color);
+        .pricing-card.lifetime-special {
+            --special-red: #ff1f1f;
+            --special-red-glow: rgba(255, 31, 31, 0.8);
+            background: #1a0303;
+            border: 2px solid transparent;
+            box-shadow: 0 0 35px var(--special-red-glow), inset 0 0 20px var(--special-red-glow);
             position: relative;
             overflow: hidden;
+            transform: scale(1.05);
+            animation: lifetime-pulse 2s infinite;
         }
         
-        .contributor-card .pfp {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid var(--primary-color);
-            margin: 0 auto 1rem;
-            object-fit: cover;
-        }
-        
-        .contributor-card .name {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--text-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        
-        .contributor-icon {
-            width: 24px;
-            height: 24px;
-            fill: var(--primary-color);
-            filter: drop-shadow(0 0 5px var(--glow-color));
+        .pricing-card.lifetime-special::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: conic-gradient(from 0deg, transparent, var(--special-red), transparent);
+            animation: rotate-border 4s linear infinite;
         }
 
-        .contributor-card .tag {
+        .pricing-card.lifetime-special .card-content {
+            background: #1a0303;
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pricing-card.lifetime-special h3, .pricing-card.lifetime-special .price, .pricing-card.lifetime-special li::before {
+            color: var(--special-red);
+            text-shadow: 0 0 10px var(--special-red-glow);
+        }
+
+        .pricing-card.lifetime-special .btn-primary {
+            background: var(--special-red);
+            border-color: var(--special-red);
+            box-shadow: 0 0 20px var(--special-red-glow);
+            color: #fff;
+        }
+        
+        .lifetime-special .crown-icon {
+            width: 50px;
+            height: 50px;
+            fill: var(--special-red);
+            filter: drop-shadow(0 0 10px var(--special-red-glow));
+            margin-bottom: 1rem;
+        }
+        
+        .lifetime-special .recommended {
+            font-weight: 700;
+            color: var(--special-red);
+        }
+        
+        #payment-section {
+            background: var(--bg-light-color);
+            margin-top: 4rem;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 20px var(--glow-color);
+            display: none; /* Initially hidden */
+        }
+        
+        #payment-section.visible {
+            display: block;
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .payment-header h3 {
+            font-size: 2rem;
+        }
+
+        .payment-header p {
             background: var(--primary-color);
             color: var(--bg-color);
-            padding: 0.3rem 0.8rem;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.9rem;
             display: inline-block;
+            font-weight: 700;
             margin-top: 0.5rem;
+        }
+        
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .payment-method {
+            background: var(--bg-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--text-muted-color);
+            text-align: center;
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
             box-shadow: 0 0 10px var(--glow-color);
         }
         
-        .contributor-card .discord-btn {
-            margin-top: 1.5rem;
-            display: inline-block;
-        }
-
-        footer {
-            margin-top: 4rem;
-            padding: 2rem 5%;
-            background: var(--bg-light-color);
-            text-align: center;
-            border-top: 1px solid var(--primary-color);
+        .payment-method img {
+            height: 40px;
+            margin-bottom: 1rem;
         }
         
-        footer p {
-            color: var(--text-muted-color);
+        .payment-method .name {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
         }
         
-        footer a {
+        .payment-method .price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
             color: var(--primary-color);
-            text-decoration: none;
-            margin: 0 0.5rem;
+            font-weight: 700;
+        }
+        
+        .payment-footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted-color);
+            line-height: 1.5;
         }
 
-        @keyframes flicker {
-            0%, 18%, 22%, 25%, 53%, 57%, 100% {
-                text-shadow:
-                0 0 8px var(--glow-color),
-                0 0 12px var(--glow-color),
-                0 0 24px var(--glow-color),
-                0 0 48px var(--glow-color);
-            }
-            20%, 24%, 55% {       
-                text-shadow: none;
+        @keyframes lifetime-pulse {
+            50% {
+                box-shadow: 0 0 50px var(--special-red-glow), inset 0 0 30px var(--special-red-glow);
             }
         }
         
-        @keyframes discord-pulse {
-            0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-            }
-            70% {
-                transform: scale(1.2);
-                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-            }
-            100% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-button.menu-toggle-btn {
-                display: flex;
-            }
-            
-            .main-nav-buttons .nav-button:not(.menu-toggle-btn) {
-                display: none;
-            }
-        
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                width: 80%;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
-            
-            .extra-images {
-                flex-direction: column;
-            }
-            
-            .extra-images img {
-                max-width: 90%;
-            }
+        @keyframes rotate-border {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
     </style>
@@ -825,7 +740,7 @@
     <canvas id="particle-canvas"></canvas>
 
     <header id="main-header">
-        <a href="#home" class="logo-container">
+        <a href="#home" class="logo-wrapper">
             <img src="https://cdn.discordapp.com/attachments/1263186729096184001/1425245632456818729/IMG_20251008_001222.png?ex=68e6e2ee&is=68e5916e&hm=02ed9f42ee05477593ae387ecfda278dbaf7c1eb75deff47bd7e8dc6a8af9bf1&" alt="Devision Logo" class="logo" id="logo-img">
         </a>
         <div class="main-nav-buttons">
@@ -939,7 +854,7 @@
             </div>
             <div class="extra-images fade-in">
                 <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425194294440103977/5759377C-E9B5-4176-B9E2-F57E24EEB585.png?ex=68e8049e&is=68e6b31e&hm=6488bce6b089f4c1821ce5408ea1a076df3ff0df9e039c4b9ac0502fb0fcdae3&" alt="Feature showcase 1">
-                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425207401329594458/FBF3FC2F-7801-47C2-9EAB-C5F8193732BA.png?ex=68e6bf53&is=68e56dd3&hm=74a0e942b6c9333d97c18becd514d891b84b9b83f9050f81aa80ac0f51bc4589&" alt="Feature showcase 2">
+                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425207401329594458/FBF3FC2F-7801-47C2-9EAB-C5F8193732BA.png?ex=68e810d3&is=68e6bf53&hm=07c108b4516c66fd816779b77c6fed3e004c9be920c649affb5b365f241a349d&" alt="Feature showcase 2">
             </div>
         </section>
 
@@ -955,42 +870,62 @@
                         <li>Standard Support</li>
                         <li>Regular Updates</li>
                     </ul>
-                    <a href="#" class="btn btn-secondary">Purchase</a>
+                    <button class="btn btn-secondary btn-purchase">Purchase</button>
                 </div>
-                <div class="pricing-card featured fade-in" style="transition-delay: 0.2s;">
-                    <h3>Monthly</h3>
-                    <div class="price">$15<span>/month</span></div>
-                     <ul>
-                        <li>Full Feature Access</li>
-                        <li>30-Day Key Duration</li>
-                        <li>Priority Support</li>
-                        <li>All Updates Included</li>
-                    </ul>
-                    <a href="#" class="btn btn-primary">Purchase</a>
-                </div>
-                <div class="pricing-card fade-in" style="transition-delay: 0.3s;">
-                    <h3>Lifetime</h3>
-                    <div class="price">$50<span>/onetime</span></div>
-                     <ul>
-                        <li>Full Feature Access</li>
-                        <li>Permanent Key</li>
-                        <li>VIP Discord Role</li>
-                        <li>Future Updates Included</li>
-                    </ul>
-                    <a href="#" class="btn btn-secondary">Purchase</a>
-                </div>
-            </div>
-             <div class="payment-methods fade-in">
-                <p>We Accept</p>
-                <div class="payment-logos">
-                    <img src="https://cdn.worldvectorlogo.com/logos/paypal-2.svg" alt="PayPal">
-                    <img src="https://cdn.worldvectorlogo.com/logos/bitcoin.svg" alt="Bitcoin">
-                    <img src="https://cdn.worldvectorlogo.com/logos/ethereum.svg" alt="Ethereum">
-                    <img src="https://cdn.worldvectorlogo.com/logos/litecoin.svg" alt="Litecoin">
+                <div class="pricing-card lifetime-special fade-in" style="transition-delay: 0.2s;">
+                    <div class="card-content">
+                        <svg class="crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
+                        <h3>Lifetime</h3>
+                        <p class="recommended">(Recommended)</p>
+                        <div class="price">$10<span>/onetime</span></div>
+                         <ul>
+                            <li>Full Feature Access</li>
+                            <li>Permanent Key</li>
+                            <li>VIP Discord Role</li>
+                            <li>All Future Updates</li>
+                        </ul>
+                        <button class="btn btn-primary btn-purchase">Purchase</button>
+                    </div>
                 </div>
             </div>
         </section>
-        
+        <section id="payment-section" class="container">
+            <div class="payment-header">
+                <h3>Payment Methods</h3>
+                <p>Early Discount: 25% off before Devision 1.0.0 release!</p>
+            </div>
+            <div class="payment-grid">
+                <div class="payment-method">
+                    <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1424849322180083712/1716_PAYPAL.png?ex=68e814d6&is=68e6c356&hm=d430c1b9ee5908f46b503469847b5170781f291f684da6e403fce931030d4742&" alt="PayPal">
+                    <div class="name">PayPal</div>
+                    <div class="price">$6</div>
+                </div>
+                 <div class="payment-method">
+                    <img src="https://cdn.worldvectorlogo.com/logos/bitcoin.svg" alt="Bitcoin">
+                    <div class="name">Bitcoin</div>
+                    <div class="price">$5</div>
+                </div>
+                 <div class="payment-method">
+                    <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1424849728054493234/250px-Ethereum-icon-purple.png?ex=68e81537&is=68e6c3b7&hm=7979ce7b464edb35d3e931e3640d1839a107331dc08337c5b086e071fc8655e8&" alt="Ethereum">
+                    <div class="name">Ethereum</div>
+                    <div class="price">$5</div>
+                </div>
+                 <div class="payment-method">
+                    <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1424849684396245052/Litecoin-ltc.png?ex=68e8152d&is=68e6c3ad&hm=c4971234366e179f65ff0fcd47e806557dc4b07c40d26b0da5e48e30b0674342&" alt="Litecoin">
+                    <div class="name">Litecoin</div>
+                    <div class="price">$5</div>
+                </div>
+                 <div class="payment-method">
+                    <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1424852226085490831/image0.png?ex=68e5748b&is=68e4230b&hm=220b177a96dfe6bc6e6a2deedc17a6f3ff8014d3d0514868cd5ece8b819be50b&" alt="Robux">
+                    <div class="name">Robux</div>
+                    <div class="price">1K</div>
+                </div>
+            </div>
+            <div class="payment-footer">
+                3-day HWID reset cooldown. <br> Faster reset: 200 Robux, $1 Crypto, or $2 PayPal
+            </div>
+        </section>
+
         <section id="dev-logs" class="container">
             <h2 class="section-title fade-in">Dev-Logs</h2>
             <div class="dev-log-card fade-in">
@@ -1043,7 +978,7 @@
             <h2 class="section-title fade-in">Contributors</h2>
             <div class="contributors-grid">
                 <div class="contributor-card fade-in" style="transition-delay: 0.1s;">
-                    <img src="https://cdn.discordapp.com/avatars/797901826258370581/a_14a38f45a0e5b154a43b2354a8b7dd61.gif" alt="hxcker pfp" class="pfp">
+                    <img src="https://cdn.discordapp.com/avatars/797901826258370581/dd0def53b23aa0bfc5e28f3b8890c6c7.png?size=512" alt="hxcker pfp" class="pfp">
                     <h3 class="name">
                         hxcker
                         <svg class="contributor-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
@@ -1052,7 +987,7 @@
                     <a href="https://discord.com/users/797901826258370581" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
                  <div class="contributor-card fade-in" style="transition-delay: 0.2s;">
-                    <img src="https://cdn.discordapp.com/avatars/1230212757916487681/be87c47317e3f6d7a4659b8a5b287515.webp" alt="craxes pfp" class="pfp">
+                    <img src="https://cdn.discordapp.com/avatars/1230212757916487681/ad0df60f045f3fe6e71cf578759c1ea4.png?size=512" alt="craxes pfp" class="pfp">
                     <h3 class="name">
                         craxes
                         <svg class="contributor-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"/></svg>
@@ -1061,7 +996,7 @@
                     <a href="https://discord.com/users/1230212757916487681" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
                  <div class="contributor-card fade-in" style="transition-delay: 0.3s;">
-                    <img src="https://cdn.discordapp.com/avatars/1251496733460926493/433de20dfc37a6b72a6b47c093a2e2dd.webp" alt="od pfp" class="pfp">
+                    <img src="https://cdn.discordapp.com/avatars/1251496733460926493/2ffac6d3c2074362ba8cc35939323e73.png?size=512" alt="od pfp" class="pfp">
                     <h3 class="name">
                         od
                         <svg class="contributor-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1Z"/></svg>
@@ -1386,6 +1321,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1 });
     
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    
+    const purchaseButtons = document.querySelectorAll('.btn-purchase');
+    const paymentSection = document.getElementById('payment-section');
+    
+    purchaseButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            paymentSection.classList.add('visible');
+            paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    });
+
 });
 </script>
 
