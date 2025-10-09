@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,53 +14,43 @@
             --orange-glow: rgba(255, 102, 0, 0.7);
             --orange-bg: #0d0600;
             --orange-bg-light: #1a0d00;
-
             --purple-primary: #a335f0;
             --purple-glow: rgba(163, 53, 240, 0.7);
             --purple-bg: #0c0414;
             --purple-bg-light: #190a29;
-
             --gray-primary: #cccccc;
             --gray-glow: rgba(204, 204, 204, 0.6);
             --gray-bg: #0a0a0b;
             --gray-bg-light: #1c1c1e;
-
             --phrog-primary: #33ff33;
             --phrog-glow: rgba(51, 255, 51, 0.6);
             --phrog-bg: #030f03;
             --phrog-bg-light: #0a240a;
-
             --red-primary: #ff1f1f;
             --red-glow: rgba(255, 31, 31, 0.7);
             --red-bg: #0f0202;
             --red-bg-light: #240505;
-
             --blue-primary: #00a2ff;
             --blue-glow: rgba(0, 162, 255, 0.7);
             --blue-bg: #020a14;
             --blue-bg-light: #06192e;
-
             --primary-color: var(--orange-primary);
             --glow-color: var(--orange-glow);
             --bg-color: var(--orange-bg);
             --bg-light-color: var(--orange-bg-light);
-
             --text-color: #e0e0e0;
             --text-muted-color: #888;
             --border-radius: 12px;
             --transition-speed: 0.3s;
         }
-
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         html {
             scroll-behavior: smooth;
         }
-
         body {
             font-family: 'Rajdhani', sans-serif;
             background-color: var(--bg-color);
@@ -67,7 +58,6 @@
             overflow-x: hidden;
             transition: background-color var(--transition-speed) ease;
         }
-
         #particle-canvas {
             position: fixed;
             top: 0;
@@ -77,24 +67,19 @@
             z-index: -1;
             pointer-events: none;
         }
-
         ::-webkit-scrollbar {
             width: 8px;
         }
-
         ::-webkit-scrollbar-track {
             background: var(--bg-color);
         }
-
         ::-webkit-scrollbar-thumb {
             background: var(--primary-color);
             border-radius: 4px;
         }
-
         ::-webkit-scrollbar-thumb:hover {
             background: var(--glow-color);
         }
-        
         h1, h2, h3 {
             font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
@@ -102,25 +87,21 @@
             color: var(--primary-color);
             text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
         }
-
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 0;
         }
-        
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
         header {
             position: fixed;
             top: 0;
@@ -131,15 +112,13 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: linear-gradient(180deg, rgba(0,0,0,0,0.7) 0%, rgba(0,0,0,0,0) 100%);
+            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
             transition: background-color 0.3s;
         }
-        
         header.scrolled {
             background-color: rgba(0,0,0,0.8);
             backdrop-filter: blur(10px);
         }
-        
         .logo-wrapper {
             width: 60px;
             height: 60px;
@@ -150,26 +129,24 @@
             justify-content: center;
             align-items: center;
             transition: all var(--transition-speed) ease;
+            background: var(--bg-color); /* FIX 1: Hides white edges */
         }
-        
         .logo-wrapper:hover {
             transform: scale(1.1) rotate(15deg);
             box-shadow: 0 0 25px var(--glow-color), inset 0 0 15px var(--glow-color);
         }
-
         .logo {
             width: 90%;
             height: 90%;
             object-fit: contain;
             transition: filter var(--transition-speed) ease;
             filter: drop-shadow(0 0 8px var(--glow-color));
+            border-radius: 50%; /* FIX 1: Ensures circular crop */
         }
-
         .main-nav-buttons {
             display: flex;
             gap: 1rem;
         }
-
         .nav-button {
             background: transparent;
             border: 1px solid var(--primary-color);
@@ -186,23 +163,19 @@
             transition: all var(--transition-speed) ease;
             box-shadow: 0 0 5px var(--glow-color), inset 0 0 5px var(--glow-color);
         }
-        
         .nav-button.menu-toggle-btn {
             display: flex;
         }
-        
         .nav-button:hover {
             background: var(--primary-color);
             color: var(--bg-color);
             box-shadow: 0 0 15px var(--glow-color);
             transform: scale(1.1);
         }
-        
         .nav-button svg {
             width: 24px;
             height: 24px;
         }
-        
         #nav-modal {
             position: fixed;
             top: 0;
@@ -219,12 +192,10 @@
             pointer-events: none;
             transition: opacity var(--transition-speed) ease;
         }
-        
         #nav-modal.active {
             opacity: 1;
             pointer-events: auto;
         }
-
         .nav-modal-content {
             background: var(--bg-light-color);
             border: 1px solid var(--primary-color);
@@ -236,11 +207,9 @@
             transform: scale(0.95);
             transition: transform var(--transition-speed) ease;
         }
-        
         #nav-modal.active .nav-modal-content {
             transform: scale(1);
         }
-
         .nav-modal-header {
             display: flex;
             justify-content: space-between;
@@ -249,13 +218,11 @@
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--primary-color);
         }
-        
         .nav-modal-header h2 {
             font-family: 'Teko', sans-serif;
             font-size: 2rem;
             margin: 0;
         }
-
         .nav-modal-close {
             background: none;
             border: none;
@@ -264,12 +231,10 @@
             cursor: pointer;
             transition: color var(--transition-speed);
         }
-
         .nav-modal-close:hover {
             color: var(--primary-color);
             transform: rotate(90deg);
         }
-
         .nav-list a {
             display: flex;
             justify-content: space-between;
@@ -286,41 +251,34 @@
             text-transform: uppercase;
             transition: all var(--transition-speed) ease;
         }
-        
         .nav-list a .nav-item-icon {
             color: var(--primary-color);
             transition: transform var(--transition-speed) ease;
             width: 24px;
             height: 24px;
         }
-        
         .nav-list a:hover {
             border-color: var(--primary-color);
             box-shadow: 0 0 10px var(--glow-color);
             transform: translateX(10px);
         }
-        
         .nav-list a:hover .nav-item-icon {
             transform: rotate(-15deg);
         }
-        
         .theme-chooser {
             margin-top: 2rem;
             text-align: center;
         }
-        
         .theme-chooser h3 {
              margin-bottom: 1rem;
              font-size: 1.2rem;
         }
-        
         .theme-buttons {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
         }
-        
         .theme-btn {
             padding: 8px 15px;
             border: 1px solid var(--text-muted-color);
@@ -332,14 +290,12 @@
             font-family: 'Rajdhani', sans-serif;
             font-weight: 700;
         }
-        
         .theme-btn.active, .theme-btn:hover {
             color: var(--bg-color);
             background: var(--primary-color);
             border-color: var(--primary-color);
             box-shadow: 0 0 10px var(--glow-color);
         }
-        
         .current-theme-display {
             margin-top: 1rem;
             padding: 0.5rem 1rem;
@@ -349,12 +305,10 @@
             font-size: 0.9rem;
             border: 1px solid var(--primary-color);
         }
-        
         .current-theme-display span {
             color: var(--primary-color);
             font-weight: bold;
         }
-
         .hero {
             min-height: 100vh;
             display: flex;
@@ -364,25 +318,21 @@
             text-align: center;
             padding-top: 100px;
         }
-        
         .hero h1 {
             font-size: 5rem;
             margin-bottom: 1rem;
             animation: flicker 3s infinite alternate;
         }
-        
         .hero p {
             font-size: 1.5rem;
             max-width: 600px;
             margin-bottom: 2rem;
             color: var(--text-muted-color);
         }
-        
         .cta-buttons {
             display: flex;
             gap: 1.5rem;
         }
-        
         .btn {
             padding: 1rem 2.5rem;
             font-family: 'Orbitron', sans-serif;
@@ -398,30 +348,25 @@
             display: inline-flex;
             align-items: center;
         }
-        
         .btn-primary {
             background: var(--primary-color);
             color: var(--bg-color);
             border: 1px solid var(--primary-color);
             box-shadow: 0 0 15px var(--glow-color);
         }
-        
         .btn-primary:hover {
             box-shadow: 0 0 25px var(--glow-color);
             transform: translateY(-3px);
         }
-
         .btn-secondary {
             background: transparent;
             color: var(--primary-color);
             border: 1px solid var(--primary-color);
         }
-        
         .btn-secondary:hover {
             background: var(--primary-color);
             color: var(--bg-color);
         }
-        
         .btn-discord {
             position: relative;
             padding: 0.8rem 1.8rem;
@@ -431,7 +376,6 @@
             box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
             gap: 0.5rem;
         }
-        
         .btn-discord::before {
             content: '';
             position: absolute;
@@ -443,26 +387,22 @@
             border-radius: 50%;
             animation: discord-pulse 2s infinite;
         }
-        
         @keyframes discord-pulse {
             0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
             70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
             100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
         }
-
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
             font-size: 3rem;
         }
-
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 4rem;
         }
-
         .stat-card {
             background: var(--bg-light-color);
             padding: 2rem;
@@ -472,30 +412,25 @@
             transition: all var(--transition-speed) ease;
             box-shadow: 0 0 10px var(--glow-color);
         }
-
         .stat-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 0 20px var(--glow-color);
         }
-
         .stat-card .value {
             font-size: 3rem;
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
             color: var(--primary-color);
         }
-
         .stat-card .label {
             font-size: 1.2rem;
             color: var(--text-muted-color);
         }
-        
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-        
         .feature-card {
             background: var(--bg-light-color);
             border: 1px solid transparent;
@@ -504,23 +439,19 @@
             border-radius: var(--border-radius);
             transition: all var(--transition-speed) ease;
         }
-        
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             border-color: var(--primary-color);
         }
-        
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
-        
         .feature-card p {
             color: var(--text-muted-color);
             line-height: 1.6;
         }
-        
         .extra-images {
             display: flex;
             justify-content: center;
@@ -529,7 +460,6 @@
             margin-top: 4rem;
             flex-wrap: wrap;
         }
-        
         .extra-images img {
             max-width: 45%;
             min-width: 280px;
@@ -538,7 +468,6 @@
             border: 2px solid var(--primary-color);
             box-shadow: 0 0 15px var(--glow-color);
         }
-
         .pricing-grid {
             display: flex;
             justify-content: center;
@@ -546,7 +475,6 @@
             gap: 2rem;
             flex-wrap: wrap;
         }
-        
         .pricing-card {
             background: var(--bg-light-color);
             padding: 2rem;
@@ -558,47 +486,39 @@
             display: flex;
             flex-direction: column;
         }
-        
         .pricing-card:not(.lifetime-special):hover {
             transform: translateY(-10px);
             box-shadow: 0 0 20px var(--glow-color);
         }
-        
         .pricing-card h3 {
             font-size: 1.8rem;
         }
-        
         .pricing-card .price {
             font-size: 3.5rem;
             font-family: 'Orbitron', sans-serif;
             margin: 1rem 0;
         }
-        
         .pricing-card .price span {
             font-size: 1.2rem;
             color: var(--text-muted-color);
         }
-        
         .pricing-card ul {
             list-style: none;
             margin: 2rem 0;
             text-align: left;
             flex-grow: 1;
         }
-        
         .pricing-card li {
             margin-bottom: 1rem;
             padding-left: 25px;
             position: relative;
         }
-        
         .pricing-card li::before {
             content: '✓';
             color: var(--primary-color);
             position: absolute;
             left: 0;
         }
-        
         .pricing-card.lifetime-special {
             --special-red: #ff1f1f;
             --special-red-glow: rgba(255, 31, 31, 0.8);
@@ -610,7 +530,6 @@
             transform: scale(1.05);
             animation: lifetime-pulse 2s infinite;
         }
-        
         .pricing-card.lifetime-special::before {
             content: '';
             position: absolute;
@@ -619,7 +538,6 @@
             background: conic-gradient(from 0deg, transparent, var(--special-red), transparent);
             animation: rotate-border 4s linear infinite;
         }
-
         .pricing-card.lifetime-special .card-content {
             background: #1a0303;
             position: relative;
@@ -630,19 +548,16 @@
             display: flex;
             flex-direction: column;
         }
-        
         .pricing-card.lifetime-special h3, .pricing-card.lifetime-special .price, .pricing-card.lifetime-special li::before {
             color: var(--special-red);
             text-shadow: 0 0 10px var(--special-red-glow);
         }
-
         .pricing-card.lifetime-special .btn-primary {
             background: var(--special-red);
             border-color: var(--special-red);
             box-shadow: 0 0 20px var(--special-red-glow);
             color: #fff;
         }
-        
         .lifetime-special .crown-icon {
             width: 50px;
             height: 50px;
@@ -650,12 +565,10 @@
             filter: drop-shadow(0 0 10px var(--special-red-glow));
             margin-bottom: 1rem;
         }
-        
         .lifetime-special .recommended {
             font-weight: 700;
             color: var(--special-red);
         }
-        
         #payment-section {
             background: var(--bg-light-color);
             margin-top: 4rem;
@@ -665,20 +578,16 @@
             box-shadow: 0 0 20px var(--glow-color);
             display: none;
         }
-        
         #payment-section.visible {
             display: block;
         }
-
         .payment-header {
             text-align: center;
             margin-bottom: 2rem;
         }
-
         .payment-header h3 {
             font-size: 2rem;
         }
-
         .payment-header p {
             background: var(--primary-color);
             color: var(--bg-color);
@@ -688,13 +597,11 @@
             font-weight: 700;
             margin-top: 0.5rem;
         }
-        
         .payment-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
         }
-        
         .payment-method {
             background: var(--bg-color);
             padding: 1.5rem;
@@ -703,31 +610,26 @@
             text-align: center;
             transition: all var(--transition-speed) ease;
         }
-        
         .payment-method:hover {
             border-color: var(--primary-color);
             transform: translateY(-5px);
             box-shadow: 0 0 10px var(--glow-color);
         }
-        
         .payment-method img {
             height: 40px;
             margin-bottom: 1rem;
         }
-        
         .payment-method .name {
             font-family: 'Teko', sans-serif;
             font-size: 1.5rem;
             font-weight: 600;
         }
-        
         .payment-method .price {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.2rem;
             color: var(--primary-color);
             font-weight: 700;
         }
-        
         .payment-footer {
             margin-top: 2rem;
             text-align: center;
@@ -735,18 +637,15 @@
             color: var(--text-muted-color);
             line-height: 1.5;
         }
-
         @keyframes lifetime-pulse {
             50% {
                 box-shadow: 0 0 50px var(--special-red-glow), inset 0 0 30px var(--special-red-glow);
             }
         }
-        
         @keyframes rotate-border {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-
         .contributors-grid {
             display: flex;
             justify-content: center;
@@ -754,7 +653,6 @@
             gap: 2rem;
             margin-top: 4rem;
         }
-
         .contributor-card {
             position: relative;
             background: var(--bg-light-color);
@@ -765,7 +663,6 @@
             overflow: hidden;
             transition: all var(--transition-speed) ease;
         }
-
         .contributor-card::before {
             content: '';
             position: absolute;
@@ -784,7 +681,6 @@
             z-index: 0;
             animation: border-spin 4s linear infinite;
         }
-        
         .contributor-card::after {
             content: '';
             position: absolute;
@@ -796,17 +692,14 @@
             border-radius: calc(var(--border-radius) - 2px);
             z-index: 1;
         }
-
         .contributor-card > * {
             position: relative;
             z-index: 2;
         }
-        
         @keyframes border-spin {
             0% { transform: translate(-50%, -50%) rotate(0deg); }
             100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
-
         .contributor-card .pfp {
             width: 100px;
             height: 100px;
@@ -817,13 +710,11 @@
             position: relative;
             box-shadow: 0 0 15px var(--glow-color);
         }
-
         .pfp-wrapper {
             position: relative;
             display: inline-block;
             margin-bottom: 1rem;
         }
-        
         .pfp-king-icon {
             position: absolute;
             top: -10px;
@@ -835,7 +726,6 @@
             transform: rotate(15deg);
             z-index: 3;
         }
-
         .contributor-card .name {
             font-size: 1.8rem;
             display: flex;
@@ -844,7 +734,6 @@
             gap: 0.5rem;
             margin-bottom: 0.5rem;
         }
-
         .contributor-crown-icon {
             width: 24px;
             height: 24px;
@@ -852,13 +741,11 @@
             filter: drop-shadow(0 0 8px rgba(255, 31, 31, 0.9));
             animation: crown-sparkle 1.5s ease-in-out infinite alternate;
         }
-        
         @keyframes crown-sparkle {
             0% { opacity: 0.8; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.1); }
             100% { opacity: 0.8; transform: scale(1); }
         }
-
         .contributor-card .tag {
             display: block;
             color: var(--text-muted-color);
@@ -866,13 +753,11 @@
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
         }
-
         .contributor-card .discord-btn {
             padding: 0.5rem 1.5rem;
             font-size: 0.9rem;
             width: 100%;
         }
-
         .dev-log-card {
             background: var(--bg-light-color);
             padding: 2rem;
@@ -880,23 +765,19 @@
             border: 1px solid var(--primary-color);
             box-shadow: 0 0 10px var(--glow-color);
         }
-        
         .dev-log-card h3 {
             font-size: 2rem;
             margin-bottom: 1.5rem;
         }
-        
         .dev-log-card ul {
             list-style: none;
         }
-        
         .dev-log-card li {
             position: relative;
             padding-left: 20px;
             margin-bottom: 1rem;
             line-height: 1.6;
         }
-        
         .dev-log-card li::before {
             content: '»';
             color: var(--primary-color);
@@ -904,7 +785,6 @@
             left: 0;
             font-weight: bold;
         }
-        
         .dev-log-image-preview {
             max-width: 100%;
             height: auto;
@@ -913,7 +793,6 @@
             border: 1px solid var(--primary-color);
             display: block;
         }
-        
         .faq-item {
             background: var(--bg-light-color);
             margin-bottom: 1rem;
@@ -922,12 +801,10 @@
             overflow: hidden;
             transition: border-color var(--transition-speed) ease;
         }
-        
         .faq-item.active {
             border-color: var(--primary-color);
             box-shadow: 0 0 10px var(--glow-color);
         }
-
         .faq-question {
             padding: 1rem 1.5rem;
             font-size: 1.2rem;
@@ -937,7 +814,6 @@
             user-select: none;
             color: var(--primary-color);
         }
-        
         .faq-question::after {
             content: '+';
             position: absolute;
@@ -947,29 +823,24 @@
             font-size: 1.5rem;
             transition: transform var(--transition-speed) ease;
         }
-        
         .faq-item.active .faq-question::after {
             content: '−';
             transform: translateY(-50%) rotate(180deg);
         }
-
         .faq-answer {
             max-height: 0;
             padding: 0 1.5rem;
             overflow: hidden;
             transition: max-height 0.4s ease-out, padding 0.4s ease-out;
         }
-        
         .faq-item.active .faq-answer {
             padding: 0 1.5rem 1.5rem;
         }
-        
         .faq-answer p {
             border-top: 1px solid var(--bg-color);
             padding-top: 1rem;
             color: var(--text-muted-color);
         }
-        
         footer {
             text-align: center;
             padding: 2rem 0;
@@ -977,38 +848,150 @@
             color: var(--text-muted-color);
             font-size: 0.9rem;
         }
-        
         footer a {
             color: var(--primary-color);
             text-decoration: none;
             transition: color var(--transition-speed);
         }
-        
         footer a:hover {
             color: var(--glow-color);
             text-decoration: underline;
         }
 
+        /* NEW: Supported Executors Modal */
+        #executors-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 3000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-speed) ease;
+        }
+        #executors-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .executors-modal-content {
+            background: var(--bg-light-color);
+            border: 1px solid var(--primary-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 0 20px var(--glow-color), inset 0 0 15px var(--glow-color);
+            transform: scale(0.95);
+            transition: transform var(--transition-speed) ease;
+        }
+        #executors-modal.active .executors-modal-content {
+            transform: scale(1);
+        }
+        .executors-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--primary-color);
+        }
+        .executors-modal-header h2 {
+            font-family: 'Teko', sans-serif;
+            font-size: 2rem;
+            margin: 0;
+            color: var(--primary-color);
+        }
+        .executors-modal-close {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color var(--transition-speed);
+        }
+        .executors-modal-close:hover {
+            color: var(--primary-color);
+            transform: rotate(90deg);
+        }
+        .executor-category {
+            margin-bottom: 1.5rem;
+        }
+        .executor-category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        .executor-category-header svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+        .executor-item {
+            background: var(--bg-color);
+            border: 1px solid transparent;
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all var(--transition-speed) ease;
+        }
+        .executor-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px var(--glow-color);
+        }
+        .executor-name {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+        .executor-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
+        }
+        .status-detected {
+            background: var(--red-primary);
+            box-shadow: 0 0 5px var(--red-glow);
+        }
+        .status-undetected {
+            background: var(--phrog-primary);
+            box-shadow: 0 0 5px var(--phrog-glow);
+        }
     </style>
 </head>
 <body>
-
     <canvas id="particle-canvas"></canvas>
-
     <header id="main-header">
         <a href="#home" class="logo-wrapper">
             <img src="https://cdn.discordapp.com/attachments/1263186729096184001/1425245632456818729/IMG_20251008_001222.png?ex=68e6e2ee&is=68e5916e&hm=02ed9f42ee05477593ae387ecfda278dbaf7c1eb75deff47bd7e8dc6a8af9bf1&" alt="Devision Logo" class="logo" id="logo-img">
         </a>
         <div class="main-nav-buttons">
-            <a href="https://discord.gg/uCspBMst3t" target="_blank" class="nav-button" aria-label="Discord">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.54 0c1.356 0 2.46 1.104 2.46 2.472v19.056c0 1.368-1.104 2.472-2.46 2.472h-15.08c-1.356 0-2.46-1.104-2.46-2.472v-19.056c0-1.368 1.104-2.472 2.46-2.472h15.08zm-2.883 17.51c-1.074.582-2.223.966-3.465 1.146a.2.2 0 0 1-.219-.204c-.1-1.428-.486-2.64-1.02-3.726a21.402 21.402 0 0 1-4.995 3.726.2.2 0 0 1-.267-.186c-.363-1.638-.918-4.32-1.2-5.916a.2.2 0 0 1 .057-.204c1.98-1.74 3.6-3.12 4.659-4.116a.2.2 0 0 1 .28-.012c1.43.918 2.949 2.016 4.38 3.252a.2.2 0 0 1 .045.3c-.561 1.32-1.146 2.76-1.575 3.96a15.772 15.772 0 0 1 3.276-2.196.2.2 0 0 1 .246.168c.24 1.368.12 3.324-.312 5.04zm-6.105-6.516c-.72 0-1.308.582-1.308 1.308 0 .72.588 1.308 1.308 1.308s1.308-.588 1.308-1.308c0-.726-.588-1.308-1.308-1.308zm4.02-1.308c-.72 0-1.308.588-1.308 1.308s.588 1.308 1.308 1.308c.726 0 1.308-.588 1.308-1.308s-.582-1.308-1.308z"/></svg>
+             <a href="https://discord.gg/uCspBMst3t" target="_blank" class="nav-button" aria-label="Discord">
+                <!-- FIX 2: Clean Discord SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                    <path d="M19.54 0c1.356 0 2.46 1.104 2.46 2.472v19.056c0 1.368-1.104 2.472-2.46 2.472h-15.08c-1.356 0-2.46-1.104-2.46-2.472v-19.056c0-1.368 1.104-2.472 2.46-2.472h15.08zm-2.883 17.51c-1.074.582-2.223.966-3.465 1.146a.2.2 0 0 1-.219-.204c-.1-1.428-.486-2.64-1.02-3.726a21.402 21.402 0 0 1-4.995 3.726.2.2 0 0 1-.267-.186c-.363-1.638-.918-4.32-1.2-5.916a.2.2 0 0 1 .057-.204c1.98-1.74 3.6-3.12 4.659-4.116a.2.2 0 0 1 .28-.012c1.43.918 2.949 2.016 4.38 3.252a.2.2 0 0 1 .045.3c-.561 1.32-1.146 2.76-1.575 3.96a15.772 15.772 0 0 1 3.276-2.196.2.2 0 0 1 .246.168c.24 1.368.12 3.324-.312 5.04zm-6.105-6.516c-.72 0-1.308.582-1.308 1.308 0 .72.588 1.308 1.308 1.308s1.308-.588 1.308-1.308c0-.726-.588-1.308-1.308-1.308zm4.02-1.308c-.72 0-1.308.588-1.308 1.308s.588 1.308 1.308 1.308c.726 0 1.308-.588 1.308-1.308s-.582-1.308-1.308-1.308z"/>
+                </svg>
             </a>
             <button class="nav-button menu-toggle-btn" id="nav-toggle" aria-label="Open Navigation">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
-        </div>
+            </div>
     </header>
-
     <div id="nav-modal">
         <div class="nav-modal-content">
             <div class="nav-modal-header">
@@ -1026,7 +1009,7 @@
                 </a>
                 <a href="#pricing" class="nav-link">
                     <span class="nav-item-text">Premium</span>
-                    <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                 </a>
                 <a href="#dev-logs" class="nav-link">
                     <span class="nav-item-text">Dev-Logs</span>
@@ -1034,15 +1017,15 @@
                 </a>
                 <a href="#faq" class="nav-link">
                     <span class="nav-item-text">FAQ</span>
-                    <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
                 </a>
                 <a href="#contributors" class="nav-link">
                     <span class="nav-item-text">Contributors</span>
-                    <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 1-4-4H5a4 4 0 0 1-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 1-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                 </a>
             </nav>
              <div class="theme-chooser">
-                <h3><svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 1 11.21 3 7 7 0 0 0 0 21 12.79z"></path></svg> Choose Theme</h3>
+                <h3><svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Choose Theme</h3>
                 <div class="theme-buttons">
                     <button class="theme-btn" data-theme="orange">Orange</button>
                     <button class="theme-btn" data-theme="purple">Purple</button>
@@ -1055,7 +1038,6 @@
             </div>
         </div>
     </div>
-
     <main>
         <section id="home" class="hero container fade-in">
             <h1>DEVISION</h1>
@@ -1063,10 +1045,10 @@
             <div class="cta-buttons">
                 <a href="#pricing" class="btn btn-primary">Get Access</a>
                 <a href="https://discord.gg/uCspBMst3t" target="_blank" class="btn btn-discord">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.54 0c1.356 0 2.46 1.104 2.46 2.472v19.056c0 1.368-1.104 2.472-2.46 2.472h-15.08c-1.356 0-2.46-1.104-2.46-2.472v-19.056c0-1.368 1.104-2.472 2.46-2.472h15.08zm-2.883 17.51c-1.074.582-2.223.966-3.465 1.146a.2.2 0 0 1-.219-.204c-.1-1.428-.486-2.64-1.02-3.726a21.402 21.402 0 0 1-4.995 3.726.2.2 0 0 0 1-.267-.186c-.363-1.638-.918-4.32-1.2-5.916a.2.2 0 0 0 1 .057-.204c1.98-1.74 3.6-3.12 4.659-4.116a.2.2 0 0 1 .28-.012c1.43.918 2.949 2.016 4.38 3.252a.2.2 0 0 1 .045.3-.561 1.32-1.146 2.76-1.575 3.96a15.772 15.772 0 0 0 1 3.276-2.196.2.2.2 0 0 1 .246.168c.24 1.368.12 3.324-.312 5.04zm-6.105-6.516c-.72 0-1.308.582-1.308 1.308 0 .72.588 1.308 1.308 1.308s1.308-.588 1.308-1.308c0-.726-.588-1.308-1.308-1.308zm4.02-1.308c-.72 0-1.308.588-1.308 1.308s.588 1.308 1.308 1.308c.726 0 1.308-.588 1.308-1.308s-.582-1.308-1.308z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.54 0c1.356 0 2.46 1.104 2.46 2.472v19.056c0 1.368-1.104 2.472-2.46 2.472h-15.08c-1.356 0-2.46-1.104-2.46-2.472v-19.056c0-1.368 1.104-2.472 2.46-2.472h15.08zm-2.883 17.51c-1.074.582-2.223.966-3.465 1.146a.2.2 0 0 1-.219-.204c-.1-1.428-.486-2.64-1.02-3.726a21.402 21.402 0 0 1-4.995 3.726.2.2 0 0 1-.267-.186c-.363-1.638-.918-4.32-1.2-5.916a.2.2 0 0 1 .057-.204c1.98-1.74 3.6-3.12 4.659-4.116a.2.2 0 0 1 .28-.012c1.43.918 2.949 2.016 4.38 3.252a.2.2 0 0 1 .045.3c-.561 1.32-1.146 2.76-1.575 3.96a15.772 15.772 0 0 1 3.276-2.196.2.2 0 0 1 .246.168c.24 1.368.12 3.324-.312 5.04zm-6.105-6.516c-.72 0-1.308.582-1.308 1.308 0 .72.588 1.308 1.308 1.308s1.308-.588 1.308-1.308c0-.726-.588-1.308-1.308-1.308zm4.02-1.308c-.72 0-1.308.588-1.308 1.308s.588 1.308 1.308 1.308c.726 0 1.308-.588 1.308-1.308s-.582-1.308-1.308-1.308z"/></svg>
                     <span>Join The Discord</span>
                 </a>
-            </div>
+                </div>
              <div class="stats-grid">
                 <div class="stat-card">
                     <div class="value" id="countdown-days">--</div>
@@ -1102,7 +1084,7 @@
                     <p>Modify your client-side appearance with our avatar changer. Load any user ID to instantly adopt their look in-game.</p>
                 </div>
                 <div class="feature-card fade-in" style="transition-delay: 0.5s;">
-                    <h3>Secure &amp; Undetected</h3>
+                    <h3>Secure & Undetected</h3>
                     <p>Built with security as the top priority. Frequent updates ensure our script remains ahead of anti-cheat measures.</p>
                 </div>
                 <div class="feature-card fade-in" style="transition-delay: 0.6s;">
@@ -1111,11 +1093,10 @@
                 </div>
             </div>
             <div class="extra-images fade-in">
-                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425194294944401039977/5759377C-E9B5-4176-B9E2-F57E24EEB585.png?ex=68e8049e&is=68e6b31e&hm=6488bce6b089f4c1821ce5408ea29be1a076df3ff0df9e039c4b9ac0502fb0fcdae3&" alt="Feature showcase 1">
-                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425207401329594458/FBF-7801-47C2-9EAB-C5F8193732BA.png?ex=68e810d3&is=68e6bf53&hm=07c108b4516c666fd816779b7777c6fed3e004c9be920c649affb5b365f241a349d&" alt="Feature showcase 2">
+                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425194294440103977/5759377C-E9B5-4176-B9E2-F57E24EEB585.png?ex=68e8049e&is=68e6b31e&hm=6488bce6b089f4c1821ce5408ea1a076df3ff0df9e039c4b9ac0502fb0fcdae3&" alt="Feature showcase 1">
+                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425207401329594458/FBF3FC2F-7801-47C2-9EAB-C5F8193732BA.png?ex=68e810d3&is=68e6bf53&hm=07c108b4516c66fd816779b77c6fed3e004c9be920c649affb5b365f241a349d&" alt="Feature showcase 2">
             </div>
         </section>
-
         <section id="pricing" class="container">
             <h2 class="section-title fade-in">Pricing</h2>
             <div class="pricing-grid">
@@ -1183,7 +1164,6 @@
                 3-day HWID reset cooldown. <br> Faster reset: 200 Robux, $1 Crypto, or $2 PayPal
             </div>
         </section>
-
         <section id="dev-logs" class="container">
             <h2 class="section-title fade-in">Dev-Logs</h2>
             <div class="dev-log-card fade-in">
@@ -1192,7 +1172,7 @@
                     <li>Added 3 modes to redirection: mouse, remote, namecall, raycast [with wallbang for 0 delay games]</li>
                     <li>Added silent aim [soon fov with gradients]</li>
                     <li>Changed fov to screengui + glow
-                        <img class="dev-log-image-preview" src="https://cdn.discordapp.com/attachments/1422290432070516786/1423689567101521930/image.png?ex=68e7d13b&is=68e67fbb&hm=a9253c6b2ee777b745d2ce32a0de3cdb586a666aaa9ac9caad2b25908da9b77f56&" alt="Glow Preview">
+                        <img class="dev-log-image-preview" src="https://cdn.discordapp.com/attachments/1422290432070516786/1423689567101521930/image.png?ex=68e7d13b&is=68e67fbb&hm=a9253c6b2ee77b745d2ce32a0de3cdb586a66aaa9ac9caad2b25908da9b77f56&" alt="Glow Preview">
                     </li>
                     <li>Added 3 positions to fov (mouse, center, barrel (gun)) and added lerp option</li>
                     <li>Added highlight target/client, material changer to client, and avatar changer with user id and added gui
@@ -1201,7 +1181,6 @@
                 </ul>
             </div>
         </section>
-
         <section id="faq" class="container">
             <h2 class="section-title fade-in">Devision FAQ</h2>
             <div class="faq-container fade-in">
@@ -1230,7 +1209,10 @@
                     </div>
                 </div>
             </div>
-            <button class="faq-question executors-button">Supported Executors</button>
+            <!-- NEW: Supported Executors Button -->
+            <div class="faq-container fade-in" style="margin-top: 2rem;">
+                <button id="executors-btn" class="btn btn-secondary" style="font-size: 1.1rem; padding: 0.8rem 1.5rem;">Supported Executors</button>
+            </div>
         </section>
         <section id="contributors" class="container">
             <h2 class="section-title fade-in">Contributors</h2>
@@ -1247,7 +1229,6 @@
                     <span class="tag">Web Developer / Coder</span>
                     <a href="https://discord.com/users/797901826258370581" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
-                 
                 <div class="contributor-card fade-in" style="transition-delay: 0.2s;">
                     <div class="pfp-wrapper">
                         <img src="https://cdn.discordapp.com/avatars/1230212757916487681/ad0df60f045f3fe6e71cf578759c1ea4.png?size=512" alt="craxes pfp" class="pfp">
@@ -1260,10 +1241,9 @@
                     <span class="tag">Skidder / Paster</span>
                     <a href="https://discord.com/users/1230212757916487681" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
-                 
                 <div class="contributor-card fade-in" style="transition-delay: 0.3s;">
                     <div class="pfp-wrapper">
-                        <img src="https://cdn.discordapp.com/avatars/125149673460926493/2ffac6d3c20743629acc35939323e73.png?size=512" alt="od pfp" class="pfp">
+                        <img src="https://cdn.discordapp.com/avatars/1251496733460926493/2ffac6d3c2074362ba8cc35939323e73.png?size=512" alt="od pfp" class="pfp">
                         <svg class="pfp-king-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
                     </div>
                     <h3 class="name">
@@ -1271,12 +1251,11 @@
                         <svg class="contributor-crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
                     </h3>
                     <span class="tag">Goated Person</span>
-                    <a href="https://discord.com/users/125149673460926493" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
+                    <a href="https://discord.com/users/1251496733460926493" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
             </div>
         </section>
     </main>
-
     <footer class="fade-in">
         <p>&copy; 2025 DEVISION. All rights reserved.</p>
         <p>
@@ -1284,380 +1263,358 @@
         </p>
     </footer>
 
-    <div id="executors-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h3>Supported Executors</h3>
-            <div class="executors-list">
-                <div class="executor-item">
-                    <h4>PC</h4>
-                    <div class="executor">
-                        <span>Potassium</span>
-                        <span class="status">Undetected</span>
-                    </div>
-                    <div class="executor">
-                        <span>Bunni</span>
-                        <span class="status detected">Detected</span>
-                    </div>
-                    <div class="executor">
-                        <span>Swift</span>
-                        <span class="status detected">Detected</span>
-                    </div>
+    <!-- NEW: Supported Executors Modal -->
+    <div id="executors-modal">
+        <div class="executors-modal-content">
+            <div class="executors-modal-header">
+                <h2>Supported Executors</h2>
+                <button class="executors-modal-close" id="executors-close">&times;</button>
+            </div>
+            <div class="executor-category">
+                <div class="executor-category-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17 18a2 2 0 002-2V8a2 2 0 00-2-2H7a2 2 0 00-2 2v8a2 2 0 002 2h10zM9 10h6v6H9z"/>
+                    </svg>
+                    PC
                 </div>
                 <div class="executor-item">
-                    <h4>Mobile</h4>
-                    <div class="executor">
-                        <span>Delta</span>
-                        <span class="status">Undetected</span>
-                    </div>
-                    <div class="executor">
-                        <span>Codex</span>
-                        <span class="status">Undetected</span>
-                    </div>
-                    <div class="executor">
-                        <span>KRNL</span>
-                        <span class="status">Undetected</span>
-                    </div>
+                    <span class="executor-name">Potassium</span>
+                    <span class="executor-status status-undetected">Undetected</span>
+                </div>
+                <div class="executor-item">
+                    <span class="executor-name">Bunni</span>
+                    <span class="executor-status status-detected">Detected</span>
+                </div>
+                <div class="executor-item">
+                    <span class="executor-name">Swift</span>
+                    <span class="executor-status status-detected">Detected</span>
+                </div>
+            </div>
+            <div class="executor-category">
+                <div class="executor-category-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 18h.01M7 21h10v-1a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v11a2 2 0 002 2z"/>
+                    </svg>
+                    Mobile
+                </div>
+                <div class="executor-item">
+                    <span class="executor-name">Delta</span>
+                    <span class="executor-status status-undetected">Undetected</span>
+                </div>
+                <div class="executor-item">
+                    <span class="executor-name">Codex</span>
+                    <span class="executor-status status-undetected">Undetected</span>
+                </div>
+                <div class="executor-item">
+                    <span class="executor-name">KRNL</span>
+                    <span class="executor-status status-undetected">Undetected</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let currentTheme = 'orange';
-
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const themeSettings = {
-            orange: {
-                create: () => ({
-                    emoji: ['🎃', '👻', '🦇', '️'][Math.floor(Math.random() * 4)],
-                    x: Math.random() * canvas.width,
-                    y: canvas.height + 20,
-                    size: Math.random() * 20 + 20,
-                    speedX: Math.random() * 2 - 1,
-                    speedY: Math.random() * -2 - 1,
-                    rotation: Math.random() * Math.PI * 2,
-                    rotationSpeed: (Math.random() - 0.5) * 0.02
-                }),
-                update: p => {
-                    p.x += p.speedX;
-                    p.y += p.speedY;
-                    p.rotation += p.rotationSpeed;
-                },
-                draw: p => {
-                    ctx.save();
-                    ctx.translate(p.x, p.y);
-                    ctx.rotate(p.rotation);
-                    ctx.font = `${p.size}px Arial`;
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(p.emoji, 0, 0);
-                    ctx.restore();
-                },
-                maxParticles: 5
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let currentTheme = 'orange';
+    const resizeCanvas = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    const themeSettings = {
+        orange: {
+            create: () => ({
+                emoji: ['🎃', '👻', '🦇', '🕷️'][Math.floor(Math.random() * 4)],
+                x: Math.random() * canvas.width,
+                y: canvas.height + 20,
+                size: Math.random() * 20 + 20,
+                speedX: Math.random() * 2 - 1,
+                speedY: Math.random() * -2 - 1,
+                rotation: Math.random() * Math.PI * 2,
+                rotationSpeed: (Math.random() - 0.5) * 0.02
+            }),
+            update: p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+                p.rotation += p.rotationSpeed;
             },
-            purple: {
-                 create: () => ({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 2 + 1,
-                    speedX: (Math.random() - 0.5) * 0.5,
-                    speedY: (Math.random() - 0.5) * 0.5,
-                    connections: []
-                }),
-                update: p => {
-                    p.x += p.speedX;
-                    p.y += p.speedY;
-                    if (p.x > canvas.width || p.x < 0) p.speedX *= -1;
-                    if (p.y > canvas.height || p.y < 0) p.speedY *= -1;
-                },
-                draw: p => {
-                    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--purple-primary');
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fill();
-                },
-                postDraw: () => {
-                    ctx.strokeStyle = `rgba(163, 53, 240, 0.2)`;
-                    for (let i = 0; i < particles.length; i++) {
-                        for (let j = i; j < particles.length; j++) {
-                            const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
-                            if (dist < 100) {
-                                ctx.beginPath();
-                                ctx.moveTo(particles[i].x, particles[i].y);
-                                ctx.lineTo(particles[j].x, particles[j].y);
-                                ctx.stroke();
-                            }
+            draw: p => {
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation);
+                ctx.font = `${p.size}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(p.emoji, 0, 0);
+                ctx.restore();
+            },
+            maxParticles: 5
+        },
+        purple: {
+             create: () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2 + 1,
+                speedX: (Math.random() - 0.5) * 0.5,
+                speedY: (Math.random() - 0.5) * 0.5,
+                connections: []
+            }),
+            update: p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x > canvas.width || p.x < 0) p.speedX *= -1;
+                if (p.y > canvas.height || p.y < 0) p.speedY *= -1;
+            },
+            draw: p => {
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--purple-primary');
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            },
+            postDraw: () => {
+                ctx.strokeStyle = `rgba(163, 53, 240, 0.2)`;
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i; j < particles.length; j++) {
+                        const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+                        if (dist < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
                         }
                     }
-                },
-                maxParticles: 50
-            },
-            gray: {
-                create: () => ({
-                    x: Math.random() * canvas.width,
-                    y: -10,
-                    size: Math.random() * 10 + 5,
-                    speedY: Math.random() * 2 + 1,
-                    opacity: Math.random() * 0.5 + 0.2,
-                }),
-                update: p => {
-                    p.y += p.speedY;
-                },
-                draw: p => {
-                    ctx.fillStyle = `rgba(204, 204, 204, ${p.opacity})`;
-                    ctx.fillRect(p.x, p.y, 1, p.size);
-                },
-                maxParticles: 70
-            },
-            phrog: {
-                create: () => ({
-                    x: Math.random() * canvas.width,
-                    y: -10,
-                    length: Math.random() * 20 + 10,
-                    speedY: Math.random() * 10 + 5,
-                    opacity: Math.random() * 0.3 + 0.1,
-                }),
-                update: p => {
-                    p.y += p.speedY;
-                },
-                draw: p => {
-                    ctx.strokeStyle = `rgba(51, 255, 51, ${p.opacity})`;
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(p.x, p.y + p.length);
-                    ctx.stroke();
-                },
-                maxParticles: 80
-            },
-            red: {
-                 create: () => ({
-                    x: Math.random() * canvas.width,
-                    y: canvas.height + 10,
-                    size: Math.random() * 3 + 1,
-                    speedY: Math.random() * -1 - 0.5,
-                    opacity: 1
-                }),
-                update: p => {
-                    p.y += p.speedY;
-                    p.opacity -= 0.01;
-                },
-                draw: p => {
-                    ctx.fillStyle = `rgba(255, 31, 31, ${p.opacity})`;
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fill();
-                },
-                maxParticles: 60
-            },
-            blue: {
-                create: () => ({
-                    x: Math.random() * canvas.width * 1.5,
-                    y: Math.random() * canvas.height * 1.5 - (canvas.height * 0.5),
-                    size: Math.random() * 1.5 + 0.5,
-                    speed: Math.random() * 1 + 0.5,
-                    opacity: 0
-                }),
-                update: p => {
-                    p.x -= p.speed;
-                    p.y += p.speed / 2;
-                    if(p.opacity < 1) p.opacity += 0.02;
-                    if (p.x < 0 || p.y > canvas.height) {
-                        Object.assign(p, themeSettings.blue.create());
-                         p.x = canvas.width + 20;
-                         p.y = Math.random() * canvas.height;
-                         p.opacity = 0;
-                    }
-                },
-                draw: p => {
-                    ctx.fillStyle = `rgba(0, 162, 255, ${p.opacity})`;
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fill();
-                },
-                maxParticles: 80
-            }
-        };
-
-        const initParticles = () => {
-            particles = [];
-            const settings = themeSettings[currentTheme];
-            for (let i = 0; i < settings.maxParticles; i++) {
-                particles.push(settings.create());
-            }
-        };
-
-        const animateParticles = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const settings = themeSettings[currentTheme];
-            
-            particles.forEach((p, index) => {
-                settings.update(p);
-                settings.draw(p);
-
-                let isOutOfBounds = false;
-                if (currentTheme === 'orange') isOutOfBounds = p.y < -p.size;
-                if (currentTheme === 'gray' || currentTheme === 'phrog') isOutOfBounds = p.y > canvas.height + p.size;
-                if (currentTheme === 'red') isOutOfBounds = p.opacity <= 0;
-                
-                if (isOutOfBounds) {
-                    particles[index] = settings.create();
                 }
-            });
-            
-            if (settings.postDraw) {
-                settings.postDraw();
-            }
-
-            requestAnimationFrame(animateParticles);
-        };
-
-        const root = document.documentElement;
-        const themeButtons = document.querySelectorAll('.theme-btn');
-        const logoImg = document.getElementById('logo-img');
-        const currentThemeName = document.getElementById('current-theme-name');
-        
-        const logos = {
-            orange: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294410257662023/1759886602502.jpg?ex=68e7105c&is=68e5bedc&hm=fd09ac09632150ae8790fb67a84393430303882b023b5d2216f2161f3dc73c069b63&',
-            purple: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294403614015488/1759886767430.jpg?ex=68e7105a&is=68e5beda&hm=e87c0592b37dd8a29649c8e8e8ac0c10d809152867ff3c1447e71755a4de2f05ff&',
-            gray: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294390074802236/1759886697194.jpg?ex=68e71057&is=68e5bed7&hm=e6fd12cb99940e0485fe27ea29befb1b3386d754a6579f4b3d6d75f3804b815f&',
-            phrog: 'https://cdn.discordapp.com/attachments/1263186729096184001/142529439702030753/1759886812357.jpg?ex=68e71058&is=68e5bed8&hm=f4413957546ed3fce6960ee9696def7060f495fce7a8e8aed492d4aab0537d9df2&',
-            red: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294424526553188/1759886421750.jpg?ex=68e7105f&is=68e5bedf&hm=b943056487993f7727b385862656576657e60834c72775e5f3db5e72ebf7fb3f3f619ab&',
-            blue: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294371284058225/1759886389877.jpg?ex=68e71052&is=68e5bed2&hm=7aafe0332215d7e8c4cffc01174ff2db10b360f235950a91325e08f549042bd7&'
-        };
-
-        function applyTheme(theme) {
-            currentTheme = theme;
-            root.style.setProperty('--primary-color', `var(--${theme}-primary)`);
-            root.style.setProperty('--glow-color', `var(--${theme}-glow)`);
-            root.style.setProperty('--bg-color', `var(--${theme}-bg)`);
-            root.style.setProperty('--bg-light-color', `var(--${theme}-bg-light)`);
-            
-            logoImg.src = logos[theme];
-            currentThemeName.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
-            
-            themeButtons.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.theme === theme);
-            });
-            
-            localStorage.setItem('devision-theme', theme);
-            initParticles();
+            },
+            maxParticles: 50
+        },
+        gray: {
+            create: () => ({
+                x: Math.random() * canvas.width,
+                y: -10,
+                size: Math.random() * 10 + 5,
+                speedY: Math.random() * 2 + 1,
+                opacity: Math.random() * 0.5 + 0.2,
+            }),
+            update: p => {
+                p.y += p.speedY;
+            },
+            draw: p => {
+                ctx.fillStyle = `rgba(204, 204, 204, ${p.opacity})`;
+                ctx.fillRect(p.x, p.y, 1, p.size);
+            },
+            maxParticles: 70
+        },
+        phrog: {
+            create: () => ({
+                x: Math.random() * canvas.width,
+                y: -10,
+                length: Math.random() * 20 + 10,
+                speedY: Math.random() * 10 + 5,
+                opacity: Math.random() * 0.3 + 0.1,
+            }),
+            update: p => {
+                p.y += p.speedY;
+            },
+            draw: p => {
+                ctx.strokeStyle = `rgba(51, 255, 51, ${p.opacity})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p.x, p.y + p.length);
+                ctx.stroke();
+            },
+            maxParticles: 80
+        },
+        red: {
+             create: () => ({
+                x: Math.random() * canvas.width,
+                y: canvas.height + 10,
+                size: Math.random() * 3 + 1,
+                speedY: Math.random() * -1 - 0.5,
+                opacity: 1
+            }),
+            update: p => {
+                p.y += p.speedY;
+                p.opacity -= 0.01;
+            },
+            draw: p => {
+                ctx.fillStyle = `rgba(255, 31, 31, ${p.opacity})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            },
+            maxParticles: 60
+        },
+        blue: {
+            create: () => ({
+                x: Math.random() * canvas.width * 1.5,
+                y: Math.random() * canvas.height * 1.5 - (canvas.height * 0.5),
+                size: Math.random() * 1.5 + 0.5,
+                speed: Math.random() * 1 + 0.5,
+                opacity: 0
+            }),
+            update: p => {
+                p.x -= p.speed;
+                p.y += p.speed / 2;
+                if(p.opacity < 1) p.opacity += 0.02;
+                if (p.x < 0 || p.y > canvas.height) {
+                    Object.assign(p, themeSettings.blue.create());
+                     p.x = canvas.width + 20;
+                     p.y = Math.random() * canvas.height;
+                     p.opacity = 0;
+                }
+            },
+            draw: p => {
+                ctx.fillStyle = `rgba(0, 162, 255, ${p.opacity})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            },
+            maxParticles: 80
         }
-
-        themeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                applyTheme(button.dataset.theme);
-            });
-        });
-
-        const savedTheme = localStorage.getItem('devision-theme') || 'orange';
-        applyTheme(savedTheme);
-        animateParticles();
-
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            const answer = item.querySelector('.faq-answer');
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                faqItems.forEach(i => {
-                    i.classList.remove('active');
-                    i.querySelector('.faq-answer').style.maxHeight = null;
-                });
-                if (!isActive) {
-                    item.classList.add('active');
-                    answer.style.maxHeight = answer.scrollHeight + "px";
-                }
-            });
-        });
-
-        const countdownElement = document.getElementById('countdown-days');
-        const releaseDate = new Date('2025-11-01T00:00:00');
-        function updateCountdown() {
-            const now = new Date();
-            const diff = releaseDate - now;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            countdownElement.textContent = days > 0 ? days : '0';
+    };
+    const initParticles = () => {
+        particles = [];
+        const settings = themeSettings[currentTheme];
+        for (let i = 0; i < settings.maxParticles; i++) {
+            particles.push(settings.create());
         }
-        updateCountdown();
-        setInterval(updateCountdown, 1000 * 60 * 60);
-
-        const navToggle = document.getElementById('nav-toggle');
-        const navClose = document.getElementById('nav-close');
-        const navModal = document.getElementById('nav-modal');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        const toggleNav = () => navModal.classList.toggle('active');
-        
-        navToggle.addEventListener('click', toggleNav);
-        navClose.addEventListener('click', toggleNav);
-        navLinks.forEach(link => link.addEventListener('click', toggleNav));
-        navModal.addEventListener('click', (e) => {
-            if (e.target === navModal) {
-                toggleNav();
+    };
+    const animateParticles = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const settings = themeSettings[currentTheme];
+        particles.forEach((p, index) => {
+            settings.update(p);
+            settings.draw(p);
+            let isOutOfBounds = false;
+            if (currentTheme === 'orange') isOutOfBounds = p.y < -p.size;
+            if (currentTheme === 'gray' || currentTheme === 'phrog') isOutOfBounds = p.y > canvas.height + p.size;
+            if (currentTheme === 'red') isOutOfBounds = p.opacity <= 0;
+            if (isOutOfBounds) {
+                particles[index] = settings.create();
             }
         });
-
-        const header = document.getElementById('main-header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        if (settings.postDraw) {
+            settings.postDraw();
+        }
+        requestAnimationFrame(animateParticles);
+    };
+    const root = document.documentElement;
+    const themeButtons = document.querySelectorAll('.theme-btn');
+    const logoImg = document.getElementById('logo-img');
+    const currentThemeName = document.getElementById('current-theme-name');
+    const logos = {
+        orange: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294410257662023/1759886602502.jpg?ex=68e7105c&is=68e5bedc&hm=fd09ac09632150ae8790fb67a84393434303882b023b5d22161f3dc73c069b63&',
+        purple: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294403614015488/1759886767430.jpg?ex=68e7105a&is=68e5beda&hm=e87c0592b37dd8a29649c8e8ac0c10d809152867ff3c1447e71755a4de2f05ff&',
+        gray: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294390074802236/1759886697194.jpg?ex=68e71057&is=68e5bed7&hm=e6fd12cb99940e0485fe27ea29befb1b3386d754a6579f4b3d6d75f3804b815f&',
+        phrog: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294397020307537/1759886812357.jpg?ex=68e71058&is=68e5bed8&hm=f4413957546ed3fce6960ee96def7060f495fce7a8e8aed492d4aab0537d9df2&',
+        red: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294424526553188/1759886421750.jpg?ex=68e7105f&is=68e5bedf&hm=b943056487c93f7727b3858626657e60834c72775e5f3db5e72ebf7fb3f619ab&',
+        blue: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294371284058225/1759886389877.jpg?ex=68e71052&is=68e5bed2&hm=7aafe0332215d7e8c4cffc01174ff2db10b360f235950a91325e08f549042bd7&'
+    };
+    function applyTheme(theme) {
+        currentTheme = theme;
+        root.style.setProperty('--primary-color', `var(--${theme}-primary)`);
+        root.style.setProperty('--glow-color', `var(--${theme}-glow)`);
+        root.style.setProperty('--bg-color', `var(--${theme}-bg)`);
+        root.style.setProperty('--bg-light-color', `var(--${theme}-bg-light)`);
+        logoImg.src = logos[theme];
+        currentThemeName.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+        themeButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.theme === theme);
         });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        
-        const purchaseButtons = document.querySelectorAll('.btn-purchase');
-        const paymentSection = document.getElementById('payment-section');
-        
-        purchaseButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                paymentSection.classList.add('visible');
-                paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            });
+        localStorage.setItem('devision-theme', theme);
+        initParticles();
+    }
+    themeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            applyTheme(button.dataset.theme);
         });
-
-        const executorsButton = document.querySelector('.executors-button');
-        const executorsModal = document.getElementById('executors-modal');
-        const closeButton = executorsModal.querySelector('.close-button');
-
-        executorsButton.addEventListener('click', () => {
-            executorsModal.classList.add('active');
-        });
-
-        closeButton.addEventListener('click', () => {
-            executorsModal.classList.remove('active');
-        });
-
-        executorsModal.addEventListener('click', (e) => {
-            if (e.target === executorsModal) {
-                executorsModal.classList.remove('active');
-            }
-        });
-
     });
-    </script>
+    const savedTheme = localStorage.getItem('devision-theme') || 'orange';
+    applyTheme(savedTheme);
+    animateParticles();
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            faqItems.forEach(i => {
+                i.classList.remove('active');
+                i.querySelector('.faq-answer').style.maxHeight = null;
+            });
+            if (!isActive) {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+        });
+    });
+    const countdownElement = document.getElementById('countdown-days');
+    const releaseDate = new Date('2025-11-01T00:00:00');
+    function updateCountdown() {
+        const now = new Date();
+        const diff = releaseDate - now;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        countdownElement.textContent = days > 0 ? days : '0';
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000 * 60 * 60);
+    const navToggle = document.getElementById('nav-toggle');
+    const navClose = document.getElementById('nav-close');
+    const navModal = document.getElementById('nav-modal');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const toggleNav = () => navModal.classList.toggle('active');
+    navToggle.addEventListener('click', toggleNav);
+    navClose.addEventListener('click', toggleNav);
+    navLinks.forEach(link => link.addEventListener('click', toggleNav));
+    navModal.addEventListener('click', (e) => {
+        if (e.target === navModal) {
+            toggleNav();
+        }
+    });
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    const purchaseButtons = document.querySelectorAll('.btn-purchase');
+    const paymentSection = document.getElementById('payment-section');
+    purchaseButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            paymentSection.classList.add('visible');
+            paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    });
+
+    // NEW: Supported Executors Modal Logic
+    const executorsBtn = document.getElementById('executors-btn');
+    const executorsModal = document.getElementById('executors-modal');
+    const executorsClose = document.getElementById('executors-close');
+
+    const toggleExecutorsModal = () => executorsModal.classList.toggle('active');
+    executorsBtn.addEventListener('click', toggleExecutorsModal);
+    executorsClose.addEventListener('click', toggleExecutorsModal);
+    executorsModal.addEventListener('click', (e) => {
+        if (e.target === executorsModal) {
+            toggleExecutorsModal();
+        }
+    });
+});
+</script>
 </body>
 </html>
