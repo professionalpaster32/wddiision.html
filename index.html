@@ -112,7 +112,7 @@
             align-items: center;
             z-index: 1000;
             background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s;
         }
         header.scrolled {
             background-color: rgba(0,0,0,0.8);
@@ -320,6 +320,7 @@
         .hero h1 {
             font-size: 5rem;
             margin-bottom: 1rem;
+            animation: flicker 3s infinite alternate;
         }
         .hero p {
             font-size: 1.5rem;
@@ -393,10 +394,6 @@
             0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
             70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
             100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
-        }
-        @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
         }
         .section-title {
             text-align: center;
@@ -969,7 +966,6 @@
                 padding: 1.5rem 0;
             }
         }
-        /* New Features */
         .back-to-top {
             position: fixed;
             bottom: 20px;
@@ -997,37 +993,6 @@
             transform: scale(1.1);
             box-shadow: 0 0 25px var(--glow-color);
         }
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 1s ease;
-        }
-        .loading-screen.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--bg-light-color);
-            border-top: 5px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        /* Added cool effects */
         .pulse-animation {
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
@@ -1092,7 +1057,6 @@
             90% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
             100% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
         }
-        /* Cool hover effects for buttons */
         .btn:hover {
             animation: button-pulse 0.5s ease;
         }
@@ -1101,7 +1065,6 @@
             50% { transform: translateY(-3px) scale(1.05); }
             100% { transform: translateY(0) scale(1); }
         }
-        /* Improved card hover effect */
         .feature-card:hover {
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
@@ -1110,19 +1073,19 @@
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loading-screen">
-        <div class="loader"></div>
-    </div>
+    <canvas id="particle-canvas"></canvas>
     <header id="main-header">
         <a href="#home" class="logo-wrapper">
-            <img src="https://cdn.discordapp.com/attachments/1263186729096184001/1425294410257662023/1759886602502.jpg?ex=68e7105c&is=68e5bedc&hm=fd09ac09632150ae8790fb67a84393434303882b023b5d22161f3dc73c069b63&" alt="Devision Logo" class="logo" id="logo-img">
+            <img src="https://cdn.discordapp.com/attachments/1263186729096184001/1425245632456818729/IMG_20251008_001222.png?ex=68e6e2ee&is=68e5916e&hm=02ed9f42ee05477593ae387ecfda278dbaf7c1eb75deff47bd7e8dc6a8af9bf1&" alt="Devision Logo" class="logo" id="logo-img">
         </a>
         <div class="main-nav-buttons">
+            <a href="https://discord.gg/uCspBMst3t" target="_blank" class="nav-button" aria-label="Discord">
+                <img src="https://cdn.discordapp.com/attachments/1263186729096184001/1425673011280740422/discord_1.png?ex=68e870f5&is=68e71f75&hm=37802d5e05d90accf7ab9267479bde15d9058fdb2f36d11afb97b6049abb9dc6&" alt="Discord" style="width: 24px; height: 24px;">
+            </a>
             <button class="nav-button menu-toggle-btn" id="nav-toggle" aria-label="Open Navigation">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
-        </div>
+            </div>
     </header>
     <div id="nav-modal">
         <div class="nav-modal-content">
@@ -1153,7 +1116,7 @@
                 </a>
                 <a href="#contributors" class="nav-link">
                     <span class="nav-item-text">Contributors</span>
-                    <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                 </a>
             </nav>
              <div class="theme-chooser">
@@ -1170,6 +1133,7 @@
             </div>
         </div>
     </div>
+
     <!-- Homepage Section -->
     <main>
         <section id="home" class="hero container fade-in">
@@ -1197,6 +1161,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Features Section -->
         <section id="features" class="container">
             <h2 class="section-title fade-in">Features</h2>
@@ -1231,6 +1196,7 @@
                 <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425207401329594458/FBF3FC2F-7801-47C2-9EAB-C5F8193732BA.png?ex=68e810d3&is=68e6bf53&hm=07c108b4516c66fd816779b77c6fed3e004c9be920c649affb5b365f241a349d&" alt="Feature showcase 2">
             </div>
         </section>
+
         <!-- Pricing Section -->
         <section id="pricing" class="container">
             <h2 class="section-title fade-in">Pricing</h2>
@@ -1248,6 +1214,7 @@
                 </div>
                 <div class="pricing-card lifetime-special fade-in" style="transition-delay: 0.2s;">
                     <div class="card-content">
+                        <svg class="crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
                         <h3>Lifetime</h3>
                         <p class="recommended">(Recommended)</p>
                         <div class="price">$10<span>/onetime</span></div>
@@ -1269,6 +1236,11 @@
             </div>
             <div class="payment-grid">
                 <div class="payment-method">
+                    <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1424849322180083712/1716_PAYPAL.png?ex=68e814d6&is=68e6c356&hm=d430c1b9ee5908f46b503469847b5170781f291f684da6e403fce931030d4742&" alt="PayPal">
+                    <div class="name">PayPal</div>
+                    <div class="price">$6/week or 11$ one-time</div>
+                </div>
+                 <div class="payment-method">
                     <img src="https://cdn.worldvectorlogo.com/logos/bitcoin.svg" alt="Bitcoin">
                     <div class="name">Bitcoin</div>
                     <div class="price">$5/week or $10 one-time</div>
@@ -1293,6 +1265,7 @@
                 3-day HWID reset cooldown. <br> Faster reset: 200 Robux, $1 Crypto, or $2 PayPal
             </div>
         </section>
+
         <!-- Dev-Logs Section -->
         <section id="dev-logs" class="container">
             <h2 class="section-title fade-in">Dev-Logs</h2>
@@ -1311,6 +1284,7 @@
                 </ul>
             </div>
         </section>
+
         <!-- FAQ Section -->
         <section id="faq" class="container">
             <h2 class="section-title fade-in">Devision FAQ</h2>
@@ -1345,12 +1319,13 @@
                 <button id="executors-btn" class="btn btn-secondary" style="font-size: 1.1rem; padding: 0.8rem 1.5rem;">Supported Executors</button>
             </div>
         </section>
+
         <!-- Contributors Section -->
         <section id="contributors" class="container">
             <h2 class="section-title fade-in">Contributors</h2>
             <div class="contributors-grid">
                 <div class="contributor-card fade-in" style="transition-delay: 0.1s;">
-                    <img src="https://cdn.discordapp.com/avatars/797901826258370581/2ffac6d3c2074362ba8cc35939323e73.png?size=512" alt="hxcker pfp" class="pfp">
+                    <img src="https://cdn.discordapp.com/avatars/797901826258370581/dd0def53b23aa0bfc5e28f3b8890c6c7.png?size=512" alt="hxcker pfp" class="pfp">
                     <h3 class="name">hxcker</h3>
                     <span class="tag">Founder</span>
                     <a href="https://discord.com/users/797901826258370581" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
@@ -1376,6 +1351,7 @@
             <a href="#">Terms of Service</a> | <a href="#">Refund Policy</a>
         </p>
     </footer>
+
     <!-- NEW: Supported Executors Modal -->
     <div id="executors-modal">
         <div class="executors-modal-content">
@@ -1406,7 +1382,7 @@
             <div class="executor-category">
                 <div class="executor-category-header">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 18h.01M7 21h10v-1a2 2 0 00-2-2H7a2 2 0 00-2 2v1z"/>
+                        <path d="M12 18h.01M7 21h10v-1a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v11a2 2 0 002 2z"/>
                     </svg>
                     Mobile
                 </div>
@@ -1425,13 +1401,14 @@
             </div>
         </div>
     </div>
+
     <!-- Back to Top Button -->
     <div class="back-to-top" id="back-to-top">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
     </div>
+
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
         let currentTheme = 'orange';
@@ -1442,7 +1419,7 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
         const themeSettings = {
-                        orange: {
+            orange: {
                 create: () => ({
                     emoji: ['🎃', '👻', '🦇', '🕷️'][Math.floor(Math.random() * 4)],
                     x: Math.random() * canvas.width,
@@ -1651,9 +1628,6 @@
             });
         });
         const savedTheme = localStorage.getItem('devision-theme') || 'orange';
-        applyTheme(savedTheme);
-        animateParticles();
-        const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
             const answer = item.querySelector('.faq-answer');
@@ -1716,7 +1690,6 @@
                 paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
             });
         });
-        // NEW: Supported Executors Modal Logic
         const executorsBtn = document.getElementById('executors-btn');
         const executorsModal = document.getElementById('executors-modal');
         const executorsClose = document.getElementById('executors-close');
@@ -1728,7 +1701,6 @@
                 toggleExecutorsModal();
             }
         });
-        // Mobile Responsiveness
         function adjustForMobile() {
             if (window.innerWidth <= 768) {
                 // Adjust button sizes for mobile
@@ -1737,22 +1709,18 @@
                     btn.style.padding = '0.7rem 1.2rem';
                     btn.style.fontSize = '0.9rem';
                 });
-                // Adjust hero section for mobile
                 const heroText = document.querySelector('.hero p');
                 if (heroText) {
                     heroText.style.fontSize = '1.2rem';
                 }
-                // Adjust section titles for mobile
                 const sectionTitles = document.querySelectorAll('.section-title');
                 sectionTitles.forEach(title => {
                     title.style.fontSize = '2.5rem';
                 });
             }
         }
-        // Call on load and resize
         adjustForMobile();
         window.addEventListener('resize', adjustForMobile);
-        // Back to top button
         const backToTopButton = document.getElementById('back-to-top');
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
@@ -1767,21 +1735,6 @@
                 behavior: 'smooth'
             });
         });
-
-        const loadingScreen = document.getElementById('loading-screen');
-setTimeout(() => {
-    loadingScreen.classList.add('fade-out');
-}, 2000);
-
-// Fallback to remove loading screen after a longer timeout
-setTimeout(() => {
-    if (loadingScreen.classList.contains('fade-out')) {
-        return; // Already faded out
-    }
-    loadingScreen.style.display = 'none'; // Hide it completely
-}, 5000); // Remove after 5 seconds
-        
-        // Add hover effects to cards
         const featureCards = document.querySelectorAll('.feature-card');
         featureCards.forEach(card => {
             card.addEventListener('mouseenter', () => {
@@ -1795,7 +1748,6 @@ setTimeout(() => {
                 card.style.borderColor = 'transparent';
             });
         });
-        // Add glitch effect to section titles
         const sectionTitles = document.querySelectorAll('.section-title');
         sectionTitles.forEach(title => {
             title.classList.add('glitch-effect');
@@ -1806,12 +1758,6 @@ setTimeout(() => {
         importantElements.forEach(element => {
             element.classList.add('pulse-animation');
         });
-        // Add floating elements animation
-        const floatingElements = document.querySelectorAll('.floating-element');
-        floatingElements.forEach((element, index) => {
-            element.style.animationDelay = `${index}s`;
-        });
-        // Add smooth scrolling to anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
