@@ -128,7 +128,7 @@
             justify-content: center;
             align-items: center;
             transition: all var(--transition-speed) ease;
-            background: var(--bg-color); /* FIX 1: Hides white edges */
+            background: var(--bg-color);
         }
         .logo-wrapper:hover {
             transform: scale(1.1) rotate(15deg);
@@ -140,7 +140,7 @@
             object-fit: contain;
             transition: filter var(--transition-speed) ease;
             filter: drop-shadow(0 0 8px var(--glow-color));
-            border-radius: 50%; /* FIX 1: Ensures circular crop */
+            border-radius: 50%;
         }
         .main-nav-buttons {
             display: flex;
@@ -667,32 +667,6 @@
             transition: all var(--transition-speed) ease;
             box-shadow: 0 0 15px var(--glow-color);
         }
-        .contributor-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 102, 0, 0.1) 0%, transparent 30%),
-                        radial-gradient(circle at 70% 70%, rgba(255, 102, 0, 0.1) 0%, transparent 30%);
-            z-index: 0;
-        }
-        .contributor-card::after {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            right: 2px;
-            bottom: 2px;
-            background: var(--bg-light-color);
-            border-radius: calc(var(--border-radius) - 2px);
-            z-index: 1;
-        }
-        .contributor-card > * {
-            position: relative;
-            z-index: 2;
-        }
         .contributor-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 0 25px var(--glow-color);
@@ -707,21 +681,6 @@
             position: relative;
             box-shadow: 0 0 15px var(--glow-color);
         }
-        .pfp-wrapper {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-        .pfp-shield-icon {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 40px;
-            height: 40px;
-            fill: var(--blue-primary);
-            filter: drop-shadow(0 0 10px var(--blue-glow));
-            z-index: 3;
-        }
         .contributor-card .name {
             font-size: 1.8rem;
             display: flex;
@@ -729,18 +688,6 @@
             align-items: center;
             gap: 0.5rem;
             margin-bottom: 0.5rem;
-        }
-        .contributor-shield-icon {
-            width: 24px;
-            height: 24px;
-            fill: var(--blue-primary);
-            filter: drop-shadow(0 0 8px var(--blue-glow));
-            animation: shield-sparkle 1.5s ease-in-out infinite alternate;
-        }
-        @keyframes shield-sparkle {
-            0% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); }
-            100% { opacity: 0.8; transform: scale(1); }
         }
         .contributor-card .tag {
             display: block;
@@ -967,7 +914,6 @@
             background: var(--phrog-primary);
             box-shadow: 0 0 5px var(--phrog-glow);
         }
-        
         /* Mobile Responsive Fixes */
         @media (max-width: 768px) {
             .hero h1 {
@@ -1020,7 +966,6 @@
                 padding: 1.5rem 0;
             }
         }
-        
         /* New Features */
         .back-to-top {
             position: fixed;
@@ -1049,24 +994,7 @@
             transform: scale(1.1);
             box-shadow: 0 0 25px var(--glow-color);
         }
-        
-        .notification-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--red-bg);
-            color: white;
-            text-align: center;
-            padding: 0.5rem;
-            z-index: 1001;
-            transform: translateY(-100%);
-            transition: transform 0.5s ease;
-        }
-        .notification-bar.show {
-            transform: translateY(0);
-        }
-        
+        /* Loading Screen */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -1084,7 +1012,6 @@
             opacity: 0;
             pointer-events: none;
         }
-        
         .loader {
             width: 50px;
             height: 50px;
@@ -1093,17 +1020,14 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
         /* Added cool effects */
         .pulse-animation {
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
-        
         @keyframes pulse {
             0% {
                 box-shadow: 0 0 0 0 var(--glow-color);
@@ -1115,11 +1039,9 @@
                 box-shadow: 0 0 0 0 rgba(255, 102, 0, 0);
             }
         }
-        
         .glitch-effect {
             position: relative;
         }
-        
         .glitch-effect::before,
         .glitch-effect::after {
             content: attr(data-text);
@@ -1131,19 +1053,16 @@
             background: var(--bg-color);
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
         }
-        
         .glitch-effect::before {
             left: 2px;
             text-shadow: -2px 0 var(--blue-primary);
             animation: glitch-anim-1 2s infinite linear alternate-reverse;
         }
-        
         .glitch-effect::after {
             left: -2px;
             text-shadow: 2px 0 var(--red-primary);
             animation: glitch-anim-2 3s infinite linear alternate-reverse;
         }
-        
         @keyframes glitch-anim-1 {
             0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
             10% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
@@ -1157,7 +1076,6 @@
             90% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
             100% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
         }
-        
         @keyframes glitch-anim-2 {
             0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
             10% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
@@ -1171,64 +1089,21 @@
             90% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
             100% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
         }
-        
         /* Cool hover effects for buttons */
         .btn:hover {
             animation: button-pulse 0.5s ease;
         }
-        
         @keyframes button-pulse {
             0% { transform: translateY(0) scale(1); }
             50% { transform: translateY(-3px) scale(1.05); }
             100% { transform: translateY(0) scale(1); }
         }
-        
         /* Improved card hover effect */
         .feature-card:hover {
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             border-color: var(--primary-color);
         }
-        
-        /* New notification system */
-        .toast-notification {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: var(--bg-light-color);
-            border: 1px solid var(--primary-color);
-            border-radius: var(--border-radius);
-            padding: 1rem;
-            box-shadow: 0 0 20px var(--glow-color);
-            z-index: 9999;
-            transform: translateX(100%);
-            transition: transform 0.5s ease;
-            max-width: 300px;
-        }
-        
-        .toast-notification.show {
-            transform: translateX(0);
-        }
-        
-        .toast-notification.close {
-            transform: translateX(100%);
-        }
-        
-        .toast-notification .close-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: none;
-            border: none;
-            color: var(--text-muted-color);
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-        
-        .toast-notification .close-btn:hover {
-            color: var(--primary-color);
-        }
-        
         /* Add floating elements */
         .floating-element {
             position: fixed;
@@ -1236,25 +1111,21 @@
             pointer-events: none;
             animation: float 3s ease-in-out infinite;
         }
-        
         .floating-element:nth-child(1) {
             top: 10%;
             left: 5%;
             animation-delay: 0s;
         }
-        
         .floating-element:nth-child(2) {
             top: 20%;
             right: 5%;
             animation-delay: 1s;
         }
-        
         .floating-element:nth-child(3) {
             bottom: 10%;
             left: 10%;
             animation-delay: 2s;
         }
-        
         @keyframes float {
             0% { transform: translate(0, 0); }
             50% { transform: translate(10px, -10px); }
@@ -1267,12 +1138,6 @@
     <div class="loading-screen" id="loading-screen">
         <div class="loader"></div>
     </div>
-    
-    <!-- Notification Bar -->
-    <div class="notification-bar" id="notification-bar">
-        🎉 Special offer: Get 25% off on Lifetime plan until November 1st! 🎉
-    </div>
-    
     <!-- Floating Elements -->
     <div class="floating-element">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--orange-glow)" stroke-width="2">
@@ -1289,18 +1154,15 @@
             <path d="M12 6V4m0 2a2 2 0 100 4m0 2a2 2 0 100 4m0 2a2 2 0 100 4"/>
         </svg>
     </div>
-    
     <canvas id="particle-canvas"></canvas>
     <header id="main-header">
         <a href="#home" class="logo-wrapper">
             <img src="https://cdn.discordapp.com/attachments/1263186729096184001/1425245632456818729/IMG_20251008_001222.png?ex=68e6e2ee&is=68e5916e&hm=02ed9f42ee05477593ae387ecfda278dbaf7c1eb75deff47bd7e8dc6a8af9bf1&" alt="Devision Logo" class="logo" id="logo-img">
         </a>
         <div class="main-nav-buttons">
-             <a href="https://discord.gg/uCspBMst3t" target="_blank" class="nav-button" aria-label="Discord">
-                <!-- Fixed Discord SVG -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                    <path d="M19.54 0c1.356 0 2.46 1.104 2.46 2.472v19.056c0 1.368-1.104 2.472-2.46 2.472h-15.08c-1.356 0-2.46-1.104-2.46-2.472v-19.056c0-1.368 1.104-2.472 2.46-2.472h15.08zm-2.883 17.51c-1.074.582-2.223.966-3.465 1.146a.2.2 0 0 1-.219-.204c-.1-1.428-.486-2.64-1.02-3.726a21.402 21.402 0 0 1-4.995 3.726.2.2 0 0 1-.267-.186c-.363-1.638-.918-4.32-1.2-5.916a.2.2 0 0 1 .057-.204c1.98-1.74 3.6-3.12 4.659-4.116a.2.2 0 0 1 .28-.012c1.43.918 2.949 2.016 4.38 3.252a.2.2 0 0 1 .045.3c-.561 1.32-1.146 2.76-1.575 3.96a15.772 15.772 0 0 1 3.276-2.196.2.2 0 0 1 .246.168c.24 1.368.12 3.324-.312 5.04zm-6.105-6.516c-.72 0-1.308.582-1.308 1.308 0 .72.588 1.308 1.308 1.308s1.308-.588 1.308-1.308c0-.726-.588-1.308-1.308-1.308zm4.02-1.308c-.72 0-1.308.588-1.308 1.308s.588 1.308 1.308 1.308c.726 0 1.308-.588 1.308-1.308s-.582-1.308-1.308-1.308z"/>
-                </svg>
+            <!-- Fixed Discord Icon -->
+            <a href="https://discord.gg/uCspBMst3t" target="_blank" class="nav-button" aria-label="Discord">
+                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425249053669802074/DiscordLogoWhite.png?ex=68e6e58d&is=68e5940d&hm=5548553628492455422824246215283233807847893529342965210494556064&" alt="Discord" style="width: 24px; height: 24px;">
             </a>
             <button class="nav-button menu-toggle-btn" id="nav-toggle" aria-label="Open Navigation">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -1353,6 +1215,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Homepage Section -->
     <main>
         <section id="home" class="hero container fade-in">
             <h1>DEVISION</h1>
@@ -1360,7 +1224,7 @@
             <div class="cta-buttons">
                 <a href="#pricing" class="btn btn-primary">Get Access</a>
                 <a href="https://discord.gg/uCspBMst3t" target="_blank" class="btn btn-discord">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.54 0c1.356 0 2.46 1.104 2.46 2.472v19.056c0 1.368-1.104 2.472-2.46 2.472h-15.08c-1.356 0-2.46-1.104-2.46-2.472v-19.056c0-1.368 1.104-2.472 2.46-2.472h15.08zm-2.883 17.51c-1.074.582-2.223.966-3.465 1.146a.2.2 0 0 1-.219-.204c-.1-1.428-.486-2.64-1.02-3.726a21.402 21.402 0 0 1-4.995 3.726.2.2 0 0 1-.267-.186c-.363-1.638-.918-4.32-1.2-5.916a.2.2 0 0 1 .057-.204c1.98-1.74 3.6-3.12 4.659-4.116a.2.2 0 0 1 .28-.012c1.43.918 2.949 2.016 4.38 3.252a.2.2 0 0 1 .045.3c-.561 1.32-1.146 2.76-1.575 3.96a15.772 15.772 0 0 1 3.276-2.196.2.2 0 0 1 .246.168c.24 1.368.12 3.324-.312 5.04zm-6.105-6.516c-.72 0-1.308.582-1.308 1.308 0 .72.588 1.308 1.308 1.308s1.308-.588 1.308-1.308c0-.726-.588-1.308-1.308-1.308zm4.02-1.308c-.72 0-1.308.588-1.308 1.308s.588 1.308 1.308 1.308c.726 0 1.308-.588 1.308-1.308s-.582-1.308-1.308-1.308z"/></svg>
+                    <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425249053669802074/DiscordLogoWhite.png?ex=68e6e58d&is=68e5940d&hm=5548553628492455422824246215283233807847893529342965210494556064&" alt="Discord" style="width: 24px; height: 24px;">
                     <span>Join The Discord</span>
                 </a>
                 </div>
@@ -1379,6 +1243,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- Features Section -->
         <section id="features" class="container">
             <h2 class="section-title fade-in">Features</h2>
             <div class="features-grid">
@@ -1412,6 +1278,8 @@
                 <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425207401329594458/FBF3FC2F-7801-47C2-9EAB-C5F8193732BA.png?ex=68e810d3&is=68e6bf53&hm=07c108b4516c66fd816779b77c6fed3e004c9be920c649affb5b365f241a349d&" alt="Feature showcase 2">
             </div>
         </section>
+
+        <!-- Pricing Section -->
         <section id="pricing" class="container">
             <h2 class="section-title fade-in">Pricing</h2>
             <div class="pricing-grid">
@@ -1479,6 +1347,8 @@
                 3-day HWID reset cooldown. <br> Faster reset: 200 Robux, $1 Crypto, or $2 PayPal
             </div>
         </section>
+
+        <!-- Dev-Logs Section -->
         <section id="dev-logs" class="container">
             <h2 class="section-title fade-in">Dev-Logs</h2>
             <div class="dev-log-card fade-in">
@@ -1496,6 +1366,8 @@
                 </ul>
             </div>
         </section>
+
+        <!-- FAQ Section -->
         <section id="faq" class="container">
             <h2 class="section-title fade-in">Devision FAQ</h2>
             <div class="faq-container fade-in">
@@ -1529,54 +1401,26 @@
                 <button id="executors-btn" class="btn btn-secondary" style="font-size: 1.1rem; padding: 0.8rem 1.5rem;">Supported Executors</button>
             </div>
         </section>
+
+        <!-- Contributors Section -->
         <section id="contributors" class="container">
             <h2 class="section-title fade-in">Contributors</h2>
             <div class="contributors-grid">
                 <div class="contributor-card fade-in" style="transition-delay: 0.1s;">
-                    <div class="pfp-wrapper">
-                        <img src="https://cdn.discordapp.com/avatars/797901826258370581/dd0def53b23aa0bfc5e28f3b8890c6c7.png?size=512" alt="hxcker pfp" class="pfp">
-                        <svg class="pfp-shield-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L10 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-5L12 2zM7 17c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H7z"/>
-                        </svg>
-                    </div>
-                    <h3 class="name">
-                        hxcker
-                        <svg class="contributor-shield-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L10 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-5L12 2zM7 17c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H7z"/>
-                        </svg>
-                    </h3>
+                    <img src="https://cdn.discordapp.com/avatars/797901826258370581/dd0def53b23aa0bfc5e28f3b8890c6c7.png?size=512" alt="hxcker pfp" class="pfp">
+                    <h3 class="name">hxcker</h3>
                     <span class="tag">Founder</span>
                     <a href="https://discord.com/users/797901826258370581" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
                 <div class="contributor-card fade-in" style="transition-delay: 0.2s;">
-                    <div class="pfp-wrapper">
-                        <img src="https://cdn.discordapp.com/avatars/1230212757916487681/ad0df60f045f3fe6e71cf578759c1ea4.png?size=512" alt="craxes pfp" class="pfp">
-                        <svg class="pfp-shield-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L10 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-5L12 2zM7 17c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H7z"/>
-                        </svg>
-                    </div>
-                    <h3 class="name">
-                        craxes
-                        <svg class="contributor-shield-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L10 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-5L12 2zM7 17c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H7z"/>
-                        </svg>
-                    </h3>
+                    <img src="https://cdn.discordapp.com/avatars/1230212757916487681/ad0df60f045f3fe6e71cf578759c1ea4.png?size=512" alt="craxes pfp" class="pfp">
+                    <h3 class="name">craxes</h3>
                     <span class="tag">Co-Owner</span>
                     <a href="https://discord.com/users/1230212757916487681" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
                 <div class="contributor-card fade-in" style="transition-delay: 0.3s;">
-                    <div class="pfp-wrapper">
-                        <img src="https://cdn.discordapp.com/avatars/1251496733460926493/2ffac6d3c2074362ba8cc35939323e73.png?size=512" alt="od pfp" class="pfp">
-                        <svg class="pfp-shield-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L10 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-5L12 2zM7 17c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H7z"/>
-                        </svg>
-                    </div>
-                    <h3 class="name">
-                        od
-                        <svg class="contributor-shield-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L10 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-5L12 2zM7 17c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H7z"/>
-                        </svg>
-                    </h3>
+                    <img src="https://cdn.discordapp.com/avatars/1251496733460926493/2ffac6d3c2074362ba8cc35939323e73.png?size=512" alt="od pfp" class="pfp">
+                    <h3 class="name">od</h3>
                     <span class="tag">Head-Administrator</span>
                     <a href="https://discord.com/users/1251496733460926493" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
@@ -1589,6 +1433,7 @@
             <a href="#">Terms of Service</a> | <a href="#">Refund Policy</a>
         </p>
     </footer>
+
     <!-- NEW: Supported Executors Modal -->
     <div id="executors-modal">
         <div class="executors-modal-content">
@@ -1638,18 +1483,12 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Back to Top Button -->
     <div class="back-to-top" id="back-to-top">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
     </div>
-    
-    <!-- Toast Notification -->
-    <div class="toast-notification" id="toast-notification">
-        <button class="close-btn">&times;</button>
-        <p>🎉 Welcome to Devision! Get 25% off on Lifetime plan until November 1st!</p>
-    </div>
-    
+
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const canvas = document.getElementById('particle-canvas');
@@ -1949,7 +1788,6 @@
                 toggleExecutorsModal();
             }
         });
-        
         // Mobile Responsiveness
         function adjustForMobile() {
             if (window.innerWidth <= 768) {
@@ -1959,13 +1797,11 @@
                     btn.style.padding = '0.7rem 1.2rem';
                     btn.style.fontSize = '0.9rem';
                 });
-                
                 // Adjust hero section for mobile
                 const heroText = document.querySelector('.hero p');
                 if (heroText) {
                     heroText.style.fontSize = '1.2rem';
                 }
-                
                 // Adjust section titles for mobile
                 const sectionTitles = document.querySelectorAll('.section-title');
                 sectionTitles.forEach(title => {
@@ -1973,11 +1809,9 @@
                 });
             }
         }
-        
         // Call on load and resize
         adjustForMobile();
         window.addEventListener('resize', adjustForMobile);
-        
         // Back to top button
         const backToTopButton = document.getElementById('back-to-top');
         window.addEventListener('scroll', () => {
@@ -1987,47 +1821,17 @@
                 backToTopButton.classList.remove('visible');
             }
         });
-        
         backToTopButton.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
-        
-        // Notification bar
-        const notificationBar = document.getElementById('notification-bar');
-        setTimeout(() => {
-            notificationBar.classList.add('show');
-        }, 2000);
-        
-        // Toast notification
-        const toastNotification = document.getElementById('toast-notification');
-        const closeToastBtn = toastNotification.querySelector('.close-btn');
-        
-        // Show toast after 3 seconds
-        setTimeout(() => {
-            toastNotification.classList.add('show');
-        }, 3000);
-        
-        // Close toast when clicking close button
-        closeToastBtn.addEventListener('click', () => {
-            toastNotification.classList.remove('show');
-            toastNotification.classList.add('close');
-        });
-        
-        // Auto close toast after 5 seconds
-        setTimeout(() => {
-            toastNotification.classList.remove('show');
-            toastNotification.classList.add('close');
-        }, 8000);
-        
         // Loading screen
         const loadingScreen = document.getElementById('loading-screen');
         setTimeout(() => {
             loadingScreen.classList.add('fade-out');
         }, 2000);
-        
         // Add hover effects to cards
         const featureCards = document.querySelectorAll('.feature-card');
         featureCards.forEach(card => {
@@ -2036,33 +1840,28 @@
                 card.style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)';
                 card.style.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
             });
-            
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'translateY(0) scale(1)';
                 card.style.boxShadow = '0 0 10px var(--glow-color)';
                 card.style.borderColor = 'transparent';
             });
         });
-        
         // Add glitch effect to section titles
         const sectionTitles = document.querySelectorAll('.section-title');
         sectionTitles.forEach(title => {
             title.classList.add('glitch-effect');
             title.setAttribute('data-text', title.textContent);
         });
-        
         // Add pulse animation to important elements
         const importantElements = document.querySelectorAll('.btn-primary, .lifetime-special, .stat-card');
         importantElements.forEach(element => {
             element.classList.add('pulse-animation');
         });
-        
         // Add floating elements animation
         const floatingElements = document.querySelectorAll('.floating-element');
         floatingElements.forEach((element, index) => {
             element.style.animationDelay = `${index}s`;
         });
-        
         // Add smooth scrolling to anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
