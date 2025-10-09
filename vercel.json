@@ -1,14 +1,12 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/devlogs.json", "destination": "/devlogs.json" }
+  "public": true,
+  "builds": [
+    { "src": "index.html", "use": "@vercel/static" },
+    { "src": "devlogs.json", "use": "@vercel/static" }
   ],
-  "headers": [
-    {
-      "source": "/devlogs.json",
-      "headers": [
-        { "key": "Content-Type", "value": "application/json" }
-      ]
-    }
+  "routes": [
+    { "src": "/devlogs.json", "dest": "/devlogs.json" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
