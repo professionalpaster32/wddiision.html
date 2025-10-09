@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -332,9 +331,11 @@
         .cta-buttons {
             display: flex;
             gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .btn {
-            padding: 1rem 2.5rem;
+            padding: 0.8rem 1.5rem;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             text-decoration: none;
@@ -347,6 +348,7 @@
             cursor: pointer;
             display: inline-flex;
             align-items: center;
+            min-width: 120px;
         }
         .btn-primary {
             background: var(--primary-color);
@@ -375,6 +377,7 @@
             border: none;
             box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
             gap: 0.5rem;
+            min-width: 140px;
         }
         .btn-discord::before {
             content: '';
@@ -662,24 +665,18 @@
             width: 250px;
             overflow: hidden;
             transition: all var(--transition-speed) ease;
+            box-shadow: 0 0 15px var(--glow-color);
         }
         .contributor-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(
-                transparent, 
-                var(--glow-color), 
-                transparent 30%, 
-                var(--primary-color) 50%, 
-                transparent 70%, 
-                var(--glow-color)
-            );
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 102, 0, 0.1) 0%, transparent 30%),
+                        radial-gradient(circle at 70% 70%, rgba(255, 102, 0, 0.1) 0%, transparent 30%);
             z-index: 0;
-            animation: border-spin 4s linear infinite;
         }
         .contributor-card::after {
             content: '';
@@ -696,9 +693,9 @@
             position: relative;
             z-index: 2;
         }
-        @keyframes border-spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        .contributor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px var(--glow-color);
         }
         .contributor-card .pfp {
             width: 100px;
@@ -715,15 +712,14 @@
             display: inline-block;
             margin-bottom: 1rem;
         }
-        .pfp-king-icon {
+        .pfp-shield-icon {
             position: absolute;
             top: -10px;
             right: -10px;
             width: 40px;
             height: 40px;
-            fill: var(--primary-color);
-            filter: drop-shadow(0 0 10px var(--glow-color));
-            transform: rotate(15deg);
+            fill: var(--blue-primary);
+            filter: drop-shadow(0 0 10px var(--blue-glow));
             z-index: 3;
         }
         .contributor-card .name {
@@ -734,14 +730,14 @@
             gap: 0.5rem;
             margin-bottom: 0.5rem;
         }
-        .contributor-crown-icon {
+        .contributor-shield-icon {
             width: 24px;
             height: 24px;
-            fill: #ff1f1f;
-            filter: drop-shadow(0 0 8px rgba(255, 31, 31, 0.9));
-            animation: crown-sparkle 1.5s ease-in-out infinite alternate;
+            fill: var(--blue-primary);
+            filter: drop-shadow(0 0 8px var(--blue-glow));
+            animation: shield-sparkle 1.5s ease-in-out infinite alternate;
         }
-        @keyframes crown-sparkle {
+        @keyframes shield-sparkle {
             0% { opacity: 0.8; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.1); }
             100% { opacity: 0.8; transform: scale(1); }
@@ -857,7 +853,6 @@
             color: var(--glow-color);
             text-decoration: underline;
         }
-
         /* NEW: Supported Executors Modal */
         #executors-modal {
             position: fixed;
@@ -972,9 +967,329 @@
             background: var(--phrog-primary);
             box-shadow: 0 0 5px var(--phrog-glow);
         }
+        
+        /* Mobile Responsive Fixes */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+                min-width: 100px;
+            }
+            .btn-discord {
+                min-width: 120px;
+                padding: 0.7rem 1.2rem;
+            }
+            .section-title {
+                font-size: 2.5rem;
+            }
+            .feature-card h3 {
+                font-size: 1.3rem;
+            }
+            .stat-card .value {
+                font-size: 2.5rem;
+            }
+            .pricing-card {
+                width: 100%;
+                max-width: 350px;
+            }
+            .contributor-card {
+                width: 100%;
+                max-width: 300px;
+            }
+            .contributor-card .pfp {
+                width: 80px;
+                height: 80px;
+            }
+            .contributor-card .name {
+                font-size: 1.5rem;
+            }
+            .contributor-card .tag {
+                font-size: 1rem;
+            }
+            .footer {
+                padding: 1.5rem 0;
+            }
+        }
+        
+        /* New Features */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: var(--bg-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--glow-color);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px var(--glow-color);
+        }
+        
+        .notification-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--red-bg);
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            z-index: 1001;
+            transform: translateY(-100%);
+            transition: transform 0.5s ease;
+        }
+        .notification-bar.show {
+            transform: translateY(0);
+        }
+        
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease;
+        }
+        .loading-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--bg-light-color);
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Added cool effects */
+        .pulse-animation {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 var(--glow-color);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 102, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 102, 0, 0);
+            }
+        }
+        
+        .glitch-effect {
+            position: relative;
+        }
+        
+        .glitch-effect::before,
+        .glitch-effect::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+        
+        .glitch-effect::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--blue-primary);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        
+        .glitch-effect::after {
+            left: -2px;
+            text-shadow: 2px 0 var(--red-primary);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim-1 {
+            0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            10% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
+            20% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
+            30% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
+            40% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
+            50% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
+            60% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
+            70% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
+            80% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
+            90% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
+            100% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
+        }
+        
+        @keyframes glitch-anim-2 {
+            0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            10% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
+            20% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
+            30% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
+            40% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
+            50% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
+            60% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
+            70% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
+            80% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
+            90% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
+            100% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
+        }
+        
+        /* Cool hover effects for buttons */
+        .btn:hover {
+            animation: button-pulse 0.5s ease;
+        }
+        
+        @keyframes button-pulse {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-3px) scale(1.05); }
+            100% { transform: translateY(0) scale(1); }
+        }
+        
+        /* Improved card hover effect */
+        .feature-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-color: var(--primary-color);
+        }
+        
+        /* New notification system */
+        .toast-notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: var(--bg-light-color);
+            border: 1px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            box-shadow: 0 0 20px var(--glow-color);
+            z-index: 9999;
+            transform: translateX(100%);
+            transition: transform 0.5s ease;
+            max-width: 300px;
+        }
+        
+        .toast-notification.show {
+            transform: translateX(0);
+        }
+        
+        .toast-notification.close {
+            transform: translateX(100%);
+        }
+        
+        .toast-notification .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: none;
+            border: none;
+            color: var(--text-muted-color);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .toast-notification .close-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Add floating elements */
+        .floating-element {
+            position: fixed;
+            z-index: 9998;
+            pointer-events: none;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            top: 20%;
+            right: 5%;
+            animation-delay: 1s;
+        }
+        
+        .floating-element:nth-child(3) {
+            bottom: 10%;
+            left: 10%;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(10px, -10px); }
+            100% { transform: translate(0, 0); }
+        }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loader"></div>
+    </div>
+    
+    <!-- Notification Bar -->
+    <div class="notification-bar" id="notification-bar">
+        🎉 Special offer: Get 25% off on Lifetime plan until November 1st! 🎉
+    </div>
+    
+    <!-- Floating Elements -->
+    <div class="floating-element">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--orange-glow)" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5M2 17l10-5m10 5M2 12l10 5m10-5"/>
+        </svg>
+    </div>
+    <div class="floating-element">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--blue-glow)" stroke-width="2">
+            <path d="M12 2v20m0 0l-9-5m9 5l9-5"/>
+        </svg>
+    </div>
+    <div class="floating-element">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--purple-glow)" stroke-width="2">
+            <path d="M12 6V4m0 2a2 2 0 100 4m0 2a2 2 0 100 4m0 2a2 2 0 100 4"/>
+        </svg>
+    </div>
+    
     <canvas id="particle-canvas"></canvas>
     <header id="main-header">
         <a href="#home" class="logo-wrapper">
@@ -982,7 +1297,7 @@
         </a>
         <div class="main-nav-buttons">
              <a href="https://discord.gg/uCspBMst3t" target="_blank" class="nav-button" aria-label="Discord">
-                <!-- FIX 2: Clean Discord SVG -->
+                <!-- Fixed Discord SVG -->
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
                     <path d="M19.54 0c1.356 0 2.46 1.104 2.46 2.472v19.056c0 1.368-1.104 2.472-2.46 2.472h-15.08c-1.356 0-2.46-1.104-2.46-2.472v-19.056c0-1.368 1.104-2.472 2.46-2.472h15.08zm-2.883 17.51c-1.074.582-2.223.966-3.465 1.146a.2.2 0 0 1-.219-.204c-.1-1.428-.486-2.64-1.02-3.726a21.402 21.402 0 0 1-4.995 3.726.2.2 0 0 1-.267-.186c-.363-1.638-.918-4.32-1.2-5.916a.2.2 0 0 1 .057-.204c1.98-1.74 3.6-3.12 4.659-4.116a.2.2 0 0 1 .28-.012c1.43.918 2.949 2.016 4.38 3.252a.2.2 0 0 1 .045.3c-.561 1.32-1.146 2.76-1.575 3.96a15.772 15.772 0 0 1 3.276-2.196.2.2 0 0 1 .246.168c.24 1.368.12 3.324-.312 5.04zm-6.105-6.516c-.72 0-1.308.582-1.308 1.308 0 .72.588 1.308 1.308 1.308s1.308-.588 1.308-1.308c0-.726-.588-1.308-1.308-1.308zm4.02-1.308c-.72 0-1.308.588-1.308 1.308s.588 1.308 1.308 1.308c.726 0 1.308-.588 1.308-1.308s-.582-1.308-1.308-1.308z"/>
                 </svg>
@@ -1220,37 +1535,49 @@
                 <div class="contributor-card fade-in" style="transition-delay: 0.1s;">
                     <div class="pfp-wrapper">
                         <img src="https://cdn.discordapp.com/avatars/797901826258370581/dd0def53b23aa0bfc5e28f3b8890c6c7.png?size=512" alt="hxcker pfp" class="pfp">
-                        <svg class="pfp-king-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
+                        <svg class="pfp-shield-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L10 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-5L12 2zM7 17c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H7z"/>
+                        </svg>
                     </div>
                     <h3 class="name">
                         hxcker
-                        <svg class="contributor-crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
+                        <svg class="contributor-shield-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L10 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-5L12 2zM7 17c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H7z"/>
+                        </svg>
                     </h3>
-                    <span class="tag">Web Developer / Coder</span>
+                    <span class="tag">Founder</span>
                     <a href="https://discord.com/users/797901826258370581" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
                 <div class="contributor-card fade-in" style="transition-delay: 0.2s;">
                     <div class="pfp-wrapper">
                         <img src="https://cdn.discordapp.com/avatars/1230212757916487681/ad0df60f045f3fe6e71cf578759c1ea4.png?size=512" alt="craxes pfp" class="pfp">
-                        <svg class="pfp-king-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
+                        <svg class="pfp-shield-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L10 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-5L12 2zM7 17c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H7z"/>
+                        </svg>
                     </div>
                     <h3 class="name">
                         craxes
-                        <svg class="contributor-crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
+                        <svg class="contributor-shield-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L10 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-5L12 2zM7 17c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H7z"/>
+                        </svg>
                     </h3>
-                    <span class="tag">Skidder / Paster</span>
+                    <span class="tag">Co-Owner</span>
                     <a href="https://discord.com/users/1230212757916487681" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
                 <div class="contributor-card fade-in" style="transition-delay: 0.3s;">
                     <div class="pfp-wrapper">
                         <img src="https://cdn.discordapp.com/avatars/1251496733460926493/2ffac6d3c2074362ba8cc35939323e73.png?size=512" alt="od pfp" class="pfp">
-                        <svg class="pfp-king-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
+                        <svg class="pfp-shield-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L10 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-5L12 2zM7 17c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H7z"/>
+                        </svg>
                     </div>
                     <h3 class="name">
                         od
-                        <svg class="contributor-crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
+                        <svg class="contributor-shield-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L10 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-5L12 2zM7 17c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H7z"/>
+                        </svg>
                     </h3>
-                    <span class="tag">Goated Person</span>
+                    <span class="tag">Head-Administrator</span>
                     <a href="https://discord.com/users/1251496733460926493" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
             </div>
@@ -1262,7 +1589,6 @@
             <a href="#">Terms of Service</a> | <a href="#">Refund Policy</a>
         </p>
     </footer>
-
     <!-- NEW: Supported Executors Modal -->
     <div id="executors-modal">
         <div class="executors-modal-content">
@@ -1312,309 +1638,446 @@
             </div>
         </div>
     </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('particle-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let currentTheme = 'orange';
-    const resizeCanvas = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    const themeSettings = {
-        orange: {
-            create: () => ({
-                emoji: ['🎃', '👻', '🦇', '🕷️'][Math.floor(Math.random() * 4)],
-                x: Math.random() * canvas.width,
-                y: canvas.height + 20,
-                size: Math.random() * 20 + 20,
-                speedX: Math.random() * 2 - 1,
-                speedY: Math.random() * -2 - 1,
-                rotation: Math.random() * Math.PI * 2,
-                rotationSpeed: (Math.random() - 0.5) * 0.02
-            }),
-            update: p => {
-                p.x += p.speedX;
-                p.y += p.speedY;
-                p.rotation += p.rotationSpeed;
+    
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="back-to-top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toast-notification">
+        <button class="close-btn">&times;</button>
+        <p>🎉 Welcome to Devision! Get 25% off on Lifetime plan until November 1st!</p>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let currentTheme = 'orange';
+        const resizeCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        const themeSettings = {
+            orange: {
+                create: () => ({
+                    emoji: ['🎃', '👻', '🦇', '🕷️'][Math.floor(Math.random() * 4)],
+                    x: Math.random() * canvas.width,
+                    y: canvas.height + 20,
+                    size: Math.random() * 20 + 20,
+                    speedX: Math.random() * 2 - 1,
+                    speedY: Math.random() * -2 - 1,
+                    rotation: Math.random() * Math.PI * 2,
+                    rotationSpeed: (Math.random() - 0.5) * 0.02
+                }),
+                update: p => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    p.rotation += p.rotationSpeed;
+                },
+                draw: p => {
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rotation);
+                    ctx.font = `${p.size}px Arial`;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(p.emoji, 0, 0);
+                    ctx.restore();
+                },
+                maxParticles: 5
             },
-            draw: p => {
-                ctx.save();
-                ctx.translate(p.x, p.y);
-                ctx.rotate(p.rotation);
-                ctx.font = `${p.size}px Arial`;
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText(p.emoji, 0, 0);
-                ctx.restore();
-            },
-            maxParticles: 5
-        },
-        purple: {
-             create: () => ({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 2 + 1,
-                speedX: (Math.random() - 0.5) * 0.5,
-                speedY: (Math.random() - 0.5) * 0.5,
-                connections: []
-            }),
-            update: p => {
-                p.x += p.speedX;
-                p.y += p.speedY;
-                if (p.x > canvas.width || p.x < 0) p.speedX *= -1;
-                if (p.y > canvas.height || p.y < 0) p.speedY *= -1;
-            },
-            draw: p => {
-                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--purple-primary');
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-            },
-            postDraw: () => {
-                ctx.strokeStyle = `rgba(163, 53, 240, 0.2)`;
-                for (let i = 0; i < particles.length; i++) {
-                    for (let j = i; j < particles.length; j++) {
-                        const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
-                        if (dist < 100) {
-                            ctx.beginPath();
-                            ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.stroke();
+            purple: {
+                 create: () => ({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5,
+                    connections: []
+                }),
+                update: p => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    if (p.x > canvas.width || p.x < 0) p.speedX *= -1;
+                    if (p.y > canvas.height || p.y < 0) p.speedY *= -1;
+                },
+                draw: p => {
+                    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--purple-primary');
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                },
+                postDraw: () => {
+                    ctx.strokeStyle = `rgba(163, 53, 240, 0.2)`;
+                    for (let i = 0; i < particles.length; i++) {
+                        for (let j = i; j < particles.length; j++) {
+                            const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+                            if (dist < 100) {
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.stroke();
+                            }
                         }
                     }
-                }
+                },
+                maxParticles: 50
             },
-            maxParticles: 50
-        },
-        gray: {
-            create: () => ({
-                x: Math.random() * canvas.width,
-                y: -10,
-                size: Math.random() * 10 + 5,
-                speedY: Math.random() * 2 + 1,
-                opacity: Math.random() * 0.5 + 0.2,
-            }),
-            update: p => {
-                p.y += p.speedY;
+            gray: {
+                create: () => ({
+                    x: Math.random() * canvas.width,
+                    y: -10,
+                    size: Math.random() * 10 + 5,
+                    speedY: Math.random() * 2 + 1,
+                    opacity: Math.random() * 0.5 + 0.2,
+                }),
+                update: p => {
+                    p.y += p.speedY;
+                },
+                draw: p => {
+                    ctx.fillStyle = `rgba(204, 204, 204, ${p.opacity})`;
+                    ctx.fillRect(p.x, p.y, 1, p.size);
+                },
+                maxParticles: 70
             },
-            draw: p => {
-                ctx.fillStyle = `rgba(204, 204, 204, ${p.opacity})`;
-                ctx.fillRect(p.x, p.y, 1, p.size);
+            phrog: {
+                create: () => ({
+                    x: Math.random() * canvas.width,
+                    y: -10,
+                    length: Math.random() * 20 + 10,
+                    speedY: Math.random() * 10 + 5,
+                    opacity: Math.random() * 0.3 + 0.1,
+                }),
+                update: p => {
+                    p.y += p.speedY;
+                },
+                draw: p => {
+                    ctx.strokeStyle = `rgba(51, 255, 51, ${p.opacity})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p.x, p.y + p.length);
+                    ctx.stroke();
+                },
+                maxParticles: 80
             },
-            maxParticles: 70
-        },
-        phrog: {
-            create: () => ({
-                x: Math.random() * canvas.width,
-                y: -10,
-                length: Math.random() * 20 + 10,
-                speedY: Math.random() * 10 + 5,
-                opacity: Math.random() * 0.3 + 0.1,
-            }),
-            update: p => {
-                p.y += p.speedY;
+            red: {
+                 create: () => ({
+                    x: Math.random() * canvas.width,
+                    y: canvas.height + 10,
+                    size: Math.random() * 3 + 1,
+                    speedY: Math.random() * -1 - 0.5,
+                    opacity: 1
+                }),
+                update: p => {
+                    p.y += p.speedY;
+                    p.opacity -= 0.01;
+                },
+                draw: p => {
+                    ctx.fillStyle = `rgba(255, 31, 31, ${p.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                },
+                maxParticles: 60
             },
-            draw: p => {
-                ctx.strokeStyle = `rgba(51, 255, 51, ${p.opacity})`;
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(p.x, p.y);
-                ctx.lineTo(p.x, p.y + p.length);
-                ctx.stroke();
-            },
-            maxParticles: 80
-        },
-        red: {
-             create: () => ({
-                x: Math.random() * canvas.width,
-                y: canvas.height + 10,
-                size: Math.random() * 3 + 1,
-                speedY: Math.random() * -1 - 0.5,
-                opacity: 1
-            }),
-            update: p => {
-                p.y += p.speedY;
-                p.opacity -= 0.01;
-            },
-            draw: p => {
-                ctx.fillStyle = `rgba(255, 31, 31, ${p.opacity})`;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-            },
-            maxParticles: 60
-        },
-        blue: {
-            create: () => ({
-                x: Math.random() * canvas.width * 1.5,
-                y: Math.random() * canvas.height * 1.5 - (canvas.height * 0.5),
-                size: Math.random() * 1.5 + 0.5,
-                speed: Math.random() * 1 + 0.5,
-                opacity: 0
-            }),
-            update: p => {
-                p.x -= p.speed;
-                p.y += p.speed / 2;
-                if(p.opacity < 1) p.opacity += 0.02;
-                if (p.x < 0 || p.y > canvas.height) {
-                    Object.assign(p, themeSettings.blue.create());
-                     p.x = canvas.width + 20;
-                     p.y = Math.random() * canvas.height;
-                     p.opacity = 0;
-                }
-            },
-            draw: p => {
-                ctx.fillStyle = `rgba(0, 162, 255, ${p.opacity})`;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-            },
-            maxParticles: 80
-        }
-    };
-    const initParticles = () => {
-        particles = [];
-        const settings = themeSettings[currentTheme];
-        for (let i = 0; i < settings.maxParticles; i++) {
-            particles.push(settings.create());
-        }
-    };
-    const animateParticles = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const settings = themeSettings[currentTheme];
-        particles.forEach((p, index) => {
-            settings.update(p);
-            settings.draw(p);
-            let isOutOfBounds = false;
-            if (currentTheme === 'orange') isOutOfBounds = p.y < -p.size;
-            if (currentTheme === 'gray' || currentTheme === 'phrog') isOutOfBounds = p.y > canvas.height + p.size;
-            if (currentTheme === 'red') isOutOfBounds = p.opacity <= 0;
-            if (isOutOfBounds) {
-                particles[index] = settings.create();
+            blue: {
+                create: () => ({
+                    x: Math.random() * canvas.width * 1.5,
+                    y: Math.random() * canvas.height * 1.5 - (canvas.height * 0.5),
+                    size: Math.random() * 1.5 + 0.5,
+                    speed: Math.random() * 1 + 0.5,
+                    opacity: 0
+                }),
+                update: p => {
+                    p.x -= p.speed;
+                    p.y += p.speed / 2;
+                    if(p.opacity < 1) p.opacity += 0.02;
+                    if (p.x < 0 || p.y > canvas.height) {
+                        Object.assign(p, themeSettings.blue.create());
+                         p.x = canvas.width + 20;
+                         p.y = Math.random() * canvas.height;
+                         p.opacity = 0;
+                    }
+                },
+                draw: p => {
+                    ctx.fillStyle = `rgba(0, 162, 255, ${p.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                },
+                maxParticles: 80
             }
-        });
-        if (settings.postDraw) {
-            settings.postDraw();
-        }
-        requestAnimationFrame(animateParticles);
-    };
-    const root = document.documentElement;
-    const themeButtons = document.querySelectorAll('.theme-btn');
-    const logoImg = document.getElementById('logo-img');
-    const currentThemeName = document.getElementById('current-theme-name');
-    const logos = {
-        orange: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294410257662023/1759886602502.jpg?ex=68e7105c&is=68e5bedc&hm=fd09ac09632150ae8790fb67a84393434303882b023b5d22161f3dc73c069b63&',
-        purple: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294403614015488/1759886767430.jpg?ex=68e7105a&is=68e5beda&hm=e87c0592b37dd8a29649c8e8ac0c10d809152867ff3c1447e71755a4de2f05ff&',
-        gray: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294390074802236/1759886697194.jpg?ex=68e71057&is=68e5bed7&hm=e6fd12cb99940e0485fe27ea29befb1b3386d754a6579f4b3d6d75f3804b815f&',
-        phrog: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294397020307537/1759886812357.jpg?ex=68e71058&is=68e5bed8&hm=f4413957546ed3fce6960ee96def7060f495fce7a8e8aed492d4aab0537d9df2&',
-        red: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294424526553188/1759886421750.jpg?ex=68e7105f&is=68e5bedf&hm=b943056487c93f7727b3858626657e60834c72775e5f3db5e72ebf7fb3f619ab&',
-        blue: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294371284058225/1759886389877.jpg?ex=68e71052&is=68e5bed2&hm=7aafe0332215d7e8c4cffc01174ff2db10b360f235950a91325e08f549042bd7&'
-    };
-    function applyTheme(theme) {
-        currentTheme = theme;
-        root.style.setProperty('--primary-color', `var(--${theme}-primary)`);
-        root.style.setProperty('--glow-color', `var(--${theme}-glow)`);
-        root.style.setProperty('--bg-color', `var(--${theme}-bg)`);
-        root.style.setProperty('--bg-light-color', `var(--${theme}-bg-light)`);
-        logoImg.src = logos[theme];
-        currentThemeName.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
-        themeButtons.forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.theme === theme);
-        });
-        localStorage.setItem('devision-theme', theme);
-        initParticles();
-    }
-    themeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            applyTheme(button.dataset.theme);
-        });
-    });
-    const savedTheme = localStorage.getItem('devision-theme') || 'orange';
-    applyTheme(savedTheme);
-    animateParticles();
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        const answer = item.querySelector('.faq-answer');
-        question.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            faqItems.forEach(i => {
-                i.classList.remove('active');
-                i.querySelector('.faq-answer').style.maxHeight = null;
+        };
+        const initParticles = () => {
+            particles = [];
+            const settings = themeSettings[currentTheme];
+            for (let i = 0; i < settings.maxParticles; i++) {
+                particles.push(settings.create());
+            }
+        };
+        const animateParticles = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const settings = themeSettings[currentTheme];
+            particles.forEach((p, index) => {
+                settings.update(p);
+                settings.draw(p);
+                let isOutOfBounds = false;
+                if (currentTheme === 'orange') isOutOfBounds = p.y < -p.size;
+                if (currentTheme === 'gray' || currentTheme === 'phrog') isOutOfBounds = p.y > canvas.height + p.size;
+                if (currentTheme === 'red') isOutOfBounds = p.opacity <= 0;
+                if (isOutOfBounds) {
+                    particles[index] = settings.create();
+                }
             });
-            if (!isActive) {
-                item.classList.add('active');
-                answer.style.maxHeight = answer.scrollHeight + "px";
+            if (settings.postDraw) {
+                settings.postDraw();
+            }
+            requestAnimationFrame(animateParticles);
+        };
+        const root = document.documentElement;
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        const logoImg = document.getElementById('logo-img');
+        const currentThemeName = document.getElementById('current-theme-name');
+        const logos = {
+            orange: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294410257662023/1759886602502.jpg?ex=68e7105c&is=68e5bedc&hm=fd09ac09632150ae8790fb67a84393434303882b023b5d22161f3dc73c069b63&',
+            purple: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294403614015488/1759886767430.jpg?ex=68e7105a&is=68e5beda&hm=e87c0592b37dd8a29649c8e8ac0c10d809152867ff3c1447e71755a4de2f05ff&',
+            gray: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294390074802236/1759886697194.jpg?ex=68e71057&is=68e5bed7&hm=e6fd12cb99940e0485fe27ea29befb1b3386d754a6579f4b3d6d75f3804b815f&',
+            phrog: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294397020307537/1759886812357.jpg?ex=68e71058&is=68e5bed8&hm=f4413957546ed3fce6960ee96def7060f495fce7a8e8aed492d4aab0537d9df2&',
+            red: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294424526553188/1759886421750.jpg?ex=68e7105f&is=68e5bedf&hm=b943056487c93f7727b3858626657e60834c72775e5f3db5e72ebf7fb3f619ab&',
+            blue: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294371284058225/1759886389877.jpg?ex=68e71052&is=68e5bed2&hm=7aafe0332215d7e8c4cffc01174ff2db10b360f235950a91325e08f549042bd7&'
+        };
+        function applyTheme(theme) {
+            currentTheme = theme;
+            root.style.setProperty('--primary-color', `var(--${theme}-primary)`);
+            root.style.setProperty('--glow-color', `var(--${theme}-glow)`);
+            root.style.setProperty('--bg-color', `var(--${theme}-bg)`);
+            root.style.setProperty('--bg-light-color', `var(--${theme}-bg-light)`);
+            logoImg.src = logos[theme];
+            currentThemeName.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+            themeButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.theme === theme);
+            });
+            localStorage.setItem('devision-theme', theme);
+            initParticles();
+        }
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                applyTheme(button.dataset.theme);
+            });
+        });
+        const savedTheme = localStorage.getItem('devision-theme') || 'orange';
+        applyTheme(savedTheme);
+        animateParticles();
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-answer').style.maxHeight = null;
+                });
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
+        const countdownElement = document.getElementById('countdown-days');
+        const releaseDate = new Date('2025-11-01T00:00:00');
+        function updateCountdown() {
+            const now = new Date();
+            const diff = releaseDate - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            countdownElement.textContent = days > 0 ? days : '0';
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000 * 60 * 60);
+        const navToggle = document.getElementById('nav-toggle');
+        const navClose = document.getElementById('nav-close');
+        const navModal = document.getElementById('nav-modal');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const toggleNav = () => navModal.classList.toggle('active');
+        navToggle.addEventListener('click', toggleNav);
+        navClose.addEventListener('click', toggleNav);
+        navLinks.forEach(link => link.addEventListener('click', toggleNav));
+        navModal.addEventListener('click', (e) => {
+            if (e.target === navModal) {
+                toggleNav();
             }
         });
-    });
-    const countdownElement = document.getElementById('countdown-days');
-    const releaseDate = new Date('2025-11-01T00:00:00');
-    function updateCountdown() {
-        const now = new Date();
-        const diff = releaseDate - now;
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        countdownElement.textContent = days > 0 ? days : '0';
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000 * 60 * 60);
-    const navToggle = document.getElementById('nav-toggle');
-    const navClose = document.getElementById('nav-close');
-    const navModal = document.getElementById('nav-modal');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const toggleNav = () => navModal.classList.toggle('active');
-    navToggle.addEventListener('click', toggleNav);
-    navClose.addEventListener('click', toggleNav);
-    navLinks.forEach(link => link.addEventListener('click', toggleNav));
-    navModal.addEventListener('click', (e) => {
-        if (e.target === navModal) {
-            toggleNav();
-        }
-    });
-    const header = document.getElementById('main-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
         });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    const purchaseButtons = document.querySelectorAll('.btn-purchase');
-    const paymentSection = document.getElementById('payment-section');
-    purchaseButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            paymentSection.classList.add('visible');
-            paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        const purchaseButtons = document.querySelectorAll('.btn-purchase');
+        const paymentSection = document.getElementById('payment-section');
+        purchaseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                paymentSection.classList.add('visible');
+                paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
+        // NEW: Supported Executors Modal Logic
+        const executorsBtn = document.getElementById('executors-btn');
+        const executorsModal = document.getElementById('executors-modal');
+        const executorsClose = document.getElementById('executors-close');
+        const toggleExecutorsModal = () => executorsModal.classList.toggle('active');
+        executorsBtn.addEventListener('click', toggleExecutorsModal);
+        executorsClose.addEventListener('click', toggleExecutorsModal);
+        executorsModal.addEventListener('click', (e) => {
+            if (e.target === executorsModal) {
+                toggleExecutorsModal();
+            }
+        });
+        
+        // Mobile Responsiveness
+        function adjustForMobile() {
+            if (window.innerWidth <= 768) {
+                // Adjust button sizes for mobile
+                const ctaButtons = document.querySelectorAll('.cta-buttons .btn');
+                ctaButtons.forEach(btn => {
+                    btn.style.padding = '0.7rem 1.2rem';
+                    btn.style.fontSize = '0.9rem';
+                });
+                
+                // Adjust hero section for mobile
+                const heroText = document.querySelector('.hero p');
+                if (heroText) {
+                    heroText.style.fontSize = '1.2rem';
+                }
+                
+                // Adjust section titles for mobile
+                const sectionTitles = document.querySelectorAll('.section-title');
+                sectionTitles.forEach(title => {
+                    title.style.fontSize = '2.5rem';
+                });
+            }
+        }
+        
+        // Call on load and resize
+        adjustForMobile();
+        window.addEventListener('resize', adjustForMobile);
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Notification bar
+        const notificationBar = document.getElementById('notification-bar');
+        setTimeout(() => {
+            notificationBar.classList.add('show');
+        }, 2000);
+        
+        // Toast notification
+        const toastNotification = document.getElementById('toast-notification');
+        const closeToastBtn = toastNotification.querySelector('.close-btn');
+        
+        // Show toast after 3 seconds
+        setTimeout(() => {
+            toastNotification.classList.add('show');
+        }, 3000);
+        
+        // Close toast when clicking close button
+        closeToastBtn.addEventListener('click', () => {
+            toastNotification.classList.remove('show');
+            toastNotification.classList.add('close');
+        });
+        
+        // Auto close toast after 5 seconds
+        setTimeout(() => {
+            toastNotification.classList.remove('show');
+            toastNotification.classList.add('close');
+        }, 8000);
+        
+        // Loading screen
+        const loadingScreen = document.getElementById('loading-screen');
+        setTimeout(() => {
+            loadingScreen.classList.add('fade-out');
+        }, 2000);
+        
+        // Add hover effects to cards
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px) scale(1.02)';
+                card.style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)';
+                card.style.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.boxShadow = '0 0 10px var(--glow-color)';
+                card.style.borderColor = 'transparent';
+            });
+        });
+        
+        // Add glitch effect to section titles
+        const sectionTitles = document.querySelectorAll('.section-title');
+        sectionTitles.forEach(title => {
+            title.classList.add('glitch-effect');
+            title.setAttribute('data-text', title.textContent);
+        });
+        
+        // Add pulse animation to important elements
+        const importantElements = document.querySelectorAll('.btn-primary, .lifetime-special, .stat-card');
+        importantElements.forEach(element => {
+            element.classList.add('pulse-animation');
+        });
+        
+        // Add floating elements animation
+        const floatingElements = document.querySelectorAll('.floating-element');
+        floatingElements.forEach((element, index) => {
+            element.style.animationDelay = `${index}s`;
+        });
+        
+        // Add smooth scrolling to anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     });
-
-    // NEW: Supported Executors Modal Logic
-    const executorsBtn = document.getElementById('executors-btn');
-    const executorsModal = document.getElementById('executors-modal');
-    const executorsClose = document.getElementById('executors-close');
-
-    const toggleExecutorsModal = () => executorsModal.classList.toggle('active');
-    executorsBtn.addEventListener('click', toggleExecutorsModal);
-    executorsClose.addEventListener('click', toggleExecutorsModal);
-    executorsModal.addEventListener('click', (e) => {
-        if (e.target === executorsModal) {
-            toggleExecutorsModal();
-        }
-    });
-});
-</script>
+    </script>
 </body>
 </html>
