@@ -1,7 +1,7 @@
 {
   "logs": [
     {
-      "title": "Update Log:",
+      "title": "Update Log #1",
       "entries": [
         {
           "text": "Added 3 modes to redirection: mouse, remote, namecall, raycast [with wallbang for 0 delay games]"
