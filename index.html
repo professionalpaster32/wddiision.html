@@ -324,7 +324,6 @@
         .hero h1 {
             font-size: 5rem;
             margin-bottom: 1rem;
-            animation: flicker 3s infinite alternate;
         }
         .hero p {
             font-size: 1.5rem;
@@ -1224,7 +1223,7 @@
         <section id="dev-logs" class="container">
             <h2 class="section-title fade-in">Dev-Logs</h2>
             <div id="dev-logs-container">
-                <!-- Will be populated from devlogs.json -->
+                <p>Loading dev logs...</p>
             </div>
         </section>
         <section id="faq" class="container">
@@ -1693,23 +1692,31 @@
                 }
             });
         });
-        // Load Dev Logs from JSON
         fetch('devlogs.json')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
             .then(data => {
                 const container = document.getElementById('dev-logs-container');
                 container.innerHTML = '';
+                if (!data.logs || !Array.isArray(data.logs)) {
+                    container.innerHTML = '<p>No dev logs available.</p>';
+                    return;
+                }
                 data.logs.forEach(log => {
                     const card = document.createElement('div');
                     card.className = 'dev-log-card fade-in';
                     let html = `<h3>${log.title}</h3><ul>`;
-                    log.entries.forEach(entry => {
-                        html += `<li>${entry.text}`;
-                        if (entry.image) {
-                            html += `<img class="dev-log-image-preview" src="${entry.image}" alt="Preview">`;
-                        }
-                        html += `</li>`;
-                    });
+                    if (Array.isArray(log.entries)) {
+                        log.entries.forEach(entry => {
+                            html += `<li>${entry.text}`;
+                            if (entry.image) {
+                                html += `<img class="dev-log-image-preview" src="${entry.image}" alt="Preview">`;
+                            }
+                            html += `</li>`;
+                        });
+                    }
                     html += `</ul>`;
                     card.innerHTML = html;
                     container.appendChild(card);
