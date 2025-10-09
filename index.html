@@ -268,6 +268,10 @@
             margin-top: 2rem;
             text-align: center;
         }
+        .theme-chooser h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
         .theme-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -316,7 +320,6 @@
         .hero h1 {
             font-size: 5rem;
             margin-bottom: 1rem;
-            animation: flicker 3s infinite alternate;
         }
         .hero p {
             font-size: 1.5rem;
@@ -421,7 +424,6 @@
             padding: 2rem;
             border-radius: var(--border-radius);
             transition: all var(--transition-speed) ease;
-            position: relative; /* For edit button positioning */
         }
         .feature-card:hover {
             transform: translateY(-5px);
@@ -469,7 +471,6 @@
             width: 320px;
             display: flex;
             flex-direction: column;
-            position: relative; /* For edit button positioning */
         }
         .pricing-card:not(.lifetime-special):hover {
             transform: translateY(-10px);
@@ -689,7 +690,6 @@
             border-radius: var(--border-radius);
             border: 1px solid var(--primary-color);
             box-shadow: 0 0 10px var(--glow-color);
-            position: relative; /* For edit button positioning */
         }
         .dev-log-card h3 {
             font-size: 2rem;
@@ -988,56 +988,6 @@
                 box-shadow: 0 0 0 0 rgba(255, 102, 0, 0);
             }
         }
-        .glitch-effect {
-            position: relative;
-        }
-        .glitch-effect::before,
-        .glitch-effect::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-color);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-        }
-        .glitch-effect::before {
-            left: 2px;
-            text-shadow: -2px 0 var(--blue-primary);
-            animation: glitch-anim-1 2s infinite linear alternate-reverse;
-        }
-        .glitch-effect::after {
-            left: -2px;
-            text-shadow: 2px 0 var(--red-primary);
-            animation: glitch-anim-2 3s infinite linear alternate-reverse;
-        }
-        @keyframes glitch-anim-1 {
-            0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-            10% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
-            20% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
-            30% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
-            40% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
-            50% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
-            60% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
-            70% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
-            80% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
-            90% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
-            100% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
-        }
-        @keyframes glitch-anim-2 {
-            0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-            10% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
-            20% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
-            30% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
-            40% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
-            50% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
-            60% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
-            70% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
-            80% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
-            90% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
-            100% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
-        }
         .btn:hover {
             animation: button-pulse 0.5s ease;
         }
@@ -1051,20 +1001,7 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             border-color: var(--primary-color);
         }
-        /* Editor Mode Styles */
-        .edit-btn {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            background: var(--red-primary);
-            color: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            display: none;
-            z-index: 10;
-        }
+        /* MODERATOR MODE STYLES */
         .edit-mode .edit-btn {
             display: block;
         }
@@ -1072,6 +1009,44 @@
             outline: 2px dashed var(--primary-color);
             background-color: rgba(255, 255, 255, 0.05);
             padding: 4px;
+        }
+        .notification {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            color: white;
+            font-weight: 700;
+            z-index: 9999;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .notification.show {
+            opacity: 1;
+        }
+        .notification.error {
+            background: rgba(255, 31, 31, 0.8);
+        }
+        .notification.success {
+            background: rgba(51, 255, 51, 0.8);
+        }
+        .notification .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+        }
+        .notification .close-btn:hover {
+            transform: scale(1.2);
         }
     </style>
 </head>
@@ -1287,7 +1262,7 @@
         <section id="dev-logs" class="container">
             <h2 class="section-title fade-in">Dev-Logs</h2>
             <div class="dev-log-card fade-in">
-                <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('h3'), 'devlog-title')">Edit</div>
+                <div class="edit-btn" onclick="makeEditable(this.querySelector('h3'), 'devlog-title')">Edit</div>
                 <h3 class="editable-field" data-key="devlog-title" contenteditable="false">Update Log #1</h3>
                 <ul>
                     <li class="editable-field" data-key="devlog-entry-1" contenteditable="false">Added 3 modes to redirection: mouse, remote, namecall, raycast [with wallbang for 0 delay games]</li>
@@ -1462,17 +1437,16 @@
 
         function toggleEditMode() {
             if (!checkModerator()) {
-                alert("Access Denied. Please log in as a moderator.");
                 showLoginModal();
                 return;
             }
             isEditMode = !isEditMode;
             document.body.classList.toggle('edit-mode', isEditMode);
+            updateEditButtons();
         }
 
         function showLoginModal() {
             const modal = document.createElement('div');
-            modal.id = 'login-modal';
             modal.style.cssText = `
                 position: fixed;
                 top: 0;
@@ -1480,7 +1454,6 @@
                 width: 100%;
                 height: 100%;
                 background: rgba(0,0,0,0.8);
-                backdrop-filter: blur(10px);
                 z-index: 9999;
                 display: flex;
                 justify-content: center;
@@ -1490,7 +1463,7 @@
             modal.innerHTML = `
                 <div style="background: var(--bg-light-color); padding: 2rem; border-radius: 12px; width: 90%; max-width: 400px; box-shadow: 0 0 20px var(--glow-color);">
                     <h3 style="margin-bottom: 1rem; color: var(--primary-color);">Moderator Login</h3>
-                    <input type="text" id="mod-id" placeholder="Your ID (e.g., hxcker)" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: var(--bg-color); border: 1px solid var(--text-muted-color); color: var(--text-color); border-radius: 6px;">
+                    <input type="text" id="mod-id" placeholder="Enter Username" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: var(--bg-color); border: 1px solid var(--text-muted-color); color: var(--text-color); border-radius: 6px;">
                     <input type="password" id="mod-pass" placeholder="Password" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: var(--bg-color); border: 1px solid var(--text-muted-color); color: var(--text-color); border-radius: 6px;">
                     <div style="display: flex; gap: 1rem; justify-content: space-between;">
                         <button onclick="loginSubmit()" style="padding: 0.5rem 1rem; background: var(--primary-color); color: var(--bg-color); border: none; border-radius: 6px; cursor: pointer;">Login</button>
@@ -1498,6 +1471,7 @@
                     </div>
                 </div>
             `;
+            modal.id = 'login-modal';
             document.body.appendChild(modal);
 
             function loginSubmit() {
@@ -1506,10 +1480,31 @@
                 if (loginModerator(id, pass)) {
                     document.body.removeChild(modal);
                     toggleEditMode();
+                    showNotification('success', 'Password is correct, now you are officially a Devision Moderator.');
                 } else {
-                    alert("Invalid credentials.");
+                    document.body.removeChild(modal);
+                    showNotification('error', 'Error: Incorrect username or password. Make sure you are a moderator.');
                 }
             }
+        }
+
+        function showNotification(type, message) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <span>${message}</span>
+                <button class="close-btn" onclick="this.parentNode.remove()">×</button>
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 5000);
         }
 
         function makeEditable(element, key) {
@@ -1573,6 +1568,12 @@
                     }
                 });
             } catch {}
+        }
+
+        function updateEditButtons() {
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.style.display = isEditMode ? 'block' : 'none';
+            });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -1773,22 +1774,14 @@
             const themeButtons = document.querySelectorAll('.theme-btn');
             const logoImg = document.getElementById('logo-img');
             const currentThemeName = document.getElementById('current-theme-name');
-            const logos = {
-                orange: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294410257662023/1759886602502.jpg?ex=68e7105c&is=68e5bedc&hm=fd09ac09632150ae8790fb67a84393434303882b023b5d22161f3dc73c069b63&',
-                purple: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294403614015488/1759886767430.jpg?ex=68e7105a&is=68e5beda&hm=e87c0592b37dd8a29649c8e8ac0c10d809152867ff3c1447e71755a4de2f05ff&',
-                gray: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294390074802236/1759886697194.jpg?ex=68e71057&is=68e5bed7&hm=e6fd12cb99940e0485fe27ea29befb1b3386d754a6579f4b3d6d75f3804b815f&',
-                phrog: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294397020307537/1759886812357.jpg?ex=68e71058&is=68e5bed8&hm=f4413957546ed3fce6960ee96def7060f495fce7a8e8aed492d4aab0537d9df2&',
-                red: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294424526553188/1759886421750.jpg?ex=68e7105f&is=68e5bedf&hm=b943056487c93f7727b3858626657e60834c72775e5f3db5e72ebf7fb3f619ab&',
-                blue: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294371284058225/1759886389877.jpg?ex=68e71052&is=68e5bed2&hm=7aafe0332215d7e8c4cffc01174ff2db10b360f235950a91325e08f549042bd7&'
-            };
-
+            const unifiedLogo = "https://cdn.discordapp.com/attachments/1263186729096184001/1425294410257662023/1759886602502.jpg?ex=68e7105c&is=68e5bedc&hm=fd09ac09632150ae8790fb67a84393434303882b023b5d22161f3dc73c069b63&";
             function applyTheme(theme) {
                 currentTheme = theme;
                 root.style.setProperty('--primary-color', `var(--${theme}-primary)`);
                 root.style.setProperty('--glow-color', `var(--${theme}-glow)`);
                 root.style.setProperty('--bg-color', `var(--${theme}-bg)`);
                 root.style.setProperty('--bg-light-color', `var(--${theme}-bg-light)`);
-                logoImg.src = logos[theme];
+                logoImg.src = unifiedLogo;
                 currentThemeName.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
                 themeButtons.forEach(btn => {
                     btn.classList.toggle('active', btn.dataset.theme === theme);
@@ -1796,16 +1789,13 @@
                 localStorage.setItem('devision-theme', theme);
                 initParticles();
             }
-
             themeButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     applyTheme(button.dataset.theme);
                 });
             });
-
             const savedTheme = localStorage.getItem('devision-theme') || 'orange';
             applyTheme(savedTheme);
-
             const faqItems = document.querySelectorAll('.faq-item');
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
@@ -1822,7 +1812,6 @@
                     }
                 });
             });
-
             const countdownElement = document.getElementById('countdown-days');
             const releaseDate = new Date('2025-11-01T00:00:00');
             function updateCountdown() {
@@ -1833,7 +1822,6 @@
             }
             updateCountdown();
             setInterval(updateCountdown, 1000 * 60 * 60);
-
             const navToggle = document.getElementById('nav-toggle');
             const navClose = document.getElementById('nav-close');
             const navModal = document.getElementById('nav-modal');
@@ -1847,7 +1835,6 @@
                     toggleNav();
                 }
             });
-
             const header = document.getElementById('main-header');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
@@ -1856,7 +1843,6 @@
                     header.classList.remove('scrolled');
                 }
             });
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1865,7 +1851,6 @@
                 });
             }, { threshold: 0.1 });
             document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
             const purchaseButtons = document.querySelectorAll('.btn-purchase');
             const paymentSection = document.getElementById('payment-section');
             purchaseButtons.forEach(button => {
@@ -1874,7 +1859,6 @@
                     paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 });
             });
-
             const executorsBtn = document.getElementById('executors-btn');
             const executorsModal = document.getElementById('executors-modal');
             const executorsClose = document.getElementById('executors-close');
@@ -1886,7 +1870,6 @@
                     toggleExecutorsModal();
                 }
             });
-
             function adjustForMobile() {
                 if (window.innerWidth <= 768) {
                     const ctaButtons = document.querySelectorAll('.cta-buttons .btn');
@@ -1906,7 +1889,6 @@
             }
             adjustForMobile();
             window.addEventListener('resize', adjustForMobile);
-
             const backToTopButton = document.getElementById('back-to-top');
             window.addEventListener('scroll', () => {
                 if (window.pageYOffset > 300) {
@@ -1921,7 +1903,6 @@
                     behavior: 'smooth'
                 });
             });
-
             const featureCards = document.querySelectorAll('.feature-card');
             featureCards.forEach(card => {
                 card.addEventListener('mouseenter', () => {
@@ -1935,18 +1916,10 @@
                     card.style.borderColor = 'transparent';
                 });
             });
-
-            const sectionTitles = document.querySelectorAll('.section-title');
-            sectionTitles.forEach(title => {
-                title.classList.add('glitch-effect');
-                title.setAttribute('data-text', title.textContent);
-            });
-
             const importantElements = document.querySelectorAll('.btn-primary, .lifetime-special, .stat-card');
             importantElements.forEach(element => {
                 element.classList.add('pulse-animation');
             });
-
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1960,7 +1933,6 @@
                     }
                 });
             });
-
             // MODERATOR SYSTEM INIT
             const modTab = document.getElementById('moderators-tab');
             if (modTab) {
@@ -1970,8 +1942,7 @@
                 });
             }
             loadSavedContent();
-            document.body.classList.toggle('edit-mode', checkModerator());
-
+            updateEditButtons();
             initParticles();
             animateParticles();
         });
