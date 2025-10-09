@@ -1400,7 +1400,6 @@
             { id: 'craxes', password: 'craxes@1' },
             { id: 'od', password: 'od@1' }
         ];
-
         function checkModerator() {
             const saved = localStorage.getItem('devision-moderator');
             if (!saved) return false;
@@ -1417,7 +1416,6 @@
                 return false;
             }
         }
-
         function loginModerator(id, password) {
             const user = MODERATORS.find(m => m.id === id && m.password === password);
             if (!user) return false;
@@ -1427,14 +1425,12 @@
             }));
             return true;
         }
-
         function logoutModerator() {
             localStorage.removeItem('devision-moderator');
             isEditMode = false;
             document.body.classList.remove('edit-mode');
             location.reload();
         }
-
         function toggleEditMode() {
             if (!checkModerator()) {
                 showLoginModal();
@@ -1444,7 +1440,6 @@
             document.body.classList.toggle('edit-mode', isEditMode);
             updateEditButtons();
         }
-
         function showLoginModal() {
             const modal = document.createElement('div');
             modal.style.cssText = `
@@ -1473,7 +1468,6 @@
             `;
             modal.id = 'login-modal';
             document.body.appendChild(modal);
-
             function loginSubmit() {
                 const id = document.getElementById('mod-id').value.trim();
                 const pass = document.getElementById('mod-pass').value.trim();
@@ -1487,7 +1481,6 @@
                 }
             }
         }
-
         function showNotification(type, message) {
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
@@ -1506,7 +1499,6 @@
                 }, 300);
             }, 5000);
         }
-
         function makeEditable(element, key) {
             if (!isEditMode) return;
             element.contentEditable = true;
@@ -1516,13 +1508,11 @@
             const sel = window.getSelection();
             sel.removeAllRanges();
             sel.addRange(range);
-
             element.addEventListener('blur', () => {
                 element.contentEditable = false;
                 saveField(key, element.innerHTML);
             }, { once: true });
         }
-
         function makeEditableImage(imgElement, key) {
             if (!isEditMode) return;
             const input = document.createElement('input');
@@ -1541,7 +1531,6 @@
             };
             input.click();
         }
-
         function saveField(key, value) {
             let saved = localStorage.getItem('devision-content') || '{}';
             let data = {};
@@ -1551,7 +1540,6 @@
             data[key] = value;
             localStorage.setItem('devision-content', JSON.stringify(data));
         }
-
         function loadSavedContent() {
             const saved = localStorage.getItem('devision-content');
             if (!saved) return;
@@ -1569,26 +1557,22 @@
                 });
             } catch {}
         }
-
         function updateEditButtons() {
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.style.display = isEditMode ? 'block' : 'none';
             });
         }
-
         document.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('particle-canvas');
             const ctx = canvas.getContext('2d');
             let particles = [];
             let currentTheme = 'orange';
-
             const resizeCanvas = () => {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             };
             window.addEventListener('resize', resizeCanvas);
             resizeCanvas();
-
             const themeSettings = {
                 orange: {
                     create: () => ({
@@ -1741,7 +1725,6 @@
                     maxParticles: 80
                 }
             };
-
             const initParticles = () => {
                 particles = [];
                 const settings = themeSettings[currentTheme];
@@ -1749,7 +1732,6 @@
                     particles.push(settings.create());
                 }
             };
-
             const animateParticles = () => {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 const settings = themeSettings[currentTheme];
@@ -1769,7 +1751,6 @@
                 }
                 requestAnimationFrame(animateParticles);
             };
-
             const root = document.documentElement;
             const themeButtons = document.querySelectorAll('.theme-btn');
             const logoImg = document.getElementById('logo-img');
