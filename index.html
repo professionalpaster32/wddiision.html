@@ -1138,22 +1138,6 @@
     <div class="loading-screen" id="loading-screen">
         <div class="loader"></div>
     </div>
-    <!-- Floating Elements -->
-    <div class="floating-element">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--orange-glow)" stroke-width="2">
-            <path d="M12 2L2 7l10 5 10-5M2 17l10-5m10 5M2 12l10 5m10-5"/>
-        </svg>
-    </div>
-    <div class="floating-element">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--blue-glow)" stroke-width="2">
-            <path d="M12 2v20m0 0l-9-5m9 5l9-5"/>
-        </svg>
-    </div>
-    <div class="floating-element">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--purple-glow)" stroke-width="2">
-            <path d="M12 6V4m0 2a2 2 0 100 4m0 2a2 2 0 100 4m0 2a2 2 0 100 4"/>
-        </svg>
-    </div>
     <canvas id="particle-canvas"></canvas>
     <header id="main-header">
         <a href="#home" class="logo-wrapper">
@@ -1491,7 +1475,6 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
         let currentTheme = 'orange';
@@ -1711,9 +1694,6 @@
             });
         });
         const savedTheme = localStorage.getItem('devision-theme') || 'orange';
-        applyTheme(savedTheme);
-        animateParticles();
-        const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
             const answer = item.querySelector('.faq-answer');
@@ -1879,4 +1859,4 @@
     });
     </script>
 </body>
-</html> 
+</html>
