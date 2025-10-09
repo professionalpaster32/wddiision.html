@@ -33,10 +33,10 @@
             --blue-glow: rgba(0, 162, 255, 0.7);
             --blue-bg: #020a14;
             --blue-bg-light: #06192e;
-            --primary-color: var(--orange-primary);
-            --glow-color: var(--orange-glow);
-            --bg-color: var(--orange-bg);
-            --bg-light-color: var(--orange-bg-light);
+            --primary-color: var(--blue-primary);
+            --glow-color: var(--blue-glow);
+            --bg-color: var(--blue-bg);
+            --bg-light-color: var(--blue-bg-light);
             --text-color: #e0e0e0;
             --text-muted-color: #888;
             --border-radius: 12px;
@@ -789,6 +789,7 @@
             color: var(--glow-color);
             text-decoration: underline;
         }
+        /* NEW: Supported Executors Modal */
         #executors-modal {
             position: fixed;
             top: 0;
@@ -902,6 +903,7 @@
             background: var(--phrog-primary);
             box-shadow: 0 0 5px var(--phrog-glow);
         }
+        /* Mobile Responsive Fixes */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 3rem;
@@ -1057,136 +1059,6 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             border-color: var(--primary-color);
         }
-        .pricing-card.lifetime-special .crown-icon {
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .pricing-card.lifetime-special .recommended {
-            position: absolute;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-weight: 700;
-            color: var(--special-red);
-        }
-        .pricing-card.lifetime-special {
-            position: relative;
-        }
-        .limited-price {
-            background: var(--bg-light-color);
-            border: 1px solid var(--primary-color);
-            border-radius: var(--border-radius);
-            text-align: center;
-            transition: all var(--transition-speed) ease;
-            width: 320px;
-            display: flex;
-            flex-direction: column;
-            margin: 0 auto;
-        }
-        .limited-price .price {
-            font-size: 3.5rem;
-            font-family: 'Orbitron', sans-serif;
-            margin: 1rem 0;
-            color: var(--primary-color);
-        }
-        .limited-price h3 {
-            font-size: 1.8rem;
-        }
-        .limited-price ul {
-            list-style: none;
-            margin: 2rem 0;
-            text-align: left;
-            flex-grow: 1;
-        }
-        .limited-price li {
-            margin-bottom: 1rem;
-            padding-left: 25px;
-            position: relative;
-        }
-        .limited-price li::before {
-            content: '✓';
-            color: var(--primary-color);
-            position: absolute;
-            left: 0;
-        }
-        .limited-price .btn-primary {
-            background: var(--primary-color);
-            color: var(--bg-color);
-            border: 1px solid var(--primary-color);
-            box-shadow: 0 0 15px var(--glow-color);
-        }
-        .limited-price .btn-primary:hover {
-            box-shadow: 0 0 25px var(--glow-color);
-            transform: translateY(-3px);
-        }
-        .pricing-section {
-            position: relative;
-        }
-        .pricing-logo {
-            position: absolute;
-            top: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 2px solid var(--primary-color);
-            box-shadow: 0 0 15px var(--glow-color), inset 0 0 10px var(--glow-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: var(--bg-color);
-        }
-        .pricing-logo img {
-            width: 90%;
-            height: 90%;
-            object-fit: contain;
-            filter: drop-shadow(0 0 8px var(--glow-color));
-            border-radius: 50%;
-        }
-        .hidden {
-            display: none !important;
-        }
-        .section {
-            display: none;
-        }
-        .section.active {
-            display: block;
-        }
-        .tab-navigation {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        .tab-button {
-            padding: 0.8rem 1.5rem;
-            background: transparent;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            transition: all var(--transition-speed) ease;
-        }
-        .tab-button.active {
-            background: var(--primary-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 15px var(--glow-color);
-        }
-        .tab-button:hover {
-            background: var(--primary-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 25px var(--glow-color);
-        }
-        .section-content {
-            padding: 2rem 0;
-        }
     </style>
 </head>
 <body>
@@ -1211,32 +1083,32 @@
                 <button class="nav-modal-close" id="nav-close">&times;</button>
             </div>
             <nav class="nav-list">
-                <a href="#home" class="nav-link" onclick="switchTab('home')">
+                <a href="#home" class="nav-link">
                     <span class="nav-item-text">Home</span>
                     <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                 </a>
-                <a href="#features" class="nav-link" onclick="switchTab('features')">
+                <a href="#features" class="nav-link">
                     <span class="nav-item-text">Features</span>
                     <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                 </a>
-                <a href="#pricing" class="nav-link" onclick="switchTab('pricing')">
+                <a href="#premium" class="nav-link">
                     <span class="nav-item-text">Premium</span>
                     <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                 </a>
-                <a href="#dev-logs" class="nav-link" onclick="switchTab('dev-logs')">
+                <a href="#dev-logs" class="nav-link">
                     <span class="nav-item-text">Dev-Logs</span>
                     <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                 </a>
-                <a href="#faq" class="nav-link" onclick="switchTab('faq')">
+                <a href="#faq" class="nav-link">
                     <span class="nav-item-text">FAQ</span>
                     <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
                 </a>
-                <a href="#contributors" class="nav-link" onclick="switchTab('contributors')">
+                <a href="#contributors" class="nav-link">
                     <span class="nav-item-text">Contributors</span>
-                    <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                 </a>
             </nav>
-            <div class="theme-chooser">
+             <div class="theme-chooser">
                 <h3><svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Choose Theme</h3>
                 <div class="theme-buttons">
                     <button class="theme-btn" data-theme="orange">Orange</button>
@@ -1246,597 +1118,615 @@
                     <button class="theme-btn" data-theme="red">Red</button>
                     <button class="theme-btn" data-theme="blue">Blue</button>
                 </div>
-                <div class="current-theme-display">Current: <span id="current-theme-name">Orange</span></div>
+                <div class="current-theme-display">Current: Blue</div>
             </div>
         </div>
     </div>
-    
-    <div class="tab-navigation">
-        <button class="tab-button active" onclick="switchTab('home')">Home</button>
-        <button class="tab-button" onclick="switchTab('features')">Features</button>
-        <button class="tab-button" onclick="switchTab('pricing')">Premium</button>
-        <button class="tab-button" onclick="switchTab('dev-logs')">Dev-Logs</button>
-        <button class="tab-button" onclick="switchTab('faq')">FAQ</button>
-        <button class="tab-button" onclick="switchTab('contributors')">Contributors</button>
-    </div>
-    
+    <!-- Homepage Section -->
     <main>
-        <!-- Home Section -->
-        <section id="home" class="section active">
-            <div class="container">
-                <div class="hero">
-                    <h1>DEVISION</h1>
-                    <p>The ultimate advantage. Redefining the limits with unparalleled features, performance, and security. Dominate your game like never before.</p>
-                    <div class="cta-buttons">
-                        <a href="#pricing" class="btn btn-primary" onclick="switchTab('pricing')">Get Access</a>
-                        <a href="https://discord.gg/uCspBMst3t" target="_blank" class="btn btn-discord">
-                            <img src="https://cdn.discordapp.com/attachments/1263186729096184001/1425674545833967617/discord_2.png?ex=68e87263&is=68e720e3&hm=bea20de05f7fad172ac408f55c709f543584825fccd80c6a82fa93b0152e1823&" alt="Discord" style="width: 24px; height: 24px;">
-                            <span>Discord Server</span>
-                        </a>
-                    </div>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="value" id="countdown-days">--</div>
-                            <div class="label">Days Til Release</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="value">24/7</div>
-                            <div class="label">Online Support</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="value">100+</div>
-                            <div class="label">Daily Events</div>
-                        </div>
-                    </div>
+        <section id="home" class="hero container fade-in">
+            <h1>DEVISION</h1>
+            <p>The ultimate advantage. Redefining the limits with unparalleled features, performance, and security. Dominate your game like never before.</p>
+            <div class="cta-buttons">
+                <a href="#premium" class="btn btn-primary">Get Access</a>
+                <a href="https://discord.gg/uCspBMst3t" target="_blank" class="btn btn-discord">
+                    <img src="https://cdn.discordapp.com/attachments/1263186729096184001/1425674545833967617/discord_2.png?ex=68e87263&is=68e720e3&hm=bea20de05f7fad172ac408f55c709f543584825fccd80c6a82fa93b0152e1823&" alt="Discord" style="width: 24px; height: 24px;">
+                    <span>Discord Server</span>
+                </a>
+            </div>
+             <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value" id="countdown-days">--</div>
+                    <div class="label">Days Til Release</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">24/7</div>
+                    <div class="label">Online Support</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">100+</div>
+                    <div class="label">Daily Events</div>
                 </div>
             </div>
         </section>
-        
         <!-- Features Section -->
-        <section id="features" class="section">
-            <div class="container">
-                <h2 class="section-title fade-in">Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card fade-in" style="transition-delay: 0.1s;">
-                        <h3>Targetlock</h3>
-                        <p>new generation prediction system and customizable for flawless accuracy. Supports silent aim, multiple targeting modes, and FOV visualization.</p>
-                    </div>
-                    <div class="feature-card fade-in" style="transition-delay: 0.2s;">
-                        <h3>Visual Enhancements</h3>
-                        <p>Gain total awareness with customizable ESP, player highlighting, tracers, and material changers. See everything that matters.</p>
-                    </div>
-                    <div class="feature-card fade-in" style="transition-delay: 0.3s;">
-                        <h3>Dynamic Theming</h3>
-                        <p>Personalize your entire experience. Choose from multiple futuristic themes that alter colors.</p>
-                    </div>
-                    <div class="feature-card fade-in" style="transition-delay: 0.4s;">
-                        <h3>Avatar Customization</h3>
-                        <p>Modify your client-side appearance with our avatar changer. Load any user ID to instantly adopt their look in-game.</p>
-                    </div>
-                    <div class="feature-card fade-in" style="transition-delay: 0.5s;">
-                        <h3>Secure & Undetected</h3>
-                        <p>Built with security as the top priority. Frequent updates ensure our script remains ahead of anti-cheat measures.</p>
-                    </div>
-                    <div class="feature-card fade-in" style="transition-delay: 0.6s;">
-                        <h3>Optimized Performance</h3>
-                        <p>Experience a lag-free and smooth gameplay session. Our code is highly optimized to ensure minimal impact on your system's performance.</p>
-                    </div>
+        <section id="features" class="container">
+            <h2 class="section-title fade-in">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in" style="transition-delay: 0.1s;">
+                    <h3>Targetlock</h3>
+                    <p>new generation prediction system and customizable for flawless accuracy. Supports silent aim, multiple targeting modes, and FOV visualization.</p>
                 </div>
-                <div class="extra-images fade-in">
-                    <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425194294440103977/5759377C-E9B5-4176-B9E2-F57E24EEB585.png?ex=68e8049e&is=68e6b31e&hm=6488bce6b089f4c1821ce5408ea1a076df3ff0df9e039c4b9ac0502fb0fcdae3&" alt="Feature showcase 1">
-                    <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425207401329594458/FBF3FC2F-7801-47C2-9EAB-C5F8193732BA.png?ex=68e810d3&is=68e6bf53&hm=07c108b4516c66fd816779b77c6fed3e004c9be920c649affb5b365f241a349d&" alt="Feature showcase 2">
+                <div class="feature-card fade-in" style="transition-delay: 0.2s;">
+                    <h3>Visual Enhancements</h3>
+                    <p>Gain total awareness with customizable ESP, player highlighting, tracers, and material changers. See everything that matters.</p>
+                </div>
+                <div class="feature-card fade-in" style="transition-delay: 0.3s;">
+                    <h3>Dynamic Theming</h3>
+                    <p>Personalize your entire experience. Choose from multiple futuristic themes that alter colors.</p>
+                </div>
+                <div class="feature-card fade-in" style="transition-delay: 0.4s;">
+                    <h3>Avatar Customization</h3>
+                    <p>Modify your client-side appearance with our avatar changer. Load any user ID to instantly adopt their look in-game.</p>
+                </div>
+                <div class="feature-card fade-in" style="transition-delay: 0.5s;">
+                    <h3>Secure & Undetected</h3>
+                    <p>Built with security as the top priority. Frequent updates ensure our script remains ahead of anti-cheat measures.</p>
+                </div>
+                <div class="feature-card fade-in" style="transition-delay: 0.6s;">
+                    <h3>Optimized Performance</h3>
+                    <p>Experience a lag-free and smooth gameplay session. Our code is highly optimized to ensure minimal impact on your system's performance.</p>
                 </div>
             </div>
+            <div class="extra-images fade-in">
+                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425194294440103977/5759377C-E9B5-4176-B9E2-F57E24EEB585.png?ex=68e8049e&is=68e6b31e&hm=6488bce6b089f4c1821ce5408ea1a076df3ff0df9e039c4b9ac0502fb0fcdae3&" alt="Feature showcase 1">
+                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425207401329594458/FBF3FC2F-7801-47C2-9EAB-C5F8193732BA.png?ex=68e810d3&is=68e6bf53&hm=07c108b4516c66fd816779b77c6fed3e004c9be920c649affb5b365f241a349d&" alt="Feature showcase 2">
+            </div>
         </section>
-        
         <!-- Premium Section -->
-        <section id="pricing" class="section">
-            <div class="container">
-                <div class="pricing-section">
-                    <h2 class="section-title fade-in">Pricing</h2>
-                    <div class="pricing-grid">
-                        <div class="pricing-card fade-in" style="transition-delay: 0.1s;">
-                            <h3>Weekly</h3>
-                            <div class="price">$5<span>/week</span></div>
-                            <ul>
-                                <li>Full Feature Access</li>
-                                <li>7-Day Key Duration</li>
-                                <li>Standard Support</li>
-                                <li>All Future Updates</li>
-                            </ul>
-                            <button class="btn btn-secondary btn-purchase">Purchase</button>
-                        </div>
-                        <div class="pricing-card lifetime-special fade-in" style="transition-delay: 0.2s;">
-                            <div class="card-content">
-                                <svg class="crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
-                                <h3>Lifetime</h3>
-                                <p class="recommended">(Recommended)</p>
-                                <div class="price">$10<span>/onetime</span></div>
-                                 <ul>
-                                    <li>Full Feature Access</li>
-                                    <li>Permanent Key</li>
-                                    <li>Buyer Role</li>
-                                    <li>All Future Updates</li>
-                                </ul>
-                                <button class="btn btn-primary btn-purchase">Purchase</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Dev-Logs Section -->
-        <section id="dev-logs" class="section">
-            <div class="container">
-                <h2 class="section-title fade-in">Dev-Logs</h2>
-                <div class="dev-log-card fade-in">
-                    <h3>Update Log #1</h3>
+        <section id="premium" class="container">
+            <h2 class="section-title fade-in">Premium</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card fade-in" style="transition-delay: 0.1s;">
+                    <h3>Weekly</h3>
+                    <div class="price">$5<span>/week</span></div>
                     <ul>
-                        <li>Added 3 modes to redirection: mouse, remote, namecall, raycast [with wallbang for 0 delay games]</li>
-                        <li>Added silent aim [soon fov with gradients]</li>
-                        <li>Changed fov to screengui + glow
-                            <img class="dev-log-image-preview" src="https://cdn.discordapp.com/attachments/1422290432070516786/1423689567101521930/image.png?ex=68e7d13b&is=68e67fbb&hm=a9253c6b2ee77b745d2ce32a0de3cdb586a66aaa9ac9caad2b25908da9b77f56&" alt="Glow Preview">
-                        </li>
-                        <li>Added 3 positions to fov (mouse, center, barrel (gun)) and added lerp option</li>
-                        <li>Added highlight target/client, material changer to client, and avatar changer with user id and added gui
-                             <img class="dev-log-image-preview" src="https://cdn.discordapp.com/attachments/1422290432070516786/1424827171255488512/C48DF7BA-05E4-4603-A436-D8E9E29B06C7.png?ex=68e80035&is=68e6aeb5&hm=9ed80b6e448f8b8863aa99cd565257734ec72a2c2876dda757f7ec6bf5965605&" alt="GUI Preview">
-                        </li>
+                        <li>Full Feature Access</li>
+                        <li>7-Day Key Duration</li>
+                        <li>Standard Support</li>
+                        <li>All Future Updates</li>
                     </ul>
+                    <button class="btn btn-secondary btn-purchase">Purchase</button>
+                </div>
+                <div class="pricing-card lifetime-special fade-in" style="transition-delay: 0.2s;">
+                    <div class="card-content">
+                        <svg class="crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
+                        <h3>Lifetime</h3>
+                        <p class="recommended">(Recommended)</p>
+                        <div class="price">$10<span>/onetime</span></div>
+                         <ul>
+                            <li>Full Feature Access</li>
+                            <li>Permanent Key</li>
+                            <li>Buyer Role</li>
+                            <li>All Future Updates</li>
+                        </ul>
+                        <button class="btn btn-primary btn-purchase">Purchase</button>
+                    </div>
                 </div>
             </div>
         </section>
-        
         <!-- FAQ Section -->
-        <section id="faq" class="section">
-            <div class="container">
-                <h2 class="section-title fade-in">Devision FAQ</h2>
-                <div class="faq-container fade-in">
-                    <div class="faq-item">
-                        <div class="faq-question">Will I get banned?</div>
-                        <div class="faq-answer">
-                            <p>The Answer is No. It is 100% undetectable, we bypasses the anti-cheats security measures and frequent updates to minimize risk, making bans highly unlikely when used correctly.</p>
-                        </div>
+        <section id="faq" class="container">
+            <h2 class="section-title fade-in">Devision FAQ</h2>
+            <div class="faq-container fade-in">
+                <div class="faq-item">
+                    <div class="faq-question">Will I get banned?</div>
+                    <div class="faq-answer">
+                        <p>The Answer is No. It is 100% undetectable, we bypasses the anti-cheats security measures and frequent updates to minimize risk, making bans highly unlikely when used correctly.</p>
                     </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Is This a Logger?</div>
-                        <div class="faq-answer">
-                            <p>Absolutely not. We guarantee our script is free from any loggers, malware, or any malicious code. Your security and privacy are our priorities.</p>
-                        </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is This a Logger?</div>
+                    <div class="faq-answer">
+                        <p>Absolutely not. We guarantee our script is free from any loggers, malware, or any malicious code. Your security and privacy are our priorities.</p>
                     </div>
-                     <div class="faq-item">
-                        <div class="faq-question">Is This Refundable?</div>
-                        <div class="faq-answer">
-                            <p>Due to the digital nature of our product, we generally do not offer refunds. Please review our Refund Policy and Terms of Service before purchasing. Exceptions may be made in specific circumstances at our discretion.</p>
-                        </div>
+                </div>
+                 <div class="faq-item">
+                    <div class="faq-question">Is This Refundable?</div>
+                    <div class="faq-answer">
+                        <p>Due to the digital nature of our product, we generally do not offer refunds. Please review our Refund Policy and Terms of Service before purchasing. Exceptions may be made in specific circumstances at our discretion.</p>
                     </div>
-                     <div class="faq-item">
-                        <div class="faq-question">What platforms are supported?</div>
-                        <div class="faq-answer">
-                            <p>Our script is designed for the PC version of Roblox and Mobile. We support a wide range of popular script executors. Please check our Discord for a complete, up-to-date list of supported executors.</p>
-                        </div>
+                </div>
+                 <div class="faq-item">
+                    <div class="faq-question">What platforms are supported?</div>
+                    <div class="faq-answer">
+                        <p>Our script is designed for the PC version of Roblox and Mobile. We support a wide range of popular script executors. Please check our Discord for a complete, up-to-date list of supported executors.</p>
                     </div>
                 </div>
             </div>
+            <!-- NEW: Supported Executors Button -->
+            <div class="faq-container fade-in" style="margin-top: 2rem;">
+                <button id="executors-btn" class="btn btn-secondary" style="font-size: 1.1rem; padding: 0.8rem 1.5rem;">Supported Executors</button>
+            </div>
         </section>
-        
         <!-- Contributors Section -->
-        <section id="contributors" class="section">
-            <div class="container">
-                <h2 class="section-title fade-in">Contributors</h2>
-                <div class="contributors-grid">
-                    <div class="contributor-card fade-in" style="transition-delay: 0.1s;">
-                        <img src="https://cdn.discordapp.com/avatars/797901826258370581/dd0def53b23aa0bfc5e28f3b8890c6c7.png?size=512" alt="hxcker pfp" class="pfp">
-                        <h3 class="name">hxcker</h3>
-                        <span class="tag">Founder</span>
-                        <a href="https://discord.com/users/797901826258370581" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
-                    </div>
-                    <div class="contributor-card fade-in" style="transition-delay: 0.2s;">
-                        <img src="https://cdn.discordapp.com/avatars/1230212757916487681/ad0df60f045f3fe6e71cf578759c1ea4.png?size=512" alt="craxes pfp" class="pfp">
-                        <h3 class="name">craxes</h3>
-                        <span class="tag">Co-Owner</span>
-                        <a href="https://discord.com/users/1230212757916487681" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
-                    </div>
-                    <div class="contributor-card fade-in" style="transition-delay: 0.3s;">
-                        <img src="https://cdn.discordapp.com/avatars/1251496733460926493/2ffac6d3c2074362ba8cc35939323e73.png?size=512" alt="od pfp" class="pfp">
-                        <h3 class="name">od</h3>
-                        <span class="tag">Head-Administrator</span>
-                        <a href="https://discord.com/users/1251496733460926493" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
-                    </div>
+        <section id="contributors" class="container">
+            <h2 class="section-title fade-in">Contributors</h2>
+            <div class="contributors-grid">
+                <div class="contributor-card fade-in" style="transition-delay: 0.1s;">
+                    <img src="https://cdn.discordapp.com/avatars/797901826258370581/dd0def53b23aa0bfc5e28f3b8890c6c7.png?size=512" alt="hxcker pfp" class="pfp">
+                    <h3 class="name">hxcker</h3>
+                    <span class="tag">Founder</span>
+                    <a href="https://discord.com/users/797901826258370581" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
+                </div>
+                <div class="contributor-card fade-in" style="transition-delay: 0.2s;">
+                    <img src="https://cdn.discordapp.com/avatars/1230212757916487681/ad0df60f045f3fe6e71cf578759c1ea4.png?size=512" alt="craxes pfp" class="pfp">
+                    <h3 class="name">craxes</h3>
+                    <span class="tag">Co-Owner</span>
+                    <a href="https://discord.com/users/1230212757916487681" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
+                </div>
+                <div class="contributor-card fade-in" style="transition-delay: 0.3s;">
+                    <img src="https://cdn.discordapp.com/avatars/1251496733460926493/2ffac6d3c2074362ba8cc35939323e73.png?size=512" alt="od pfp" class="pfp">
+                    <h3 class="name">od</h3>
+                    <span class="tag">Head-Administrator</span>
+                    <a href="https://discord.com/users/1251496733460926493" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
                 </div>
             </div>
         </section>
     </main>
-    <footer class="fade-in">
-        <p>&copy; 2025 DEVISION. All rights reserved.</p>
-        <p>
-            <a href="#">Terms of Service</a> | <a href="#">Refund Policy</a>
-        </p>
-    </footer>
+    <!-- Payment Section -->
+    <section id="payment-section" class="container">
+        <div class="payment-header">
+            <h3>Payment Methods</h3>
+            <p>Early Discount: 25% off before Latest Devision 1.0.0 release!</p>
+        </div>
+        <div class="payment-grid">
+            <div class="payment-method">
+                <img src="https://cdn.worldvectorlogo.com/logos/bitcoin.svg" alt="Bitcoin">
+                <div class="name">Bitcoin</div>
+                <div class="price">$5/week or $10 one-time</div>
+            </div>
+             <div class="payment-method">
+                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1424849728054493234/250px-Ethereum-icon-purple.png?ex=68e81537&is=68e6c3b7&hm=7979ce7b464edb35d3e931e3640d1839a107331dc08337c5b086e071fc8655e8&" alt="Ethereum">
+                <div class="name">Ethereum</div>
+                <div class="price">$5/week or $10/one-time</div>
+            </div>
+             <div class="payment-method">
+                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1424849684396245052/Litecoin-ltc.png?ex=68e8152d&is=68e6c3ad&hm=c4971234366e179f65ff0fcd47e806557dc4b07c40d26b0da5e48e30b0674342&" alt="Litecoin">
+                <div class="name">Litecoin</div>
+                <div class="price">$5/week or $10/one-time</div>
+            </div>
+             <div class="payment-method">
+                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1424849619321618473/512px-Robux_2019_Logo_gold.png?ex=68e8151d&is=68e6c39d&hm=9f3089be465bf3f359c023e5fcc4812a1d748c4b229f02aa40edf9b46fd74e32&" alt="Robux">
+                <div class="name">Robux</div>
+                <div class="price">1K/week or 2k/one-time</div>
+            </div>
+        </div>
+        <div class="payment-footer">
+            3-day HWID reset cooldown. <br> Faster reset: 200 Robux, $1 Crypto, or $2 PayPal
+        </div>
+    </section>
+    <!-- Supported Executors Modal -->
+    <div id="executors-modal">
+        <div class="executors-modal-content">
+            <div class="executors-modal-header">
+                <h2>Supported Executors</h2>
+                <button class="executors-modal-close" id="executors-close">&times;</button>
+            </div>
+            <div class="executor-category">
+                <div class="executor-category-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17 18a2 2 0 002-2V8a2 2 0 00-2-2H7a2 2 0 00-2 2v8a2 2 0 002 2h10zM9 10h6v6H9z"/>
+                    </svg>
+                    PC
+                </div>
+                <div class="executor-item">
+                    <span class="executor-name">Potassium</span>
+                    <span class="executor-status status-undetected">Undetected</span>
+                </div>
+                <div class="executor-item">
+                    <span class="executor-name">Bunni</span>
+                    <span class="executor-status status-detected">Detected</span>
+                </div>
+                <div class="executor-item">
+                    <span class="executor-name">Swift</span>
+                    <span class="executor-status status-detected">Detected</span>
+                </div>
+            </div>
+            <div class="executor-category">
+                <div class="executor-category-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 18h.01M7 21h10v-1a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v11a2 2 0 002 2z"/>
+                    </svg>
+                    Mobile
+                </div>
+                <div class="executor-item">
+                    <span class="executor-name">Delta</span>
+                    <span class="executor-status status-undetected">Undetected</span>
+                </div>
+                <div class="executor-item">
+                    <span class="executor-name">Codex</span>
+                    <span class="executor-status status-undetected">Undetected</span>
+                </div>
+                <div class="executor-item">
+                    <span class="executor-name">KRNL</span>
+                    <span class="executor-status status-undetected">Undetected</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Back to Top Button -->
     <div class="back-to-top" id="back-to-top">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const canvas = document.getElementById('particle-canvas');
-            const ctx = canvas.getContext('2d');
-            let particles = [];
-            let currentTheme = 'orange';
-            const resizeCanvas = () => {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            };
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
-            const themeSettings = {
-                orange: {
-                    create: () => ({
-                        emoji: ['🎃', '👻', '🦇', '🕷️'][Math.floor(Math.random() * 4)],
-                        x: Math.random() * canvas.width,
-                        y: canvas.height + 20,
-                        size: Math.random() * 20 + 20,
-                        speedX: Math.random() * 2 - 1,
-                        speedY: Math.random() * -2 - 1,
-                        rotation: Math.random() * Math.PI * 2,
-                        rotationSpeed: (Math.random() - 0.5) * 0.02
-                    }),
-                    update: p => {
-                        p.x += p.speedX;
-                        p.y += p.speedY;
-                        p.rotation += p.rotationSpeed;
-                    },
-                    draw: p => {
-                        ctx.save();
-                        ctx.translate(p.x, p.y);
-                        ctx.rotate(p.rotation);
-                        ctx.font = `${p.size}px Arial`;
-                        ctx.textAlign = 'center';
-                        ctx.textBaseline = 'middle';
-                        ctx.fillText(p.emoji, 0, 0);
-                        ctx.restore();
-                    },
-                    maxParticles: 5
+    document.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let currentTheme = 'blue';
+        const resizeCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        const themeSettings = {
+            orange: {
+                create: () => ({
+                    emoji: ['🎃', '👻', '🦇', '🕷️'][Math.floor(Math.random() * 4)],
+                    x: Math.random() * canvas.width,
+                    y: canvas.height + 20,
+                    size: Math.random() * 20 + 20,
+                    speedX: Math.random() * 2 - 1,
+                    speedY: Math.random() * -2 - 1,
+                    rotation: Math.random() * Math.PI * 2,
+                    rotationSpeed: (Math.random() - 0.5) * 0.02
+                }),
+                update: p => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    p.rotation += p.rotationSpeed;
                 },
-                purple: {
-                     create: () => ({
-                        x: Math.random() * canvas.width,
-                        y: Math.random() * canvas.height,
-                        size: Math.random() * 2 + 1,
-                        speedX: (Math.random() - 0.5) * 0.5,
-                        speedY: (Math.random() - 0.5) * 0.5,
-                        connections: []
-                    }),
-                    update: p => {
-                        p.x += p.speedX;
-                        p.y += p.speedY;
-                        if (p.x > canvas.width || p.x < 0) p.speedX *= -1;
-                        if (p.y > canvas.height || p.y < 0) p.speedY *= -1;
-                    },
-                    draw: p => {
-                        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--purple-primary');
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                        ctx.fill();
-                    },
-                    postDraw: () => {
-                        ctx.strokeStyle = `rgba(163, 53, 240, 0.2)`;
-                        for (let i = 0; i < particles.length; i++) {
-                            for (let j = i; j < particles.length; j++) {
-                                const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
-                                if (dist < 100) {
-                                    ctx.beginPath();
-                                    ctx.moveTo(particles[i].x, particles[i].y);
-                                    ctx.lineTo(particles[j].x, particles[j].y);
-                                    ctx.stroke();
-                                }
+                draw: p => {
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rotation);
+                    ctx.font = `${p.size}px Arial`;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(p.emoji, 0, 0);
+                    ctx.restore();
+                },
+                maxParticles: 5
+            },
+            purple: {
+                 create: () => ({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5,
+                    connections: []
+                }),
+                update: p => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    if (p.x > canvas.width || p.x < 0) p.speedX *= -1;
+                    if (p.y > canvas.height || p.y < 0) p.speedY *= -1;
+                },
+                draw: p => {
+                    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--purple-primary');
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                },
+                postDraw: () => {
+                    ctx.strokeStyle = `rgba(163, 53, 240, 0.2)`;
+                    for (let i = 0; i < particles.length; i++) {
+                        for (let j = i; j < particles.length; j++) {
+                            const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+                            if (dist < 100) {
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.stroke();
                             }
                         }
-                    },
-                    maxParticles: 50
-                },
-                gray: {
-                    create: () => ({
-                        x: Math.random() * canvas.width,
-                        y: -10,
-                        size: Math.random() * 10 + 5,
-                        speedY: Math.random() * 2 + 1,
-                        opacity: Math.random() * 0.5 + 0.2,
-                    }),
-                    update: p => {
-                        p.y += p.speedY;
-                    },
-                    draw: p => {
-                        ctx.fillStyle = `rgba(204, 204, 204, ${p.opacity})`;
-                        ctx.fillRect(p.x, p.y, 1, p.size);
-                    },
-                    maxParticles: 70
-                },
-                phrog: {
-                    create: () => ({
-                        x: Math.random() * canvas.width,
-                        y: -10,
-                        length: Math.random() * 20 + 10,
-                        speedY: Math.random() * 10 + 5,
-                        opacity: Math.random() * 0.3 + 0.1,
-                    }),
-                    update: p => {
-                        p.y += p.speedY;
-                    },
-                    draw: p => {
-                        ctx.strokeStyle = `rgba(51, 255, 51, ${p.opacity})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p.x, p.y + p.length);
-                        ctx.stroke();
-                    },
-                    maxParticles: 80
-                },
-                red: {
-                     create: () => ({
-                        x: Math.random() * canvas.width,
-                        y: canvas.height + 10,
-                        size: Math.random() * 3 + 1,
-                        speedY: Math.random() * -1 - 0.5,
-                        opacity: 1
-                    }),
-                    update: p => {
-                        p.y += p.speedY;
-                        p.opacity -= 0.01;
-                    },
-                    draw: p => {
-                        ctx.fillStyle = `rgba(255, 31, 31, ${p.opacity})`;
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                        ctx.fill();
-                    },
-                    maxParticles: 60
-                },
-                blue: {
-                    create: () => ({
-                        x: Math.random() * canvas.width * 1.5,
-                        y: Math.random() * canvas.height * 1.5 - (canvas.height * 0.5),
-                        size: Math.random() * 1.5 + 0.5,
-                        speed: Math.random() * 1 + 0.5,
-                        opacity: 0
-                    }),
-                    update: p => {
-                        p.x -= p.speed;
-                        p.y += p.speed / 2;
-                        if(p.opacity < 1) p.opacity += 0.02;
-                        if (p.x < 0 || p.y > canvas.height) {
-                            Object.assign(p, themeSettings.blue.create());
-                             p.x = canvas.width + 20;
-                             p.y = Math.random() * canvas.height;
-                             p.opacity = 0;
-                        }
-                    },
-                    draw: p => {
-                        ctx.fillStyle = `rgba(0, 162, 255, ${p.opacity})`;
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                        ctx.fill();
-                    },
-                    maxParticles: 80
-                }
-            };
-            const initParticles = () => {
-                particles = [];
-                const settings = themeSettings[currentTheme];
-                for (let i = 0; i < settings.maxParticles; i++) {
-                    particles.push(settings.create());
-                }
-            };
-            const animateParticles = () => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                const settings = themeSettings[currentTheme];
-                particles.forEach((p, index) => {
-                    settings.update(p);
-                    settings.draw(p);
-                    let isOutOfBounds = false;
-                    if (currentTheme === 'orange') isOutOfBounds = p.y < -p.size;
-                    if (currentTheme === 'gray' || currentTheme === 'phrog') isOutOfBounds = p.y > canvas.height + p.size;
-                    if (currentTheme === 'red') isOutOfBounds = p.opacity <= 0;
-                    if (isOutOfBounds) {
-                        particles[index] = settings.create();
                     }
-                });
-                if (settings.postDraw) {
-                    settings.postDraw();
-                }
-                requestAnimationFrame(animateParticles);
-            };
-            const root = document.documentElement;
-            const themeButtons = document.querySelectorAll('.theme-btn');
-            const logoImg = document.getElementById('logo-img');
-            const currentThemeName = document.getElementById('current-theme-name');
-            const logos = {
-                orange: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294410257662023/1759886602502.jpg?ex=68e7105c&is=68e5bedc&hm=fd09ac09632150ae8790fb67a84393434303882b023b5d22161f3dc73c069b63&',
-                purple: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294403614015488/1759886767430.jpg?ex=68e7105a&is=68e5beda&hm=e87c0592b37dd8a29649c8e8ac0c10d809152867ff3c1447e71755a4de2f05ff&',
-                gray: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294390074802236/1759886697194.jpg?ex=68e71057&is=68e5bed7&hm=e6fd12cb99940e0485fe27ea29befb1b3386d754a6579f4b3d6d75f3804b815f&',
-                phrog: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294397020307537/1759886812357.jpg?ex=68e71058&is=68e5bed8&hm=f4413957546ed3fce6960ee96def7060f495fce7a8e8aed492d4aab0537d9df2&',
-                red: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294424526553188/1759886421750.jpg?ex=68e7105f&is=68e5bedf&hm=b943056487c93f7727b3858626657e60834c72775e5f3db5e72ebf7fb3f619ab&',
-                blue: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294371284058225/1759886389877.jpg?ex=68e71052&is=68e5bed2&hm=7aafe0332215d7e8c4cffc01174ff2db10b360f235950a91325e08f549042bd7&'
-            };
-            function applyTheme(theme) {
-                currentTheme = theme;
-                root.style.setProperty('--primary-color', `var(--${theme}-primary)`);
-                root.style.setProperty('--glow-color', `var(--${theme}-glow)`);
-                root.style.setProperty('--bg-color', `var(--${theme}-bg)`);
-                root.style.setProperty('--bg-light-color', `var(--${theme}-bg-light)`);
-                logoImg.src = logos[theme];
-                currentThemeName.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
-                themeButtons.forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.theme === theme);
-                });
-                localStorage.setItem('devision-theme', theme);
-                initParticles();
+                },
+                maxParticles: 50
+            },
+            gray: {
+                create: () => ({
+                    x: Math.random() * canvas.width,
+                    y: -10,
+                    size: Math.random() * 10 + 5,
+                    speedY: Math.random() * 2 + 1,
+                    opacity: Math.random() * 0.5 + 0.2,
+                }),
+                update: p => {
+                    p.y += p.speedY;
+                },
+                draw: p => {
+                    ctx.fillStyle = `rgba(204, 204, 204, ${p.opacity})`;
+                    ctx.fillRect(p.x, p.y, 1, p.size);
+                },
+                maxParticles: 70
+            },
+            phrog: {
+                create: () => ({
+                    x: Math.random() * canvas.width,
+                    y: -10,
+                    length: Math.random() * 20 + 10,
+                    speedY: Math.random() * 10 + 5,
+                    opacity: Math.random() * 0.3 + 0.1,
+                }),
+                update: p => {
+                    p.y += p.speedY;
+                },
+                draw: p => {
+                    ctx.strokeStyle = `rgba(51, 255, 51, ${p.opacity})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p.x, p.y + p.length);
+                    ctx.stroke();
+                },
+                maxParticles: 80
+            },
+            red: {
+                 create: () => ({
+                    x: Math.random() * canvas.width,
+                    y: canvas.height + 10,
+                    size: Math.random() * 3 + 1,
+                    speedY: Math.random() * -1 - 0.5,
+                    opacity: 1
+                }),
+                update: p => {
+                    p.y += p.speedY;
+                    p.opacity -= 0.01;
+                },
+                draw: p => {
+                    ctx.fillStyle = `rgba(255, 31, 31, ${p.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                },
+                maxParticles: 60
+            },
+            blue: {
+                create: () => ({
+                    x: Math.random() * canvas.width * 1.5,
+                    y: Math.random() * canvas.height * 1.5 - (canvas.height * 0.5),
+                    size: Math.random() * 1.5 + 0.5,
+                    speed: Math.random() * 1 + 0.5,
+                    opacity: 0
+                }),
+                update: p => {
+                    p.x -= p.speed;
+                    p.y += p.speed / 2;
+                    if(p.opacity < 1) p.opacity += 0.02;
+                    if (p.x < 0 || p.y > canvas.height) {
+                        Object.assign(p, themeSettings.blue.create());
+                         p.x = canvas.width + 20;
+                         p.y = Math.random() * canvas.height;
+                         p.opacity = 0;
+                    }
+                },
+                draw: p => {
+                    ctx.fillStyle = `rgba(0, 162, 255, ${p.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                },
+                maxParticles: 80
             }
-            themeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    applyTheme(button.dataset.theme);
-                });
-            });
-            const savedTheme = localStorage.getItem('devision-theme') || 'orange';
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                const answer = item.querySelector('.faq-answer');
-                question.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-                    faqItems.forEach(i => {
-                        i.classList.remove('active');
-                        i.querySelector('.faq-answer').style.maxHeight = null;
-                    });
-                    if (!isActive) {
-                        item.classList.add('active');
-                        answer.style.maxHeight = answer.scrollHeight + "px";
-                    }
-                });
-            });
-            const countdownElement = document.getElementById('countdown-days');
-            const releaseDate = new Date('2025-11-01T00:00:00');
-            function updateCountdown() {
-                const now = new Date();
-                const diff = releaseDate - now;
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                countdownElement.textContent = days > 0 ? days : '0';
+        };
+        const initParticles = () => {
+            particles = [];
+            const settings = themeSettings[currentTheme];
+            for (let i = 0; i < settings.maxParticles; i++) {
+                particles.push(settings.create());
             }
-            updateCountdown();
-            setInterval(updateCountdown, 1000 * 60 * 60);
-            const navToggle = document.getElementById('nav-toggle');
-            const navClose = document.getElementById('nav-close');
-            const navModal = document.getElementById('nav-modal');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const toggleNav = () => navModal.classList.toggle('active');
-            navToggle.addEventListener('click', toggleNav);
-            navClose.addEventListener('click', toggleNav);
-            navLinks.forEach(link => link.addEventListener('click', toggleNav));
-            navModal.addEventListener('click', (e) => {
-                if (e.target === navModal) {
-                    toggleNav();
+        };
+        const animateParticles = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const settings = themeSettings[currentTheme];
+            particles.forEach((p, index) => {
+                settings.update(p);
+                settings.draw(p);
+                let isOutOfBounds = false;
+                if (currentTheme === 'orange') isOutOfBounds = p.y < -p.size;
+                if (currentTheme === 'gray' || currentTheme === 'phrog') isOutOfBounds = p.y > canvas.height + p.size;
+                if (currentTheme === 'red') isOutOfBounds = p.opacity <= 0;
+                if (isOutOfBounds) {
+                    particles[index] = settings.create();
                 }
             });
-            const header = document.getElementById('main-header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-            const purchaseButtons = document.querySelectorAll('.btn-purchase');
-            const paymentSection = document.getElementById('payment-section');
-            purchaseButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    paymentSection.classList.add('visible');
-                    paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                });
-            });
-            function adjustForMobile() {
-                if (window.innerWidth <= 768) {
-                    const ctaButtons = document.querySelectorAll('.cta-buttons .btn');
-                    ctaButtons.forEach(btn => {
-                        btn.style.padding = '0.7rem 1.2rem';
-                        btn.style.fontSize = '0.9rem';
-                    });
-                    const heroText = document.querySelector('.hero p');
-                    if (heroText) {
-                        heroText.style.fontSize = '1.2rem';
-                    }
-                    const sectionTitles = document.querySelectorAll('.section-title');
-                    sectionTitles.forEach(title => {
-                        title.style.fontSize = '2.5rem';
-                    });
-                }
+            if (settings.postDraw) {
+                settings.postDraw();
             }
-            adjustForMobile();
-            window.addEventListener('resize', adjustForMobile);
-            const backToTopButton = document.getElementById('back-to-top');
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.add('visible');
-                } else {
-                    backToTopButton.classList.remove('visible');
-                }
+            requestAnimationFrame(animateParticles);
+        };
+        const root = document.documentElement;
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        const logoImg = document.getElementById('logo-img');
+        const currentThemeName = document.getElementById('current-theme-name');
+        const logos = {
+            orange: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294410257662023/1759886602502.jpg?ex=68e7105c&is=68e5bedc&hm=fd09ac09632150ae8790fb67a84393434303882b023b5d22161f3dc73c069b63&',
+            purple: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294403614015488/1759886767430.jpg?ex=68e7105a&is=68e5beda&hm=e87c0592b37dd8a29649c8e8ac0c10d809152867ff3c1447e71755a4de2f05ff&',
+            gray: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294390074802236/1759886697194.jpg?ex=68e71057&is=68e5bed7&hm=e6fd12cb99940e0485fe27ea29befb1b3386d754a6579f4b3d6d75f3804b815f&',
+            phrog: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294397020307537/1759886812357.jpg?ex=68e71058&is=68e5bed8&hm=f4413957546ed3fce6960ee96def7060f495fce7a8e8aed492d4aab0537d9df2&',
+            red: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294424526553188/1759886421750.jpg?ex=68e7105f&is=68e5bedf&hm=b943056487c93f7727b3858626657e60834c72775e5f3db5e72ebf7fb3f619ab&',
+            blue: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294371284058225/1759886389877.jpg?ex=68e71052&is=68e5bed2&hm=7aafe0332215d7e8c4cffc01174ff2db10b360f235950a91325e08f549042bd7&'
+        };
+        function applyTheme(theme) {
+            currentTheme = theme;
+            root.style.setProperty('--primary-color', `var(--${theme}-primary)`);
+            root.style.setProperty('--glow-color', `var(--${theme}-glow)`);
+            root.style.setProperty('--bg-color', `var(--${theme}-bg)`);
+            root.style.setProperty('--bg-light-color', `var(--${theme}-bg-light)`);
+            logoImg.src = logos[theme];
+            currentThemeName.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+            themeButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.theme === theme);
             });
-            backToTopButton.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            const featureCards = document.querySelectorAll('.feature-card');
-            featureCards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'translateY(-5px) scale(1.02)';
-                    card.style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)';
-                    card.style.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'translateY(0) scale(1)';
-                    card.style.boxShadow = '0 0 10px var(--glow-color)';
-                    card.style.borderColor = 'transparent';
-                });
-            });
-            const sectionTitles = document.querySelectorAll('.section-title');
-            sectionTitles.forEach(title => {
-                title.classList.add('glitch-effect');
-                title.setAttribute('data-text', title.textContent);
-            });
-            const importantElements = document.querySelectorAll('.btn-primary, .lifetime-special, .stat-card');
-            importantElements.forEach(element => {
-                element.classList.add('pulse-animation');
-            });
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
+            localStorage.setItem('devision-theme', theme);
             initParticles();
-            animateParticles();
-            
-            // Tab switching functionality
-            window.switchTab = function(tabName) {
-                // Hide all sections
-                document.querySelectorAll('.section').forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                // Remove active class from all tab buttons
-                document.querySelectorAll('.tab-button').forEach(button => {
-                    button.classList.remove('active');
-                });
-                
-                // Show selected section
-                document.getElementById(tabName).classList.add('active');
-                
-                // Add active class to clicked tab button
-                event.target.classList.add('active');
-                
-                // Scroll to top when switching tabs
-                window.scrollTo(0, 0);
-            };
-            
-            // Initialize with home tab active
-            document.getElementById('home').classList.add('active');
+        }
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                applyTheme(button.dataset.theme);
+            });
         });
+        const savedTheme = localStorage.getItem('devision-theme') || 'blue';
+        applyTheme(savedTheme);
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-answer').style.maxHeight = null;
+                });
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
+        const countdownElement = document.getElementById('countdown-days');
+        const releaseDate = new Date('2025-11-01T00:00:00');
+        function updateCountdown() {
+            const now = new Date();
+            const diff = releaseDate - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            countdownElement.textContent = days > 0 ? days : '0';
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000 * 60 * 60);
+        const navToggle = document.getElementById('nav-toggle');
+        const navClose = document.getElementById('nav-close');
+        const navModal = document.getElementById('nav-modal');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const toggleNav = () => navModal.classList.toggle('active');
+        navToggle.addEventListener('click', toggleNav);
+        navClose.addEventListener('click', toggleNav);
+        navLinks.forEach(link => link.addEventListener('click', toggleNav));
+        navModal.addEventListener('click', (e) => {
+            if (e.target === navModal) {
+                toggleNav();
+            }
+        });
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        const purchaseButtons = document.querySelectorAll('.btn-purchase');
+        const paymentSection = document.getElementById('payment-section');
+        purchaseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                paymentSection.classList.add('visible');
+                paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
+        const executorsBtn = document.getElementById('executors-btn');
+        const executorsModal = document.getElementById('executors-modal');
+        const executorsClose = document.getElementById('executors-close');
+        const toggleExecutorsModal = () => executorsModal.classList.toggle('active');
+        executorsBtn.addEventListener('click', toggleExecutorsModal);
+        executorsClose.addEventListener('click', toggleExecutorsModal);
+        executorsModal.addEventListener('click', (e) => {
+            if (e.target === executorsModal) {
+                toggleExecutorsModal();
+            }
+        });
+        function adjustForMobile() {
+            if (window.innerWidth <= 768) {
+                const ctaButtons = document.querySelectorAll('.cta-buttons .btn');
+                ctaButtons.forEach(btn => {
+                    btn.style.padding = '0.7rem 1.2rem';
+                    btn.style.fontSize = '0.9rem';
+                });
+                const heroText = document.querySelector('.hero p');
+                if (heroText) {
+                    heroText.style.fontSize = '1.2rem';
+                }
+                const sectionTitles = document.querySelectorAll('.section-title');
+                sectionTitles.forEach(title => {
+                    title.style.fontSize = '2.5rem';
+                });
+            }
+        }
+        adjustForMobile();
+        window.addEventListener('resize', adjustForMobile);
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px) scale(1.02)';
+                card.style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)';
+                card.style.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.boxShadow = '0 0 10px var(--glow-color)';
+                card.style.borderColor = 'transparent';
+            });
+        });
+        const sectionTitles = document.querySelectorAll('.section-title');
+        sectionTitles.forEach(title => {
+            title.classList.add('glitch-effect');
+            title.setAttribute('data-text', title.textContent);
+        });
+        const importantElements = document.querySelectorAll('.btn-primary, .lifetime-special, .stat-card');
+        importantElements.forEach(element => {
+            element.classList.add('pulse-animation');
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        initParticles();
+        animateParticles();
+    });
     </script>
 </body>
 </html>
