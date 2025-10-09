@@ -6,7 +6,7 @@
     <title>DEVISION</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;700&family=Teko:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --orange-primary: #ff6600;
@@ -52,7 +52,6 @@
         }
         body {
             font-family: 'Rajdhani', sans-serif;
-            font-weight: 600;
             background-color: var(--bg-color);
             color: var(--text-color);
             overflow-x: hidden;
@@ -83,7 +82,7 @@
         h1, h2, h3 {
             font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
-            font-weight: 900;
+            font-weight: 700;
             color: var(--primary-color);
             text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
         }
@@ -219,10 +218,9 @@
             border-bottom: 1px solid var(--primary-color);
         }
         .nav-modal-header h2 {
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Teko', sans-serif;
             font-size: 2rem;
             margin: 0;
-            font-weight: 700;
         }
         .nav-modal-close {
             background: none;
@@ -247,10 +245,9 @@
             margin-bottom: 1rem;
             text-decoration: none;
             color: var(--text-color);
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Teko', sans-serif;
             font-size: 1.5rem;
             text-transform: uppercase;
-            font-weight: 700;
             transition: all var(--transition-speed) ease;
         }
         .nav-list a .nav-item-icon {
@@ -270,11 +267,6 @@
         .theme-chooser {
             margin-top: 2rem;
             text-align: center;
-        }
-        .theme-chooser h3 {
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-            font-weight: 700;
         }
         .theme-buttons {
             display: flex;
@@ -324,13 +316,13 @@
         .hero h1 {
             font-size: 5rem;
             margin-bottom: 1rem;
+            animation: flicker 3s infinite alternate;
         }
         .hero p {
             font-size: 1.5rem;
             max-width: 600px;
             margin-bottom: 2rem;
             color: var(--text-muted-color);
-            font-weight: 600;
         }
         .cta-buttons {
             display: flex;
@@ -341,7 +333,7 @@
         .btn {
             padding: 0.8rem 1.5rem;
             font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
+            font-weight: 700;
             text-decoration: none;
             border-radius: 8px;
             transition: all var(--transition-speed) ease;
@@ -382,17 +374,15 @@
             box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
             gap: 0.5rem;
             min-width: 140px;
-            font-weight: 900;
         }
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
             font-size: 3rem;
-            font-weight: 900;
         }
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 4rem;
         }
@@ -418,7 +408,6 @@
         .stat-card .label {
             font-size: 1.2rem;
             color: var(--text-muted-color);
-            font-weight: 600;
         }
         .features-grid {
             display: grid;
@@ -432,6 +421,7 @@
             padding: 2rem;
             border-radius: var(--border-radius);
             transition: all var(--transition-speed) ease;
+            position: relative; /* For edit button positioning */
         }
         .feature-card:hover {
             transform: translateY(-5px);
@@ -441,12 +431,10 @@
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            font-weight: 700;
         }
         .feature-card p {
             color: var(--text-muted-color);
             line-height: 1.6;
-            font-weight: 600;
         }
         .extra-images {
             display: flex;
@@ -481,6 +469,7 @@
             width: 320px;
             display: flex;
             flex-direction: column;
+            position: relative; /* For edit button positioning */
         }
         .pricing-card:not(.lifetime-special):hover {
             transform: translateY(-10px);
@@ -488,13 +477,11 @@
         }
         .pricing-card h3 {
             font-size: 1.8rem;
-            font-weight: 700;
         }
         .pricing-card .price {
             font-size: 3.5rem;
             font-family: 'Orbitron', sans-serif;
             margin: 1rem 0;
-            font-weight: 900;
         }
         .pricing-card .price span {
             font-size: 1.2rem;
@@ -585,7 +572,6 @@
         }
         .payment-header h3 {
             font-size: 2rem;
-            font-weight: 700;
         }
         .payment-header p {
             background: var(--primary-color);
@@ -619,9 +605,9 @@
             margin-bottom: 1rem;
         }
         .payment-method .name {
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Teko', sans-serif;
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 600;
         }
         .payment-method .price {
             font-family: 'Orbitron', sans-serif;
@@ -684,21 +670,18 @@
             align-items: center;
             gap: 0.5rem;
             margin-bottom: 0.5rem;
-            font-weight: 700;
         }
         .contributor-card .tag {
             display: block;
             color: var(--text-muted-color);
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Teko', sans-serif;
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
-            font-weight: 600;
         }
         .contributor-card .discord-btn {
             padding: 0.5rem 1.5rem;
             font-size: 0.9rem;
             width: 100%;
-            font-weight: 700;
         }
         .dev-log-card {
             background: var(--bg-light-color);
@@ -706,11 +689,11 @@
             border-radius: var(--border-radius);
             border: 1px solid var(--primary-color);
             box-shadow: 0 0 10px var(--glow-color);
+            position: relative; /* For edit button positioning */
         }
         .dev-log-card h3 {
             font-size: 2rem;
             margin-bottom: 1.5rem;
-            font-weight: 700;
         }
         .dev-log-card ul {
             list-style: none;
@@ -720,7 +703,6 @@
             padding-left: 20px;
             margin-bottom: 1rem;
             line-height: 1.6;
-            font-weight: 600;
         }
         .dev-log-card li::before {
             content: '»';
@@ -784,7 +766,6 @@
             border-top: 1px solid var(--bg-color);
             padding-top: 1rem;
             color: var(--text-muted-color);
-            font-weight: 600;
         }
         footer {
             text-align: center;
@@ -792,7 +773,6 @@
             border-top: 1px solid var(--bg-light-color);
             color: var(--text-muted-color);
             font-size: 0.9rem;
-            font-weight: 600;
         }
         footer a {
             color: var(--primary-color);
@@ -846,11 +826,10 @@
             border-bottom: 1px solid var(--primary-color);
         }
         .executors-modal-header h2 {
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Teko', sans-serif;
             font-size: 2rem;
             margin: 0;
             color: var(--primary-color);
-            font-weight: 700;
         }
         .executors-modal-close {
             background: none;
@@ -897,10 +876,9 @@
             box-shadow: 0 0 10px var(--glow-color);
         }
         .executor-name {
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Teko', sans-serif;
             font-size: 1.2rem;
             color: var(--text-color);
-            font-weight: 600;
         }
         .executor-status {
             padding: 0.3rem 0.8rem;
@@ -951,10 +929,6 @@
                 width: 100%;
                 max-width: 350px;
             }
-            .contributors-grid {
-                flex-direction: column;
-                align-items: center;
-            }
             .contributor-card {
                 width: 100%;
                 max-width: 300px;
@@ -971,10 +945,6 @@
             }
             .footer {
                 padding: 1.5rem 0;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
             }
         }
         .back-to-top {
@@ -1018,6 +988,56 @@
                 box-shadow: 0 0 0 0 rgba(255, 102, 0, 0);
             }
         }
+        .glitch-effect {
+            position: relative;
+        }
+        .glitch-effect::before,
+        .glitch-effect::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+        .glitch-effect::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--blue-primary);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch-effect::after {
+            left: -2px;
+            text-shadow: 2px 0 var(--red-primary);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim-1 {
+            0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            10% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
+            20% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
+            30% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
+            40% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
+            50% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
+            60% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
+            70% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
+            80% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
+            90% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
+            100% { clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            10% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
+            20% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
+            30% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
+            40% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
+            50% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
+            60% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
+            70% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
+            80% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
+            90% { clip-path: polygon(0 90%, 100% 100%, 100% 10%, 0 0); }
+            100% { clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%); }
+        }
         .btn:hover {
             animation: button-pulse 0.5s ease;
         }
@@ -1031,13 +1051,35 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             border-color: var(--primary-color);
         }
+        /* Editor Mode Styles */
+        .edit-btn {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: var(--red-primary);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            display: none;
+            z-index: 10;
+        }
+        .edit-mode .edit-btn {
+            display: block;
+        }
+        .editable-field[contenteditable="true"] {
+            outline: 2px dashed var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 4px;
+        }
     </style>
 </head>
 <body>
     <canvas id="particle-canvas"></canvas>
     <header id="main-header">
         <a href="#home" class="logo-wrapper">
-            <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425864068933357670/divisiontransparent.png?ex=68e922e5&is=68e7d165&hm=3790a6a056c72c417d7f2bedab2d4f064b1aef292d0308fb2c50ad1f0690b3aa&" alt="Devision Logo" class="logo" id="logo-img">
+            <img src="https://cdn.discordapp.com/attachments/1263186729096184001/1425245632456818729/IMG_20251008_001222.png?ex=68e6e2ee&is=68e5916e&hm=02ed9f42ee05477593ae387ecfda278dbaf7c1eb75deff47bd7e8dc6a8af9bf1&" alt="Devision Logo" class="logo" id="logo-img">
         </a>
         <div class="main-nav-buttons">
             <a href="https://discord.gg/uCspBMst3t" target="_blank" class="nav-button" aria-label="Discord">
@@ -1078,6 +1120,12 @@
                 <a href="#contributors" class="nav-link">
                     <span class="nav-item-text">Contributors</span>
                     <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </a>
+                <a href="#" class="nav-link" id="moderators-tab">
+                    <span class="nav-item-text">Moderators-Only</span>
+                    <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 15V9m6 6H6m6 6v-6m6 6a6 6 0 100-12 6 6 0 000 12z"/>
+                    </svg>
                 </a>
             </nav>
             <div class="theme-chooser">
@@ -1124,28 +1172,40 @@
             <h2 class="section-title fade-in">Features</h2>
             <div class="features-grid">
                 <div class="feature-card fade-in" style="transition-delay: 0.1s;">
-                    <h3>Targetlock</h3>
-                    <p>New generation prediction system and customizable for flawless accuracy. Supports silent aim, multiple targeting modes, and FOV visualization.</p>
+                    <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('h3'), 'feature-title-1')">Edit</div>
+                    <h3 class="editable-field" data-key="feature-title-1" contenteditable="false">Targetlock</h3>
+                    <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('p'), 'feature-desc-1')">Edit</div>
+                    <p class="editable-field" data-key="feature-desc-1" contenteditable="false">new generation prediction system and customizable for flawless accuracy. Supports silent aim, multiple targeting modes, and FOV visualization.</p>
                 </div>
                 <div class="feature-card fade-in" style="transition-delay: 0.2s;">
-                    <h3>Visual Enhancements</h3>
-                    <p>Gain total awareness with customizable ESP, player highlighting, tracers, and material changers. See everything that matters.</p>
+                    <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('h3'), 'feature-title-2')">Edit</div>
+                    <h3 class="editable-field" data-key="feature-title-2" contenteditable="false">Visual Enhancements</h3>
+                    <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('p'), 'feature-desc-2')">Edit</div>
+                    <p class="editable-field" data-key="feature-desc-2" contenteditable="false">Gain total awareness with customizable ESP, player highlighting, tracers, and material changers. See everything that matters.</p>
                 </div>
                 <div class="feature-card fade-in" style="transition-delay: 0.3s;">
-                    <h3>Dynamic Theming</h3>
-                    <p>Personalize your entire experience. Choose from multiple futuristic themes that alter colors.</p>
+                    <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('h3'), 'feature-title-3')">Edit</div>
+                    <h3 class="editable-field" data-key="feature-title-3" contenteditable="false">Dynamic Theming</h3>
+                    <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('p'), 'feature-desc-3')">Edit</div>
+                    <p class="editable-field" data-key="feature-desc-3" contenteditable="false">Personalize your entire experience. Choose from multiple futuristic themes that alter colors.</p>
                 </div>
                 <div class="feature-card fade-in" style="transition-delay: 0.4s;">
-                    <h3>Avatar Customization</h3>
-                    <p>Modify your client-side appearance with our avatar changer. Load any user ID to instantly adopt their look in-game.</p>
+                    <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('h3'), 'feature-title-4')">Edit</div>
+                    <h3 class="editable-field" data-key="feature-title-4" contenteditable="false">Avatar Customization</h3>
+                    <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('p'), 'feature-desc-4')">Edit</div>
+                    <p class="editable-field" data-key="feature-desc-4" contenteditable="false">Modify your client-side appearance with our avatar changer. Load any user ID to instantly adopt their look in-game.</p>
                 </div>
                 <div class="feature-card fade-in" style="transition-delay: 0.5s;">
-                    <h3>Secure & Undetected</h3>
-                    <p>Built with security as the top priority. Frequent updates ensure our script remains ahead of anti-cheat measures.</p>
+                    <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('h3'), 'feature-title-5')">Edit</div>
+                    <h3 class="editable-field" data-key="feature-title-5" contenteditable="false">Secure & Undetected</h3>
+                    <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('p'), 'feature-desc-5')">Edit</div>
+                    <p class="editable-field" data-key="feature-desc-5" contenteditable="false">Built with security as the top priority. Frequent updates ensure our script remains ahead of anti-cheat measures.</p>
                 </div>
                 <div class="feature-card fade-in" style="transition-delay: 0.6s;">
-                    <h3>Optimized Performance</h3>
-                    <p>Experience a lag-free and smooth gameplay session. Our code is highly optimized to ensure minimal impact on your system's performance.</p>
+                    <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('h3'), 'feature-title-6')">Edit</div>
+                    <h3 class="editable-field" data-key="feature-title-6" contenteditable="false">Optimized Performance</h3>
+                    <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('p'), 'feature-desc-6')">Edit</div>
+                    <p class="editable-field" data-key="feature-desc-6" contenteditable="false">Experience a lag-free and smooth gameplay session. Our code is highly optimized to ensure minimal impact on your system's performance.</p>
                 </div>
             </div>
             <div class="extra-images fade-in">
@@ -1157,27 +1217,31 @@
             <h2 class="section-title fade-in">Pricing</h2>
             <div class="pricing-grid">
                 <div class="pricing-card fade-in" style="transition-delay: 0.1s;">
-                    <h3>Weekly</h3>
-                    <div class="price">$5<span>/week</span></div>
+                    <div class="edit-btn" onclick="makeEditable(this.querySelector('h3'), 'pricing-title-1')">Edit</div>
+                    <h3 class="editable-field" data-key="pricing-title-1" contenteditable="false">Weekly</h3>
+                    <div class="edit-btn" onclick="makeEditable(this.querySelector('.price'), 'pricing-price-1')">Edit</div>
+                    <div class="price editable-field" data-key="pricing-price-1" contenteditable="false">$5<span>/week</span></div>
                     <ul>
-                        <li>Full Feature Access</li>
-                        <li>7-Day Key Duration</li>
-                        <li>Standard Support</li>
-                        <li>All Future Updates</li>
+                        <li class="editable-field" data-key="pricing-benefit-1-1" contenteditable="false">Full Feature Access</li>
+                        <li class="editable-field" data-key="pricing-benefit-1-2" contenteditable="false">7-Day Key Duration</li>
+                        <li class="editable-field" data-key="pricing-benefit-1-3" contenteditable="false">Standard Support</li>
+                        <li class="editable-field" data-key="pricing-benefit-1-4" contenteditable="false">All Future Updates</li>
                     </ul>
                     <button class="btn btn-secondary btn-purchase">Purchase</button>
                 </div>
                 <div class="pricing-card lifetime-special fade-in" style="transition-delay: 0.2s;">
                     <div class="card-content">
                         <svg class="crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
-                        <h3>Lifetime</h3>
+                        <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('h3'), 'pricing-title-2')">Edit</div>
+                        <h3 class="editable-field" data-key="pricing-title-2" contenteditable="false">Lifetime</h3>
                         <p class="recommended">(Recommended)</p>
-                        <div class="price">$10<span>/onetime</span></div>
+                        <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('.price'), 'pricing-price-2')">Edit</div>
+                        <div class="price editable-field" data-key="pricing-price-2" contenteditable="false">$10<span>/onetime</span></div>
                         <ul>
-                            <li>Full Feature Access</li>
-                            <li>Permanent Key</li>
-                            <li>Buyer Role</li>
-                            <li>All Future Updates</li>
+                            <li class="editable-field" data-key="pricing-benefit-2-1" contenteditable="false">Full Feature Access</li>
+                            <li class="editable-field" data-key="pricing-benefit-2-2" contenteditable="false">Permanent Key</li>
+                            <li class="editable-field" data-key="pricing-benefit-2-3" contenteditable="false">Buyer Role</li>
+                            <li class="editable-field" data-key="pricing-benefit-2-4" contenteditable="false">All Future Updates</li>
                         </ul>
                         <button class="btn btn-primary btn-purchase">Purchase</button>
                     </div>
@@ -1222,8 +1286,22 @@
         </section>
         <section id="dev-logs" class="container">
             <h2 class="section-title fade-in">Dev-Logs</h2>
-            <div id="dev-logs-container">
-                <p>Loading dev logs...</p>
+            <div class="dev-log-card fade-in">
+                <div class="edit-btn" onclick="makeEditable(this.parentNode.querySelector('h3'), 'devlog-title')">Edit</div>
+                <h3 class="editable-field" data-key="devlog-title" contenteditable="false">Update Log #1</h3>
+                <ul>
+                    <li class="editable-field" data-key="devlog-entry-1" contenteditable="false">Added 3 modes to redirection: mouse, remote, namecall, raycast [with wallbang for 0 delay games]</li>
+                    <li class="editable-field" data-key="devlog-entry-2" contenteditable="false">Added silent aim [soon fov with gradients]</li>
+                    <li class="editable-field" data-key="devlog-entry-3" contenteditable="false">Changed fov to screengui + glow
+                        <div class="edit-btn" onclick="makeEditableImage(this.parentNode.querySelector('.dev-log-image-preview'), 'devlog-img-1')">Edit Image</div>
+                        <img class="dev-log-image-preview editable-image" data-key="devlog-img-1" src="https://cdn.discordapp.com/attachments/1422290432070516786/1423689567101521930/image.png?ex=68e7d13b&is=68e67fbb&hm=a9253c6b2ee77b745d2ce32a0de3cdb586a66aaa9ac9caad2b25908da9b77f56&" alt="Glow Preview">
+                    </li>
+                    <li class="editable-field" data-key="devlog-entry-4" contenteditable="false">Added 3 positions to fov (mouse, center, barrel (gun)) and added lerp option</li>
+                    <li class="editable-field" data-key="devlog-entry-5" contenteditable="false">Added highlight target/client, material changer to client, and avatar changer with user id and added gui
+                        <div class="edit-btn" onclick="makeEditableImage(this.parentNode.querySelector('.dev-log-image-preview'), 'devlog-img-2')">Edit Image</div>
+                        <img class="dev-log-image-preview editable-image" data-key="devlog-img-2" src="https://cdn.discordapp.com/attachments/1422290432070516786/1424827171255488512/C48DF7BA-05E4-4603-A436-D8E9E29B06C7.png?ex=68e80035&is=68e6aeb5&hm=9ed80b6e448f8b8863aa99cd565257734ec72a2c2876dda757f7ec6bf5965605&" alt="GUI Preview">
+                    </li>
+                </ul>
             </div>
         </section>
         <section id="faq" class="container">
@@ -1340,396 +1418,563 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
     </div>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let currentTheme = 'orange';
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-        const themeSettings = {
-            orange: {
-                create: () => ({
-                    emoji: ['🎃', '👻', '🦇', '🕷️'][Math.floor(Math.random() * 4)],
-                    x: Math.random() * canvas.width,
-                    y: canvas.height + 20,
-                    size: Math.random() * 20 + 20,
-                    speedX: Math.random() * 2 - 1,
-                    speedY: Math.random() * -2 - 1,
-                    rotation: Math.random() * Math.PI * 2,
-                    rotationSpeed: (Math.random() - 0.5) * 0.02
-                }),
-                update: p => {
-                    p.x += p.speedX;
-                    p.y += p.speedY;
-                    p.rotation += p.rotationSpeed;
-                },
-                draw: p => {
-                    ctx.save();
-                    ctx.translate(p.x, p.y);
-                    ctx.rotate(p.rotation);
-                    ctx.font = `${p.size}px Arial`;
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(p.emoji, 0, 0);
-                    ctx.restore();
-                },
-                maxParticles: 5
-            },
-            purple: {
-                create: () => ({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 2 + 1,
-                    speedX: (Math.random() - 0.5) * 0.5,
-                    speedY: (Math.random() - 0.5) * 0.5,
-                    connections: []
-                }),
-                update: p => {
-                    p.x += p.speedX;
-                    p.y += p.speedY;
-                    if (p.x > canvas.width || p.x < 0) p.speedX *= -1;
-                    if (p.y > canvas.height || p.y < 0) p.speedY *= -1;
-                },
-                draw: p => {
-                    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--purple-primary');
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fill();
-                },
-                postDraw: () => {
-                    ctx.strokeStyle = `rgba(163, 53, 240, 0.2)`;
-                    for (let i = 0; i < particles.length; i++) {
-                        for (let j = i; j < particles.length; j++) {
-                            const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
-                            if (dist < 100) {
-                                ctx.beginPath();
-                                ctx.moveTo(particles[i].x, particles[i].y);
-                                ctx.lineTo(particles[j].x, particles[j].y);
-                                ctx.stroke();
-                            }
+        // MODERATOR MODE SYSTEM
+        let isEditMode = false;
+        const MODERATORS = [
+            { id: 'hxcker', password: 'hxcker@1' },
+            { id: 'craxes', password: 'craxes@1' },
+            { id: 'od', password: 'od@1' }
+        ];
+
+        function checkModerator() {
+            const saved = localStorage.getItem('devision-moderator');
+            if (!saved) return false;
+            try {
+                const data = JSON.parse(saved);
+                const now = Date.now();
+                if (now - data.loginTime > 1000 * 60 * 60 * 24) { // Expire after 24h
+                    localStorage.removeItem('devision-moderator');
+                    return false;
+                }
+                return true;
+            } catch {
+                localStorage.removeItem('devision-moderator');
+                return false;
+            }
+        }
+
+        function loginModerator(id, password) {
+            const user = MODERATORS.find(m => m.id === id && m.password === password);
+            if (!user) return false;
+            localStorage.setItem('devision-moderator', JSON.stringify({
+                id: user.id,
+                loginTime: Date.now()
+            }));
+            return true;
+        }
+
+        function logoutModerator() {
+            localStorage.removeItem('devision-moderator');
+            isEditMode = false;
+            document.body.classList.remove('edit-mode');
+            location.reload();
+        }
+
+        function toggleEditMode() {
+            if (!checkModerator()) {
+                alert("Access Denied. Please log in as a moderator.");
+                showLoginModal();
+                return;
+            }
+            isEditMode = !isEditMode;
+            document.body.classList.toggle('edit-mode', isEditMode);
+        }
+
+        function showLoginModal() {
+            const modal = document.createElement('div');
+            modal.id = 'login-modal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                backdrop-filter: blur(10px);
+                z-index: 9999;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            `;
+            modal.innerHTML = `
+                <div style="background: var(--bg-light-color); padding: 2rem; border-radius: 12px; width: 90%; max-width: 400px; box-shadow: 0 0 20px var(--glow-color);">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary-color);">Moderator Login</h3>
+                    <input type="text" id="mod-id" placeholder="Your ID (e.g., hxcker)" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: var(--bg-color); border: 1px solid var(--text-muted-color); color: var(--text-color); border-radius: 6px;">
+                    <input type="password" id="mod-pass" placeholder="Password" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: var(--bg-color); border: 1px solid var(--text-muted-color); color: var(--text-color); border-radius: 6px;">
+                    <div style="display: flex; gap: 1rem; justify-content: space-between;">
+                        <button onclick="loginSubmit()" style="padding: 0.5rem 1rem; background: var(--primary-color); color: var(--bg-color); border: none; border-radius: 6px; cursor: pointer;">Login</button>
+                        <button onclick="document.body.removeChild(document.getElementById('login-modal'))" style="padding: 0.5rem 1rem; background: transparent; color: var(--text-muted-color); border: 1px solid var(--text-muted-color); border-radius: 6px; cursor: pointer;">Cancel</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            function loginSubmit() {
+                const id = document.getElementById('mod-id').value.trim();
+                const pass = document.getElementById('mod-pass').value.trim();
+                if (loginModerator(id, pass)) {
+                    document.body.removeChild(modal);
+                    toggleEditMode();
+                } else {
+                    alert("Invalid credentials.");
+                }
+            }
+        }
+
+        function makeEditable(element, key) {
+            if (!isEditMode) return;
+            element.contentEditable = true;
+            element.focus();
+            const range = document.createRange();
+            range.selectNodeContents(element);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+
+            element.addEventListener('blur', () => {
+                element.contentEditable = false;
+                saveField(key, element.innerHTML);
+            }, { once: true });
+        }
+
+        function makeEditableImage(imgElement, key) {
+            if (!isEditMode) return;
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        imgElement.src = event.target.result;
+                        saveField(key, event.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        function saveField(key, value) {
+            let saved = localStorage.getItem('devision-content') || '{}';
+            let data = {};
+            try {
+                data = JSON.parse(saved);
+            } catch {}
+            data[key] = value;
+            localStorage.setItem('devision-content', JSON.stringify(data));
+        }
+
+        function loadSavedContent() {
+            const saved = localStorage.getItem('devision-content');
+            if (!saved) return;
+            try {
+                const data = JSON.parse(saved);
+                Object.keys(data).forEach(key => {
+                    const el = document.querySelector(`[data-key="${key}"]`);
+                    if (el) {
+                        if (el.tagName === 'IMG') {
+                            el.src = data[key];
+                        } else {
+                            el.innerHTML = data[key];
                         }
                     }
+                });
+            } catch {}
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let currentTheme = 'orange';
+
+            const resizeCanvas = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            };
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            const themeSettings = {
+                orange: {
+                    create: () => ({
+                        emoji: ['🎃', '👻', '🦇', '🕷️'][Math.floor(Math.random() * 4)],
+                        x: Math.random() * canvas.width,
+                        y: canvas.height + 20,
+                        size: Math.random() * 20 + 20,
+                        speedX: Math.random() * 2 - 1,
+                        speedY: Math.random() * -2 - 1,
+                        rotation: Math.random() * Math.PI * 2,
+                        rotationSpeed: (Math.random() - 0.5) * 0.02
+                    }),
+                    update: p => {
+                        p.x += p.speedX;
+                        p.y += p.speedY;
+                        p.rotation += p.rotationSpeed;
+                    },
+                    draw: p => {
+                        ctx.save();
+                        ctx.translate(p.x, p.y);
+                        ctx.rotate(p.rotation);
+                        ctx.font = `${p.size}px Arial`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(p.emoji, 0, 0);
+                        ctx.restore();
+                    },
+                    maxParticles: 5
                 },
-                maxParticles: 50
-            },
-            gray: {
-                create: () => ({
-                    x: Math.random() * canvas.width,
-                    y: -10,
-                    size: Math.random() * 10 + 5,
-                    speedY: Math.random() * 2 + 1,
-                    opacity: Math.random() * 0.5 + 0.2,
-                }),
-                update: p => {
-                    p.y += p.speedY;
+                purple: {
+                    create: () => ({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        size: Math.random() * 2 + 1,
+                        speedX: (Math.random() - 0.5) * 0.5,
+                        speedY: (Math.random() - 0.5) * 0.5,
+                        connections: []
+                    }),
+                    update: p => {
+                        p.x += p.speedX;
+                        p.y += p.speedY;
+                        if (p.x > canvas.width || p.x < 0) p.speedX *= -1;
+                        if (p.y > canvas.height || p.y < 0) p.speedY *= -1;
+                    },
+                    draw: p => {
+                        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--purple-primary');
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    },
+                    postDraw: () => {
+                        ctx.strokeStyle = `rgba(163, 53, 240, 0.2)`;
+                        for (let i = 0; i < particles.length; i++) {
+                            for (let j = i; j < particles.length; j++) {
+                                const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+                                if (dist < 100) {
+                                    ctx.beginPath();
+                                    ctx.moveTo(particles[i].x, particles[i].y);
+                                    ctx.lineTo(particles[j].x, particles[j].y);
+                                    ctx.stroke();
+                                }
+                            }
+                        }
+                    },
+                    maxParticles: 50
                 },
-                draw: p => {
-                    ctx.fillStyle = `rgba(204, 204, 204, ${p.opacity})`;
-                    ctx.fillRect(p.x, p.y, 1, p.size);
+                gray: {
+                    create: () => ({
+                        x: Math.random() * canvas.width,
+                        y: -10,
+                        size: Math.random() * 10 + 5,
+                        speedY: Math.random() * 2 + 1,
+                        opacity: Math.random() * 0.5 + 0.2,
+                    }),
+                    update: p => {
+                        p.y += p.speedY;
+                    },
+                    draw: p => {
+                        ctx.fillStyle = `rgba(204, 204, 204, ${p.opacity})`;
+                        ctx.fillRect(p.x, p.y, 1, p.size);
+                    },
+                    maxParticles: 70
                 },
-                maxParticles: 70
-            },
-            phrog: {
-                create: () => ({
-                    x: Math.random() * canvas.width,
-                    y: -10,
-                    length: Math.random() * 20 + 10,
-                    speedY: Math.random() * 10 + 5,
-                    opacity: Math.random() * 0.3 + 0.1,
-                }),
-                update: p => {
-                    p.y += p.speedY;
+                phrog: {
+                    create: () => ({
+                        x: Math.random() * canvas.width,
+                        y: -10,
+                        length: Math.random() * 20 + 10,
+                        speedY: Math.random() * 10 + 5,
+                        opacity: Math.random() * 0.3 + 0.1,
+                    }),
+                    update: p => {
+                        p.y += p.speedY;
+                    },
+                    draw: p => {
+                        ctx.strokeStyle = `rgba(51, 255, 51, ${p.opacity})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p.x, p.y + p.length);
+                        ctx.stroke();
+                    },
+                    maxParticles: 80
                 },
-                draw: p => {
-                    ctx.strokeStyle = `rgba(51, 255, 51, ${p.opacity})`;
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(p.x, p.y + p.length);
-                    ctx.stroke();
+                red: {
+                    create: () => ({
+                        x: Math.random() * canvas.width,
+                        y: canvas.height + 10,
+                        size: Math.random() * 3 + 1,
+                        speedY: Math.random() * -1 - 0.5,
+                        opacity: 1
+                    }),
+                    update: p => {
+                        p.y += p.speedY;
+                        p.opacity -= 0.01;
+                    },
+                    draw: p => {
+                        ctx.fillStyle = `rgba(255, 31, 31, ${p.opacity})`;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    },
+                    maxParticles: 60
                 },
-                maxParticles: 80
-            },
-            red: {
-                create: () => ({
-                    x: Math.random() * canvas.width,
-                    y: canvas.height + 10,
-                    size: Math.random() * 3 + 1,
-                    speedY: Math.random() * -1 - 0.5,
-                    opacity: 1
-                }),
-                update: p => {
-                    p.y += p.speedY;
-                    p.opacity -= 0.01;
-                },
-                draw: p => {
-                    ctx.fillStyle = `rgba(255, 31, 31, ${p.opacity})`;
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fill();
-                },
-                maxParticles: 60
-            },
-            blue: {
-                create: () => ({
-                    x: Math.random() * canvas.width * 1.5,
-                    y: Math.random() * canvas.height * 1.5 - (canvas.height * 0.5),
-                    size: Math.random() * 1.5 + 0.5,
-                    speed: Math.random() * 1 + 0.5,
-                    opacity: 0
-                }),
-                update: p => {
-                    p.x -= p.speed;
-                    p.y += p.speed / 2;
-                    if(p.opacity < 1) p.opacity += 0.02;
-                    if (p.x < 0 || p.y > canvas.height) {
-                        Object.assign(p, themeSettings.blue.create());
-                        p.x = canvas.width + 20;
-                        p.y = Math.random() * canvas.height;
-                        p.opacity = 0;
+                blue: {
+                    create: () => ({
+                        x: Math.random() * canvas.width * 1.5,
+                        y: Math.random() * canvas.height * 1.5 - (canvas.height * 0.5),
+                        size: Math.random() * 1.5 + 0.5,
+                        speed: Math.random() * 1 + 0.5,
+                        opacity: 0
+                    }),
+                    update: p => {
+                        p.x -= p.speed;
+                        p.y += p.speed / 2;
+                        if(p.opacity < 1) p.opacity += 0.02;
+                        if (p.x < 0 || p.y > canvas.height) {
+                            Object.assign(p, themeSettings.blue.create());
+                            p.x = canvas.width + 20;
+                            p.y = Math.random() * canvas.height;
+                            p.opacity = 0;
+                        }
+                    },
+                    draw: p => {
+                        ctx.fillStyle = `rgba(0, 162, 255, ${p.opacity})`;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    },
+                    maxParticles: 80
+                }
+            };
+
+            const initParticles = () => {
+                particles = [];
+                const settings = themeSettings[currentTheme];
+                for (let i = 0; i < settings.maxParticles; i++) {
+                    particles.push(settings.create());
+                }
+            };
+
+            const animateParticles = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const settings = themeSettings[currentTheme];
+                particles.forEach((p, index) => {
+                    settings.update(p);
+                    settings.draw(p);
+                    let isOutOfBounds = false;
+                    if (currentTheme === 'orange') isOutOfBounds = p.y < -p.size;
+                    if (currentTheme === 'gray' || currentTheme === 'phrog') isOutOfBounds = p.y > canvas.height + p.size;
+                    if (currentTheme === 'red') isOutOfBounds = p.opacity <= 0;
+                    if (isOutOfBounds) {
+                        particles[index] = settings.create();
                     }
-                },
-                draw: p => {
-                    ctx.fillStyle = `rgba(0, 162, 255, ${p.opacity})`;
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fill();
-                },
-                maxParticles: 80
-            }
-        };
-        const initParticles = () => {
-            particles = [];
-            const settings = themeSettings[currentTheme];
-            for (let i = 0; i < settings.maxParticles; i++) {
-                particles.push(settings.create());
-            }
-        };
-        const animateParticles = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const settings = themeSettings[currentTheme];
-            particles.forEach((p, index) => {
-                settings.update(p);
-                settings.draw(p);
-                let isOutOfBounds = false;
-                if (currentTheme === 'orange') isOutOfBounds = p.y < -p.size;
-                if (currentTheme === 'gray' || currentTheme === 'phrog') isOutOfBounds = p.y > canvas.height + p.size;
-                if (currentTheme === 'red') isOutOfBounds = p.opacity <= 0;
-                if (isOutOfBounds) {
-                    particles[index] = settings.create();
-                }
-            });
-            if (settings.postDraw) {
-                settings.postDraw();
-            }
-            requestAnimationFrame(animateParticles);
-        };
-        const root = document.documentElement;
-        const themeButtons = document.querySelectorAll('.theme-btn');
-        const logoImg = document.getElementById('logo-img');
-        const currentThemeName = document.getElementById('current-theme-name');
-        const unifiedLogo = "https://cdn.discordapp.com/attachments/1297289407573000243/1425864068933357670/divisiontransparent.png?ex=68e922e5&is=68e7d165&hm=3790a6a056c72c417d7f2bedab2d4f064b1aef292d0308fb2c50ad1f0690b3aa&";
-        function applyTheme(theme) {
-            currentTheme = theme;
-            root.style.setProperty('--primary-color', `var(--${theme}-primary)`);
-            root.style.setProperty('--glow-color', `var(--${theme}-glow)`);
-            root.style.setProperty('--bg-color', `var(--${theme}-bg)`);
-            root.style.setProperty('--bg-light-color', `var(--${theme}-bg-light)`);
-            logoImg.src = unifiedLogo;
-            currentThemeName.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
-            themeButtons.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.theme === theme);
-            });
-            localStorage.setItem('devision-theme', theme);
-            initParticles();
-        }
-        themeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                applyTheme(button.dataset.theme);
-            });
-        });
-        const savedTheme = localStorage.getItem('devision-theme') || 'orange';
-        applyTheme(savedTheme);
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            const answer = item.querySelector('.faq-answer');
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                faqItems.forEach(i => {
-                    i.classList.remove('active');
-                    i.querySelector('.faq-answer').style.maxHeight = null;
                 });
-                if (!isActive) {
-                    item.classList.add('active');
-                    answer.style.maxHeight = answer.scrollHeight + "px";
+                if (settings.postDraw) {
+                    settings.postDraw();
                 }
-            });
-        });
-        const countdownElement = document.getElementById('countdown-days');
-        const releaseDate = new Date('2025-11-01T00:00:00');
-        function updateCountdown() {
-            const now = new Date();
-            const diff = releaseDate - now;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            countdownElement.textContent = days > 0 ? days : '0';
-        }
-        updateCountdown();
-        setInterval(updateCountdown, 1000 * 60 * 60);
-        const navToggle = document.getElementById('nav-toggle');
-        const navClose = document.getElementById('nav-close');
-        const navModal = document.getElementById('nav-modal');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const toggleNav = () => navModal.classList.toggle('active');
-        navToggle.addEventListener('click', toggleNav);
-        navClose.addEventListener('click', toggleNav);
-        navLinks.forEach(link => link.addEventListener('click', toggleNav));
-        navModal.addEventListener('click', (e) => {
-            if (e.target === navModal) {
-                toggleNav();
-            }
-        });
-        const header = document.getElementById('main-header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        const purchaseButtons = document.querySelectorAll('.btn-purchase');
-        const paymentSection = document.getElementById('payment-section');
-        purchaseButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                paymentSection.classList.add('visible');
-                paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            });
-        });
-        const executorsBtn = document.getElementById('executors-btn');
-        const executorsModal = document.getElementById('executors-modal');
-        const executorsClose = document.getElementById('executors-close');
-        const toggleExecutorsModal = () => executorsModal.classList.toggle('active');
-        executorsBtn.addEventListener('click', toggleExecutorsModal);
-        executorsClose.addEventListener('click', toggleExecutorsModal);
-        executorsModal.addEventListener('click', (e) => {
-            if (e.target === executorsModal) {
-                toggleExecutorsModal();
-            }
-        });
-        function adjustForMobile() {
-            if (window.innerWidth <= 768) {
-                const ctaButtons = document.querySelectorAll('.cta-buttons .btn');
-                ctaButtons.forEach(btn => {
-                    btn.style.padding = '0.7rem 1.2rem';
-                    btn.style.fontSize = '0.9rem';
+                requestAnimationFrame(animateParticles);
+            };
+
+            const root = document.documentElement;
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            const logoImg = document.getElementById('logo-img');
+            const currentThemeName = document.getElementById('current-theme-name');
+            const logos = {
+                orange: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294410257662023/1759886602502.jpg?ex=68e7105c&is=68e5bedc&hm=fd09ac09632150ae8790fb67a84393434303882b023b5d22161f3dc73c069b63&',
+                purple: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294403614015488/1759886767430.jpg?ex=68e7105a&is=68e5beda&hm=e87c0592b37dd8a29649c8e8ac0c10d809152867ff3c1447e71755a4de2f05ff&',
+                gray: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294390074802236/1759886697194.jpg?ex=68e71057&is=68e5bed7&hm=e6fd12cb99940e0485fe27ea29befb1b3386d754a6579f4b3d6d75f3804b815f&',
+                phrog: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294397020307537/1759886812357.jpg?ex=68e71058&is=68e5bed8&hm=f4413957546ed3fce6960ee96def7060f495fce7a8e8aed492d4aab0537d9df2&',
+                red: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294424526553188/1759886421750.jpg?ex=68e7105f&is=68e5bedf&hm=b943056487c93f7727b3858626657e60834c72775e5f3db5e72ebf7fb3f619ab&',
+                blue: 'https://cdn.discordapp.com/attachments/1263186729096184001/1425294371284058225/1759886389877.jpg?ex=68e71052&is=68e5bed2&hm=7aafe0332215d7e8c4cffc01174ff2db10b360f235950a91325e08f549042bd7&'
+            };
+
+            function applyTheme(theme) {
+                currentTheme = theme;
+                root.style.setProperty('--primary-color', `var(--${theme}-primary)`);
+                root.style.setProperty('--glow-color', `var(--${theme}-glow)`);
+                root.style.setProperty('--bg-color', `var(--${theme}-bg)`);
+                root.style.setProperty('--bg-light-color', `var(--${theme}-bg-light)`);
+                logoImg.src = logos[theme];
+                currentThemeName.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+                themeButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.theme === theme);
                 });
-                const heroText = document.querySelector('.hero p');
-                if (heroText) {
-                    heroText.style.fontSize = '1.2rem';
-                }
-                const sectionTitles = document.querySelectorAll('.section-title');
-                sectionTitles.forEach(title => {
-                    title.style.fontSize = '2.5rem';
+                localStorage.setItem('devision-theme', theme);
+                initParticles();
+            }
+
+            themeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    applyTheme(button.dataset.theme);
                 });
+            });
+
+            const savedTheme = localStorage.getItem('devision-theme') || 'orange';
+            applyTheme(savedTheme);
+
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    faqItems.forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+                    if (!isActive) {
+                        item.classList.add('active');
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                });
+            });
+
+            const countdownElement = document.getElementById('countdown-days');
+            const releaseDate = new Date('2025-11-01T00:00:00');
+            function updateCountdown() {
+                const now = new Date();
+                const diff = releaseDate - now;
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                countdownElement.textContent = days > 0 ? days : '0';
             }
-        }
-        adjustForMobile();
-        window.addEventListener('resize', adjustForMobile);
-        const backToTopButton = document.getElementById('back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            updateCountdown();
+            setInterval(updateCountdown, 1000 * 60 * 60);
+
+            const navToggle = document.getElementById('nav-toggle');
+            const navClose = document.getElementById('nav-close');
+            const navModal = document.getElementById('nav-modal');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const toggleNav = () => navModal.classList.toggle('active');
+            navToggle.addEventListener('click', toggleNav);
+            navClose.addEventListener('click', toggleNav);
+            navLinks.forEach(link => link.addEventListener('click', toggleNav));
+            navModal.addEventListener('click', (e) => {
+                if (e.target === navModal) {
+                    toggleNav();
+                }
             });
-        });
-        const featureCards = document.querySelectorAll('.feature-card');
-        featureCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-5px) scale(1.02)';
-                card.style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)';
-                card.style.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
             });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0) scale(1)';
-                card.style.boxShadow = '0 0 10px var(--glow-color)';
-                card.style.borderColor = 'transparent';
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+            const purchaseButtons = document.querySelectorAll('.btn-purchase');
+            const paymentSection = document.getElementById('payment-section');
+            purchaseButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    paymentSection.classList.add('visible');
+                    paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
             });
-        });
-        const importantElements = document.querySelectorAll('.btn-primary, .lifetime-special, .stat-card');
-        importantElements.forEach(element => {
-            element.classList.add('pulse-animation');
-        });
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
+
+            const executorsBtn = document.getElementById('executors-btn');
+            const executorsModal = document.getElementById('executors-modal');
+            const executorsClose = document.getElementById('executors-close');
+            const toggleExecutorsModal = () => executorsModal.classList.toggle('active');
+            executorsBtn.addEventListener('click', toggleExecutorsModal);
+            executorsClose.addEventListener('click', toggleExecutorsModal);
+            executorsModal.addEventListener('click', (e) => {
+                if (e.target === executorsModal) {
+                    toggleExecutorsModal();
+                }
+            });
+
+            function adjustForMobile() {
+                if (window.innerWidth <= 768) {
+                    const ctaButtons = document.querySelectorAll('.cta-buttons .btn');
+                    ctaButtons.forEach(btn => {
+                        btn.style.padding = '0.7rem 1.2rem';
+                        btn.style.fontSize = '0.9rem';
+                    });
+                    const heroText = document.querySelector('.hero p');
+                    if (heroText) {
+                        heroText.style.fontSize = '1.2rem';
+                    }
+                    const sectionTitles = document.querySelectorAll('.section-title');
+                    sectionTitles.forEach(title => {
+                        title.style.fontSize = '2.5rem';
                     });
                 }
-            });
-        });
-        
-        fetch('/devlogs.json')
-            .then(response => {
-                if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                return response.json();
-            })
-            .then(data => {
-                const container = document.getElementById('dev-logs-container');
-                container.innerHTML = '';
-                if (!data || !data.logs || !Array.isArray(data.logs)) {
-                    container.innerHTML = '<p>No dev logs available.</p>';
-                    return;
+            }
+            adjustForMobile();
+            window.addEventListener('resize', adjustForMobile);
+
+            const backToTopButton = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
                 }
-                data.logs.forEach(log => {
-                    const card = document.createElement('div');
-                    card.className = 'dev-log-card fade-in';
-                    let html = `<h3>${log.title}</h3><ul>`;
-                    if (Array.isArray(log.entries)) {
-                        log.entries.forEach(entry => {
-                            html += `<li>${entry.text}`;
-                            if (entry.image) {
-                                html += `<img class="dev-log-image-preview" src="${entry.image}" alt="Preview">`;
-                            }
-                            html += `</li>`;
+            });
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px) scale(1.02)';
+                    card.style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)';
+                    card.style.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) scale(1)';
+                    card.style.boxShadow = '0 0 10px var(--glow-color)';
+                    card.style.borderColor = 'transparent';
+                });
+            });
+
+            const sectionTitles = document.querySelectorAll('.section-title');
+            sectionTitles.forEach(title => {
+                title.classList.add('glitch-effect');
+                title.setAttribute('data-text', title.textContent);
+            });
+
+            const importantElements = document.querySelectorAll('.btn-primary, .lifetime-special, .stat-card');
+            importantElements.forEach(element => {
+                element.classList.add('pulse-animation');
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
                         });
                     }
-                    html += `</ul>`;
-                    card.innerHTML = html;
-                    container.appendChild(card);
                 });
-            })
-            .catch(err => {
-                console.error('Failed to load devlogs.json:', err);
-                document.getElementById('dev-logs-container').innerHTML = '<p>Failed to load dev logs.</p>';
             });
-        initParticles();
-        animateParticles();
-    });
+
+            // MODERATOR SYSTEM INIT
+            const modTab = document.getElementById('moderators-tab');
+            if (modTab) {
+                modTab.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggleEditMode();
+                });
+            }
+            loadSavedContent();
+            document.body.classList.toggle('edit-mode', checkModerator());
+
+            initParticles();
+            animateParticles();
+        });
     </script>
 </body>
 </html>
