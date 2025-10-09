@@ -1767,6 +1767,20 @@
                 behavior: 'smooth'
             });
         });
+
+        const loadingScreen = document.getElementById('loading-screen');
+setTimeout(() => {
+    loadingScreen.classList.add('fade-out');
+}, 2000);
+
+// Fallback to remove loading screen after a longer timeout
+setTimeout(() => {
+    if (loadingScreen.classList.contains('fade-out')) {
+        return; // Already faded out
+    }
+    loadingScreen.style.display = 'none'; // Hide it completely
+}, 5000); // Remove after 5 seconds
+        
         // Add hover effects to cards
         const featureCards = document.querySelectorAll('.feature-card');
         featureCards.forEach(card => {
