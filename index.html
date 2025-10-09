@@ -379,7 +379,8 @@
             gap: 0.5rem;
             min-width: 140px;
         }
-        .btn-discord::before {
+        /* REMOVED WHITE PULSE DOT FROM DISCORD BUTTON */
+        /* .btn-discord::before {
             content: '';
             position: absolute;
             top: -2px;
@@ -389,7 +390,7 @@
             background-color: white;
             border-radius: 50%;
             animation: discord-pulse 2s infinite;
-        }
+        } */
         @keyframes discord-pulse {
             0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
             70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
@@ -1133,7 +1134,6 @@
             </div>
         </div>
     </div>
-
     <!-- Homepage Section -->
     <main>
         <section id="home" class="hero container fade-in">
@@ -1161,7 +1161,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Features Section -->
         <section id="features" class="container">
             <h2 class="section-title fade-in">Features</h2>
@@ -1196,7 +1195,6 @@
                 <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425207401329594458/FBF3FC2F-7801-47C2-9EAB-C5F8193732BA.png?ex=68e810d3&is=68e6bf53&hm=07c108b4516c66fd816779b77c6fed3e004c9be920c649affb5b365f241a349d&" alt="Feature showcase 2">
             </div>
         </section>
-
         <!-- Pricing Section -->
         <section id="pricing" class="container">
             <h2 class="section-title fade-in">Pricing</h2>
@@ -1265,7 +1263,6 @@
                 3-day HWID reset cooldown. <br> Faster reset: 200 Robux, $1 Crypto, or $2 PayPal
             </div>
         </section>
-
         <!-- Dev-Logs Section -->
         <section id="dev-logs" class="container">
             <h2 class="section-title fade-in">Dev-Logs</h2>
@@ -1284,7 +1281,6 @@
                 </ul>
             </div>
         </section>
-
         <!-- FAQ Section -->
         <section id="faq" class="container">
             <h2 class="section-title fade-in">Devision FAQ</h2>
@@ -1319,7 +1315,6 @@
                 <button id="executors-btn" class="btn btn-secondary" style="font-size: 1.1rem; padding: 0.8rem 1.5rem;">Supported Executors</button>
             </div>
         </section>
-
         <!-- Contributors Section -->
         <section id="contributors" class="container">
             <h2 class="section-title fade-in">Contributors</h2>
@@ -1351,7 +1346,6 @@
             <a href="#">Terms of Service</a> | <a href="#">Refund Policy</a>
         </p>
     </footer>
-
     <!-- NEW: Supported Executors Modal -->
     <div id="executors-modal">
         <div class="executors-modal-content">
@@ -1401,14 +1395,13 @@
             </div>
         </div>
     </div>
-
     <!-- Back to Top Button -->
     <div class="back-to-top" id="back-to-top">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
     </div>
-
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.getElementById('particle-canvas'); // ✅ FIXED: Define canvas
         const ctx = canvas.getContext('2d');
         let particles = [];
         let currentTheme = 'orange';
@@ -1628,6 +1621,8 @@
             });
         });
         const savedTheme = localStorage.getItem('devision-theme') || 'orange';
+        // ✅ FIXED: Declare faqItems before using it
+        const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
             const answer = item.querySelector('.faq-answer');
@@ -1771,6 +1766,9 @@
                 }
             });
         });
+        // ✅ Start particle animation after DOM is ready
+        initParticles();
+        animateParticles();
     });
     </script>
 </body>
