@@ -1692,15 +1692,16 @@
                 }
             });
         });
+        // Load Dev Logs from JSON
         fetch('devlogs.json')
             .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
+                if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                 return response.json();
             })
             .then(data => {
                 const container = document.getElementById('dev-logs-container');
                 container.innerHTML = '';
-                if (!data.logs || !Array.isArray(data.logs)) {
+                if (!data || !data.logs || !Array.isArray(data.logs)) {
                     container.innerHTML = '<p>No dev logs available.</p>';
                     return;
                 }
