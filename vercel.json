@@ -1,12 +1,5 @@
 {
   "version": 2,
-  "public": true,
-  "builds": [
-    { "src": "index.html", "use": "@vercel/static" },
-    { "src": "devlogs.json", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/devlogs.json", "dest": "/devlogs.json" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  "cleanUrls": true,
+  "trailingSlash": false
 }
