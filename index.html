@@ -1146,6 +1146,47 @@
             filter: drop-shadow(0 0 8px var(--glow-color));
             border-radius: 50%;
         }
+        .hidden {
+            display: none !important;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        .tab-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .tab-button {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all var(--transition-speed) ease;
+        }
+        .tab-button.active {
+            background: var(--primary-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+        .tab-button:hover {
+            background: var(--primary-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 25px var(--glow-color);
+        }
+        .section-content {
+            padding: 2rem 0;
+        }
     </style>
 </head>
 <body>
@@ -1170,27 +1211,27 @@
                 <button class="nav-modal-close" id="nav-close">&times;</button>
             </div>
             <nav class="nav-list">
-                <a href="#home" class="nav-link">
+                <a href="#home" class="nav-link" onclick="switchTab('home')">
                     <span class="nav-item-text">Home</span>
                     <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                 </a>
-                <a href="#features" class="nav-link">
+                <a href="#features" class="nav-link" onclick="switchTab('features')">
                     <span class="nav-item-text">Features</span>
                     <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                 </a>
-                <a href="#pricing" class="nav-link">
+                <a href="#pricing" class="nav-link" onclick="switchTab('pricing')">
                     <span class="nav-item-text">Premium</span>
                     <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                 </a>
-                <a href="#dev-logs" class="nav-link">
+                <a href="#dev-logs" class="nav-link" onclick="switchTab('dev-logs')">
                     <span class="nav-item-text">Dev-Logs</span>
                     <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                 </a>
-                <a href="#faq" class="nav-link">
+                <a href="#faq" class="nav-link" onclick="switchTab('faq')">
                     <span class="nav-item-text">FAQ</span>
                     <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
                 </a>
-                <a href="#contributors" class="nav-link">
+                <a href="#contributors" class="nav-link" onclick="switchTab('contributors')">
                     <span class="nav-item-text">Contributors</span>
                     <svg class="nav-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                 </a>
@@ -1209,167 +1250,199 @@
             </div>
         </div>
     </div>
+    
+    <div class="tab-navigation">
+        <button class="tab-button active" onclick="switchTab('home')">Home</button>
+        <button class="tab-button" onclick="switchTab('features')">Features</button>
+        <button class="tab-button" onclick="switchTab('pricing')">Premium</button>
+        <button class="tab-button" onclick="switchTab('dev-logs')">Dev-Logs</button>
+        <button class="tab-button" onclick="switchTab('faq')">FAQ</button>
+        <button class="tab-button" onclick="switchTab('contributors')">Contributors</button>
+    </div>
+    
     <main>
-        <section id="home" class="hero container fade-in">
-            <h1>DEVISION</h1>
-            <p>The ultimate advantage. Redefining the limits with unparalleled features, performance, and security. Dominate your game like never before.</p>
-            <div class="cta-buttons">
-                <a href="#pricing" class="btn btn-primary">Get Access</a>
-                <a href="https://discord.gg/uCspBMst3t" target="_blank" class="btn btn-discord">
-                    <img src="https://cdn.discordapp.com/attachments/1263186729096184001/1425674545833967617/discord_2.png?ex=68e87263&is=68e720e3&hm=bea20de05f7fad172ac408f55c709f543584825fccd80c6a82fa93b0152e1823&" alt="Discord" style="width: 24px; height: 24px;">
-                    <span>Discord Server</span>
-                </a>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="value" id="countdown-days">--</div>
-                    <div class="label">Days Til Release</div>
-                </div>
-                <div class="stat-card">
-                    <div class="value">24/7</div>
-                    <div class="label">Online Support</div>
-                </div>
-                <div class="stat-card">
-                    <div class="value">100+</div>
-                    <div class="label">Daily Events</div>
-                </div>
-            </div>
-        </section>
-        <section id="features" class="container">
-            <h2 class="section-title fade-in">Features</h2>
-            <div class="features-grid">
-                <div class="feature-card fade-in" style="transition-delay: 0.1s;">
-                    <h3>Targetlock</h3>
-                    <p>new generation prediction system and customizable for flawless accuracy. Supports silent aim, multiple targeting modes, and FOV visualization.</p>
-                </div>
-                <div class="feature-card fade-in" style="transition-delay: 0.2s;">
-                    <h3>Visual Enhancements</h3>
-                    <p>Gain total awareness with customizable ESP, player highlighting, tracers, and material changers. See everything that matters.</p>
-                </div>
-                <div class="feature-card fade-in" style="transition-delay: 0.3s;">
-                    <h3>Dynamic Theming</h3>
-                    <p>Personalize your entire experience. Choose from multiple futuristic themes that alter colors.</p>
-                </div>
-                <div class="feature-card fade-in" style="transition-delay: 0.4s;">
-                    <h3>Avatar Customization</h3>
-                    <p>Modify your client-side appearance with our avatar changer. Load any user ID to instantly adopt their look in-game.</p>
-                </div>
-                <div class="feature-card fade-in" style="transition-delay: 0.5s;">
-                    <h3>Secure & Undetected</h3>
-                    <p>Built with security as the top priority. Frequent updates ensure our script remains ahead of anti-cheat measures.</p>
-                </div>
-                <div class="feature-card fade-in" style="transition-delay: 0.6s;">
-                    <h3>Optimized Performance</h3>
-                    <p>Experience a lag-free and smooth gameplay session. Our code is highly optimized to ensure minimal impact on your system's performance.</p>
-                </div>
-            </div>
-            <div class="extra-images fade-in">
-                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425194294440103977/5759377C-E9B5-4176-B9E2-F57E24EEB585.png?ex=68e8049e&is=68e6b31e&hm=6488bce6b089f4c1821ce5408ea1a076df3ff0df9e039c4b9ac0502fb0fcdae3&" alt="Feature showcase 1">
-                <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425207401329594458/FBF3FC2F-7801-47C2-9EAB-C5F8193732BA.png?ex=68e810d3&is=68e6bf53&hm=07c108b4516c66fd816779b77c6fed3e004c9be920c649affb5b365f241a349d&" alt="Feature showcase 2">
-            </div>
-        </section>
-        <section id="pricing" class="container">
-            <div class="pricing-section">
-                <div class="pricing-logo">
-                    <img src="https://cdn.discordapp.com/attachments/1263186729096184001/1425245632456818729/IMG_20251008_001222.png?ex=68e6e2ee&is=68e5916e&hm=02ed9f42ee05477593ae387ecfda278dbaf7c1eb75deff47bd7e8dc6a8af9bf1&" alt="Devision Logo">
-                </div>
-                <h2 class="section-title fade-in">Pricing</h2>
-                <div class="pricing-grid">
-                    <div class="pricing-card fade-in" style="transition-delay: 0.1s;">
-                        <h3>Weekly</h3>
-                        <div class="price">$5<span>/week</span></div>
-                        <ul>
-                            <li>Full Feature Access</li>
-                            <li>7-Day Key Duration</li>
-                            <li>Standard Support</li>
-                            <li>All Future Updates</li>
-                        </ul>
-                        <button class="btn btn-secondary btn-purchase">Purchase</button>
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <h1>DEVISION</h1>
+                    <p>The ultimate advantage. Redefining the limits with unparalleled features, performance, and security. Dominate your game like never before.</p>
+                    <div class="cta-buttons">
+                        <a href="#pricing" class="btn btn-primary" onclick="switchTab('pricing')">Get Access</a>
+                        <a href="https://discord.gg/uCspBMst3t" target="_blank" class="btn btn-discord">
+                            <img src="https://cdn.discordapp.com/attachments/1263186729096184001/1425674545833967617/discord_2.png?ex=68e87263&is=68e720e3&hm=bea20de05f7fad172ac408f55c709f543584825fccd80c6a82fa93b0152e1823&" alt="Discord" style="width: 24px; height: 24px;">
+                            <span>Discord Server</span>
+                        </a>
                     </div>
-                    <div class="pricing-card lifetime-special fade-in" style="transition-delay: 0.2s;">
-                        <div class="card-content">
-                            <svg class="crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
-                            <h3>Lifetime</h3>
-                            <p class="recommended">(Recommended)</p>
-                            <div class="price">$10<span>/onetime</span></div>
-                             <ul>
-                                <li>Full Feature Access</li>
-                                <li>Permanent Key</li>
-                                <li>Buyer Role</li>
-                                <li>All Future Updates</li>
-                            </ul>
-                            <button class="btn btn-primary btn-purchase">Purchase</button>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="value" id="countdown-days">--</div>
+                            <div class="label">Days Til Release</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="value">24/7</div>
+                            <div class="label">Online Support</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="value">100+</div>
+                            <div class="label">Daily Events</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section id="dev-logs" class="container">
-            <h2 class="section-title fade-in">Dev-Logs</h2>
-            <div class="dev-log-card fade-in">
-                <h3>Update Log #1</h3>
-                <ul>
-                    <li>Added 3 modes to redirection: mouse, remote, namecall, raycast [with wallbang for 0 delay games]</li>
-                    <li>Added silent aim [soon fov with gradients]</li>
-                    <li>Changed fov to screengui + glow
-                        <img class="dev-log-image-preview" src="https://cdn.discordapp.com/attachments/1422290432070516786/1423689567101521930/image.png?ex=68e7d13b&is=68e67fbb&hm=a9253c6b2ee77b745d2ce32a0de3cdb586a66aaa9ac9caad2b25908da9b77f56&" alt="Glow Preview">
-                    </li>
-                    <li>Added 3 positions to fov (mouse, center, barrel (gun)) and added lerp option</li>
-                    <li>Added highlight target/client, material changer to client, and avatar changer with user id and added gui
-                         <img class="dev-log-image-preview" src="https://cdn.discordapp.com/attachments/1422290432070516786/1424827171255488512/C48DF7BA-05E4-4603-A436-D8E9E29B06C7.png?ex=68e80035&is=68e6aeb5&hm=9ed80b6e448f8b8863aa99cd565257734ec72a2c2876dda757f7ec6bf5965605&" alt="GUI Preview">
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <section id="faq" class="container">
-            <h2 class="section-title fade-in">Devision FAQ</h2>
-            <div class="faq-container fade-in">
-                <div class="faq-item">
-                    <div class="faq-question">Will I get banned?</div>
-                    <div class="faq-answer">
-                        <p>The Answer is No. It is 100% undetectable, we bypasses the anti-cheats security measures and frequent updates to minimize risk, making bans highly unlikely when used correctly.</p>
+        
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card fade-in" style="transition-delay: 0.1s;">
+                        <h3>Targetlock</h3>
+                        <p>new generation prediction system and customizable for flawless accuracy. Supports silent aim, multiple targeting modes, and FOV visualization.</p>
+                    </div>
+                    <div class="feature-card fade-in" style="transition-delay: 0.2s;">
+                        <h3>Visual Enhancements</h3>
+                        <p>Gain total awareness with customizable ESP, player highlighting, tracers, and material changers. See everything that matters.</p>
+                    </div>
+                    <div class="feature-card fade-in" style="transition-delay: 0.3s;">
+                        <h3>Dynamic Theming</h3>
+                        <p>Personalize your entire experience. Choose from multiple futuristic themes that alter colors.</p>
+                    </div>
+                    <div class="feature-card fade-in" style="transition-delay: 0.4s;">
+                        <h3>Avatar Customization</h3>
+                        <p>Modify your client-side appearance with our avatar changer. Load any user ID to instantly adopt their look in-game.</p>
+                    </div>
+                    <div class="feature-card fade-in" style="transition-delay: 0.5s;">
+                        <h3>Secure & Undetected</h3>
+                        <p>Built with security as the top priority. Frequent updates ensure our script remains ahead of anti-cheat measures.</p>
+                    </div>
+                    <div class="feature-card fade-in" style="transition-delay: 0.6s;">
+                        <h3>Optimized Performance</h3>
+                        <p>Experience a lag-free and smooth gameplay session. Our code is highly optimized to ensure minimal impact on your system's performance.</p>
                     </div>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question">Is This a Logger?</div>
-                    <div class="faq-answer">
-                        <p>Absolutely not. We guarantee our script is free from any loggers, malware, or any malicious code. Your security and privacy are our priorities.</p>
-                    </div>
-                </div>
-                 <div class="faq-item">
-                    <div class="faq-question">Is This Refundable?</div>
-                    <div class="faq-answer">
-                        <p>Due to the digital nature of our product, we generally do not offer refunds. Please review our Refund Policy and Terms of Service before purchasing. Exceptions may be made in specific circumstances at our discretion.</p>
-                    </div>
-                </div>
-                 <div class="faq-item">
-                    <div class="faq-question">What platforms are supported?</div>
-                    <div class="faq-answer">
-                        <p>Our script is designed for the PC version of Roblox and Mobile. We support a wide range of popular script executors. Please check our Discord for a complete, up-to-date list of supported executors.</p>
-                    </div>
+                <div class="extra-images fade-in">
+                    <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425194294440103977/5759377C-E9B5-4176-B9E2-F57E24EEB585.png?ex=68e8049e&is=68e6b31e&hm=6488bce6b089f4c1821ce5408ea1a076df3ff0df9e039c4b9ac0502fb0fcdae3&" alt="Feature showcase 1">
+                    <img src="https://cdn.discordapp.com/attachments/1297289407573000243/1425207401329594458/FBF3FC2F-7801-47C2-9EAB-C5F8193732BA.png?ex=68e810d3&is=68e6bf53&hm=07c108b4516c66fd816779b77c6fed3e004c9be920c649affb5b365f241a349d&" alt="Feature showcase 2">
                 </div>
             </div>
         </section>
-        <section id="contributors" class="container">
-            <h2 class="section-title fade-in">Contributors</h2>
-            <div class="contributors-grid">
-                <div class="contributor-card fade-in" style="transition-delay: 0.1s;">
-                    <img src="https://cdn.discordapp.com/avatars/797901826258370581/dd0def53b23aa0bfc5e28f3b8890c6c7.png?size=512" alt="hxcker pfp" class="pfp">
-                    <h3 class="name">hxcker</h3>
-                    <span class="tag">Founder</span>
-                    <a href="https://discord.com/users/797901826258370581" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
+        
+        <!-- Premium Section -->
+        <section id="pricing" class="section">
+            <div class="container">
+                <div class="pricing-section">
+                    <h2 class="section-title fade-in">Pricing</h2>
+                    <div class="pricing-grid">
+                        <div class="pricing-card fade-in" style="transition-delay: 0.1s;">
+                            <h3>Weekly</h3>
+                            <div class="price">$5<span>/week</span></div>
+                            <ul>
+                                <li>Full Feature Access</li>
+                                <li>7-Day Key Duration</li>
+                                <li>Standard Support</li>
+                                <li>All Future Updates</li>
+                            </ul>
+                            <button class="btn btn-secondary btn-purchase">Purchase</button>
+                        </div>
+                        <div class="pricing-card lifetime-special fade-in" style="transition-delay: 0.2s;">
+                            <div class="card-content">
+                                <svg class="crown-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 16L3 5L8.5 9.5L12 4L15.5 9.5L21 5L19 16H5ZM19 19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V18H19V19Z"/></svg>
+                                <h3>Lifetime</h3>
+                                <p class="recommended">(Recommended)</p>
+                                <div class="price">$10<span>/onetime</span></div>
+                                 <ul>
+                                    <li>Full Feature Access</li>
+                                    <li>Permanent Key</li>
+                                    <li>Buyer Role</li>
+                                    <li>All Future Updates</li>
+                                </ul>
+                                <button class="btn btn-primary btn-purchase">Purchase</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="contributor-card fade-in" style="transition-delay: 0.2s;">
-                    <img src="https://cdn.discordapp.com/avatars/1230212757916487681/ad0df60f045f3fe6e71cf578759c1ea4.png?size=512" alt="craxes pfp" class="pfp">
-                    <h3 class="name">craxes</h3>
-                    <span class="tag">Co-Owner</span>
-                    <a href="https://discord.com/users/1230212757916487681" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
+            </div>
+        </section>
+        
+        <!-- Dev-Logs Section -->
+        <section id="dev-logs" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Dev-Logs</h2>
+                <div class="dev-log-card fade-in">
+                    <h3>Update Log #1</h3>
+                    <ul>
+                        <li>Added 3 modes to redirection: mouse, remote, namecall, raycast [with wallbang for 0 delay games]</li>
+                        <li>Added silent aim [soon fov with gradients]</li>
+                        <li>Changed fov to screengui + glow
+                            <img class="dev-log-image-preview" src="https://cdn.discordapp.com/attachments/1422290432070516786/1423689567101521930/image.png?ex=68e7d13b&is=68e67fbb&hm=a9253c6b2ee77b745d2ce32a0de3cdb586a66aaa9ac9caad2b25908da9b77f56&" alt="Glow Preview">
+                        </li>
+                        <li>Added 3 positions to fov (mouse, center, barrel (gun)) and added lerp option</li>
+                        <li>Added highlight target/client, material changer to client, and avatar changer with user id and added gui
+                             <img class="dev-log-image-preview" src="https://cdn.discordapp.com/attachments/1422290432070516786/1424827171255488512/C48DF7BA-05E4-4603-A436-D8E9E29B06C7.png?ex=68e80035&is=68e6aeb5&hm=9ed80b6e448f8b8863aa99cd565257734ec72a2c2876dda757f7ec6bf5965605&" alt="GUI Preview">
+                        </li>
+                    </ul>
                 </div>
-                <div class="contributor-card fade-in" style="transition-delay: 0.3s;">
-                    <img src="https://cdn.discordapp.com/avatars/1251496733460926493/2ffac6d3c2074362ba8cc35939323e73.png?size=512" alt="od pfp" class="pfp">
-                    <h3 class="name">od</h3>
-                    <span class="tag">Head-Administrator</span>
-                    <a href="https://discord.com/users/1251496733460926493" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Devision FAQ</h2>
+                <div class="faq-container fade-in">
+                    <div class="faq-item">
+                        <div class="faq-question">Will I get banned?</div>
+                        <div class="faq-answer">
+                            <p>The Answer is No. It is 100% undetectable, we bypasses the anti-cheats security measures and frequent updates to minimize risk, making bans highly unlikely when used correctly.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Is This a Logger?</div>
+                        <div class="faq-answer">
+                            <p>Absolutely not. We guarantee our script is free from any loggers, malware, or any malicious code. Your security and privacy are our priorities.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item">
+                        <div class="faq-question">Is This Refundable?</div>
+                        <div class="faq-answer">
+                            <p>Due to the digital nature of our product, we generally do not offer refunds. Please review our Refund Policy and Terms of Service before purchasing. Exceptions may be made in specific circumstances at our discretion.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item">
+                        <div class="faq-question">What platforms are supported?</div>
+                        <div class="faq-answer">
+                            <p>Our script is designed for the PC version of Roblox and Mobile. We support a wide range of popular script executors. Please check our Discord for a complete, up-to-date list of supported executors.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contributors Section -->
+        <section id="contributors" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Contributors</h2>
+                <div class="contributors-grid">
+                    <div class="contributor-card fade-in" style="transition-delay: 0.1s;">
+                        <img src="https://cdn.discordapp.com/avatars/797901826258370581/dd0def53b23aa0bfc5e28f3b8890c6c7.png?size=512" alt="hxcker pfp" class="pfp">
+                        <h3 class="name">hxcker</h3>
+                        <span class="tag">Founder</span>
+                        <a href="https://discord.com/users/797901826258370581" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
+                    </div>
+                    <div class="contributor-card fade-in" style="transition-delay: 0.2s;">
+                        <img src="https://cdn.discordapp.com/avatars/1230212757916487681/ad0df60f045f3fe6e71cf578759c1ea4.png?size=512" alt="craxes pfp" class="pfp">
+                        <h3 class="name">craxes</h3>
+                        <span class="tag">Co-Owner</span>
+                        <a href="https://discord.com/users/1230212757916487681" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
+                    </div>
+                    <div class="contributor-card fade-in" style="transition-delay: 0.3s;">
+                        <img src="https://cdn.discordapp.com/avatars/1251496733460926493/2ffac6d3c2074362ba8cc35939323e73.png?size=512" alt="od pfp" class="pfp">
+                        <h3 class="name">od</h3>
+                        <span class="tag">Head-Administrator</span>
+                        <a href="https://discord.com/users/1251496733460926493" target="_blank" class="btn btn-secondary discord-btn">Discord</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1738,6 +1811,31 @@
             });
             initParticles();
             animateParticles();
+            
+            // Tab switching functionality
+            window.switchTab = function(tabName) {
+                // Hide all sections
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Remove active class from all tab buttons
+                document.querySelectorAll('.tab-button').forEach(button => {
+                    button.classList.remove('active');
+                });
+                
+                // Show selected section
+                document.getElementById(tabName).classList.add('active');
+                
+                // Add active class to clicked tab button
+                event.target.classList.add('active');
+                
+                // Scroll to top when switching tabs
+                window.scrollTo(0, 0);
+            };
+            
+            // Initialize with home tab active
+            document.getElementById('home').classList.add('active');
         });
     </script>
 </body>
