@@ -1327,48 +1327,52 @@
     <script>
         const DEVLOGS_JSON_URL = 'https://raw.githubusercontent.com/professionalpaster32/wddiision.html/main/devlogs.json';
 
-        function renderDevLogs(data) {
-            const container = document.getElementById('dev-logs-container');
-            if (!Array.isArray(data) || data.length === 0) {
-                container.innerHTML = '<div class="error">No dev logs available.</div>';
-                return;
+function renderDevLogs(data) {
+    const container = document.getElementById('dev-logs-container');
+    if (!Array.isArray(data) || data.length === 0) {
+        container.innerHTML = '<div class="error">No dev logs available.</div>';
+        return;
+    }
+
+    let html = '';
+    data.forEach(log => {
+        html += `<div class="dev-log-card"><h3>${log.title}</h3><ul>`;
+        log.entries.forEach(entry => {
+            if (typeof entry === 'string') {
+                html += `<li>${entry}</li>`;
+            } else if (entry && entry.text) {
+                html += `<li>${entry.text}`;
+                if (entry.image) {
+                    html += `
+                        <img class="dev-log-image-preview"
+                             src="${entry.image}"
+                             alt="Dev Log Image"
+                             referrerpolicy="no-referrer"
+                             onerror="this.style.display='none';">`;
+                }
+                html += `</li>`;
             }
+        });
+        html += `</ul></div>`;
+    });
+    container.innerHTML = html;
+}
 
-            let html = '';
-            data.forEach(log => {
-                html += `<div class="dev-log-card"><h3>${log.title}</h3><ul>`;
-                log.entries.forEach(entry => {
-                    if (typeof entry === 'string') {
-                        html += `<li>${entry}</li>`;
-                    } else if (entry && entry.text) {
-                        html += `<li>${entry.text}`;
-                        if (entry.image) {
-                            html += `<img class="dev-log-image-preview" src="${entry.image}" alt="Dev Log Image">`;
-                        }
-                        html += `</li>`;
-                    }
-                });
-                html += `</ul></div>`;
-            });
-            container.innerHTML = html;
-        }
+async function fetchDevLogs() {
+    const container = document.getElementById('dev-logs-container');
+    try {
+        const response = await fetch(DEVLOGS_JSON_URL + '?t=' + Date.now());
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        renderDevLogs(data);
+    } catch (error) {
+        console.error('Failed to load Dev-Logs:', error);
+        container.innerHTML = '<div class="error">Failed to load Dev-Logs. Please try again later.</div>';
+    }
+}
 
-        async function fetchDevLogs() {
-            const container = document.getElementById('dev-logs-container');
-            try {
-                const response = await fetch(DEVLOGS_JSON_URL + '?t=' + Date.now());
-                if (!response.ok) throw new Error('Network response was not ok');
-                const data = await response.json();
-                renderDevLogs(data);
-            } catch (error) {
-                console.error('Failed to load Dev-Logs:', error);
-                container.innerHTML = '<div class="error">Failed to load Dev-Logs. Please try again later.</div>';
-            }
-        }
-
-        fetchDevLogs();
-
-        setInterval(fetchDevLogs, 30000);
+fetchDevLogs();
+setInterval(fetchDevLogs, 30000);
 
         document.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('particle-canvas');
