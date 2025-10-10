@@ -6,12 +6,12 @@
       "Added silent aim [soon fov with gradient]",
       {
         "text": "Changed FOV to ScreenGui + Glow",
-        "image": "https://files.catbox.moe/5pe2bt.webp"
+        "image": "https://i.postimg.cc/zLF2Wq9c/image.png"
       },
       "Added 3 positions to FOV (mouse, center, barrel (gun)) and added Lerp option",
       {
         "text": "Added highlight target/client system, material changer for client, and avatar changer using user ID (with GUI)",
-        "image": "https://files.catbox.moe/zthsi4.webp"
+        "image": "https://i.postimg.cc/yJyp97wt/C48-DF7-BA-05-E4-4603-A436-D8-E9-E29-B06-C7.png"
       },
       {
         "text": "Added many new visuals including China effects, hats, auras, and walkspeed customization"
