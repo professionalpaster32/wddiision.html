@@ -1,6 +1,6 @@
 [
   {
-    "title": "UPDATE LOG #1",
+    "title": "UPDATE LOG #2",
     "entries": [
       "Added 3 modes to redirection: mouse, remote, namecall, raycast [with wallbang for 0 delay games]",
       "Added silent aim [soon fov with gradients]",
