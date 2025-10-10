@@ -1,0 +1,18 @@
+[
+  {
+    "title": "UPDATE LOG #1",
+    "entries": [
+      "Added 3 modes to redirection: mouse, remote, namecall, raycast [with wallbang for 0 delay games]",
+      "Added silent aim [soon fov with gradients]",
+      {
+        "text": "Changed fov to screengui + glow",
+        "image": "https://cdn.discordapp.com/attachments/1422290432070516786/1423689567101521930/image.png?ex=68e7d13b&is=68e67fbb&hm=a9253c6b2ee77b745d2ce32a0de3cdb586a66aaa9ac9caad2b25908da9b77f56&"
+      },
+      "Added 3 positions to fov (mouse, center, barrel (gun)) and added lerp option",
+      {
+        "text": "Added highlight target/client, material changer to client, and avatar changer with user id and added gui",
+        "image": "https://cdn.discordapp.com/attachments/1422290432070516786/1424827171255488512/C48DF7BA-05E4-4603-A436-D8E9E29B06C7.png?ex=68e80035&is=68e6aeb5&hm=9ed80b6e448f8b8863aa99cd565257734ec72a2c2876dda757f7ec6bf5965605&"
+      }
+    ]
+  }
+]
