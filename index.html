@@ -1326,12 +1326,14 @@
     </div>
     <script>
         const DEVLOGS_JSON_URL = 'https://raw.githubusercontent.com/professionalpaster32/wddiision.html/main/devlogs.json';
+
         function renderDevLogs(data) {
             const container = document.getElementById('dev-logs-container');
             if (!Array.isArray(data) || data.length === 0) {
                 container.innerHTML = '<div class="error">No dev logs available.</div>';
                 return;
             }
+
             let html = '';
             data.forEach(log => {
                 html += `<div class="dev-log-card"><h3>${log.title}</h3><ul>`;
@@ -1350,6 +1352,7 @@
             });
             container.innerHTML = html;
         }
+
         async function fetchDevLogs() {
             const container = document.getElementById('dev-logs-container');
             try {
@@ -1362,8 +1365,14 @@
                 container.innerHTML = '<div class="error">Failed to load Dev-Logs. Please try again later.</div>';
             }
         }
+
+        // Initial load
         fetchDevLogs();
+
+        // Auto-refresh every 30 seconds
         setInterval(fetchDevLogs, 30000);
+
+        // Rest of your existing JS (theme, particles, FAQ, etc.)
         document.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('particle-canvas');
             const ctx = canvas.getContext('2d');
