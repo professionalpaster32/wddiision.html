@@ -7,46 +7,80 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;700&family=Teko:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --orange-primary: #ff6600;
-            --orange-glow: rgba(255, 102, 0, 0.7);
-            --orange-bg: #0d0600;
-            --orange-bg-light: #1a0d00;
-            --purple-primary: #a335f0;
-            --purple-glow: rgba(163, 53, 240, 0.7);
-            --purple-bg: #0c0414;
-            --purple-bg-light: #190a29;
-            --gray-primary: #cccccc;
-            --gray-glow: rgba(204, 204, 204, 0.6);
-            --gray-bg: #0a0a0b;
-            --gray-bg-light: #1c1c1e;
-            --phrog-primary: #33ff33;
-            --phrog-glow: rgba(51, 255, 51, 0.6);
-            --phrog-bg: #030f03;
-            --phrog-bg-light: #0a240a;
-            --red-primary: #ff1f1f;
-            --red-glow: rgba(255, 31, 31, 0.7);
-            --red-bg: #0f0202;
-            --red-bg-light: #240505;
-            --blue-primary: #00a2ff;
-            --blue-glow: rgba(0, 162, 255, 0.7);
-            --blue-bg: #020a14;
-            --blue-bg-light: #06192e;
-            --primary-color: var(--orange-primary);
-            --glow-color: var(--orange-glow);
-            --bg-color: var(--orange-bg);
-            --bg-light-color: var(--orange-bg-light);
-            --text-color: #e0e0e0;
-            --text-muted-color: #888;
-            --border-radius: 12px;
-            --transition-speed: 0.3s;
-        }
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    :root {
+      --orange-primary: #ff6600;
+      --orange-glow: rgba(255, 102, 0, 0.7);
+      --orange-bg: #0d0600;
+      --orange-bg-light: #1a0d00;
+      --purple-primary: #a335f0;
+      --purple-glow: rgba(163, 53, 240, 0.7);
+      --purple-bg: #0c0414;
+      --purple-bg-light: #190a29;
+      --gray-primary: #cccccc;
+      --gray-glow: rgba(204, 204, 204, 0.6);
+      --gray-bg: #0a0a0b;
+      --gray-bg-light: #1c1c1e;
+      --phrog-primary: #33ff33;
+      --phrog-glow: rgba(51, 255, 51, 0.6);
+      --phrog-bg: #030f03;
+      --phrog-bg-light: #0a240a;
+      --red-primary: #ff1f1f;
+      --red-glow: rgba(255, 31, 31, 0.7);
+      --red-bg: #0f0202;
+      --red-bg-light: #240505;
+      --blue-primary: #00a2ff;
+      --blue-glow: rgba(0, 162, 255, 0.7);
+      --blue-bg: #020a14;
+      --blue-bg-light: #06192e;
+      --primary-color: var(--orange-primary);
+      --glow-color: var(--orange-glow);
+      --bg-color: var(--orange-bg);
+      --bg-light-color: var(--orange-bg-light);
+      --text-color: #e0e0e0;
+      --text-muted-color: #888;
+      --border-radius: 12px;
+      --transition-speed: 0.3s;
+    }
+
+    .dev-log-image-preview,
+    img[src*=".png"],
+    img[src*=".jpg"],
+    img[src*=".webp"] {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      image-rendering: pixelated;
+      -ms-interpolation-mode: nearest-neighbor;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+      -webkit-transform: translateZ(0);
+      filter: none;
+      will-change: transform;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .dev-log-image-preview {
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
+      display: block;
+      margin: 1rem auto;
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .dev-log-image-preview:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 102, 0, 0.6);
+      filter: brightness(1.2);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
         html {
             scroll-behavior: smooth;
         }
